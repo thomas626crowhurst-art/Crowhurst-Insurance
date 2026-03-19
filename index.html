@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crowhurst Insurance Group</title>
+<title>Thomas Crowhurst Insurance</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -250,6 +250,70 @@
   }
   .metric-label { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
 
+  /* ── ABOUT ── */
+  .about {
+    padding: 7rem 4rem;
+    background: var(--cream);
+  }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .about-photo-wrap {
+    position: relative;
+  }
+  .about-photo-wrap::before {
+    content: '';
+    position: absolute;
+    top: 20px; left: 20px;
+    right: -20px; bottom: -20px;
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    z-index: 0;
+  }
+  .about-photo {
+    width: 100%;
+    border-radius: 4px;
+    display: block;
+    position: relative;
+    z-index: 1;
+    object-fit: cover;
+  }
+  .about-bio {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+
+  /* ── COMPLIANCE ── */
+  .compliance-bar {
+    background: var(--navy-mid);
+    padding: 1.5rem 4rem;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+  .compliance-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .compliance-bar p {
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+  }
+  .compliance-bar a {
+    color: rgba(201,168,76,0.7);
+    text-decoration: none;
+  }
+  .compliance-bar a:hover {
+    color: var(--gold);
+  }
+
   /* ── PRIVACY ── */
   .privacy {
     padding: 7rem 4rem;
@@ -333,6 +397,10 @@
     .states-bar { padding: 0.9rem 1.5rem; }
     .services { padding: 4rem 1.5rem; }
     .why { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+    .about { padding: 4rem 1.5rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-photo-wrap::before { display: none; }
+    .compliance-bar { padding: 1.5rem; }
     .cta-section { padding: 4rem 1.5rem; }
     footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
     .privacy { padding: 4rem 1.5rem; }
@@ -346,7 +414,8 @@
   <a href="#" class="nav-logo">Thomas Crowhurst <span>Insurance</span></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#why">About</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#why">Why Us</a></li>
     <li><a href="#privacy">Privacy</a></li>
   </ul>
   <a href="tel:+13177289417" class="nav-cta">Call Now</a>
@@ -357,7 +426,7 @@
   <div class="hero-left">
     <div class="hero-eyebrow">Independent Insurance Broker</div>
     <h1>Medicare Made <em>Simple.</em> Coverage That Fits.</h1>
-    <p class="hero-sub">Independent insurance guidance across Medicare Advantage, Medicare Supplement, Final Expense, and ACA plans. No pressure. No quotas. Just the right plan for your life.</p>
+    <p class="hero-sub">Independent insurance guidance across Medicare Advantage, Medicare Supplement, Final Expense, Annuities, and Life Insurance. No pressure. No quotas. Just the right plan for your life.</p>
     <div class="hero-actions">
       <a href="tel:+13177289417" class="btn-primary">Schedule a Free Review</a>
       <a href="#services" class="btn-ghost">See what we offer</a>
@@ -407,7 +476,7 @@
     <div class="service-card">
       <div class="service-icon">🛡</div>
       <div class="service-name">Medicare Supplement</div>
-      <p class="service-desc">Medigap plans that cover what Original Medicare leaves behind. Plan G and Plan N available across Indiana, Illinois, Ohio, Michigan, and Vermont.</p>
+      <p class="service-desc">Medigap plans that cover what Original Medicare leaves behind. Plan G and Plan N available across multiple states.</p>
     </div>
     <div class="service-card">
       <div class="service-icon">❤</div>
@@ -470,12 +539,29 @@
   </div>
 </section>
 
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-photo-wrap">
+      <img src="thomas.png" alt="Thomas Crowhurst" class="about-photo" />
+    </div>
+    <div class="about-content">
+      <div class="section-eyebrow">About Thomas</div>
+      <h2 class="section-title" style="color:var(--navy);">A Real Person in Your Corner</h2>
+      <p class="about-bio">I'm Thomas Crowhurst, an independent insurance broker licensed across multiple states. I came to this work the same way most of my clients find me — trying to make sense of a complicated system and looking for someone who would just give it to them straight.</p>
+      <p class="about-bio">I specialize in Medicare Advantage, Medicare Supplement, Final Expense, and Annuities. As an independent broker, I'm contracted with carriers across the country — which means I can look at the full picture of what's available in your area and walk you through your options without a script.</p>
+      <p class="about-bio">When you call that number, you get me. Not a call center. Not a voicemail queue. Just a licensed agent who will take the time to understand your situation and give you a clear, honest answer.</p>
+      <a href="tel:+13177289417" class="btn-primary" style="margin-top:1.5rem; display:inline-block;">Call Thomas Directly</a>
+    </div>
+  </div>
+</section>
+
 <!-- PRIVACY POLICY -->
 <section class="privacy" id="privacy">
   <h2>Privacy Policy</h2>
   <p class="privacy-date">Effective Date: March 18, 2026 | Last Updated: March 18, 2026</p>
 
-  <p>Crowhurst Insurance Group, LLC ("we," "us," or "our") is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard information when you contact us or engage with our services.</p>
+  <p>Thomas Crowhurst ("I," "me," or "my") is committed to protecting your personal information. This Privacy Policy explains how I collect, use, and safeguard information when you contact me or engage with my services.</p>
 
   <h3>Information We Collect</h3>
   <p>We may collect your name, phone number, email address, date of birth, zip code, and insurance-related information you voluntarily provide when requesting a consultation or quote. We may also collect this information through Medicare lead generation platforms and public records databases of individuals approaching Medicare eligibility.</p>
@@ -484,7 +570,7 @@
   <p>We use the information we collect to provide insurance consultations and quotes, send appointment reminders and follow-up communications via phone, email, or SMS text message, comply with state and federal insurance licensing requirements, and improve our services.</p>
 
   <h3>SMS Text Messaging</h3>
-  <p>By providing your phone number, you consent to receive SMS text messages from Crowhurst Insurance Group regarding Medicare plan information, appointment reminders, and follow-up communications. Message frequency varies. Message and data rates may apply. To opt out at any time, reply STOP to any text message. For help, reply HELP or contact us at the information below.</p>
+  <p>By providing your phone number, you consent to receive SMS text messages from Thomas Crowhurst Insurance regarding Medicare plan information, appointment reminders, and follow-up communications. Message frequency varies. Message and data rates may apply. To opt out at any time, reply STOP to any text message. For help, reply HELP or contact us at the information below.</p>
 
   <h3>Information Sharing</h3>
   <p>We do not sell your personal information. We may share information with insurance carriers solely for the purpose of obtaining quotes or processing applications on your behalf. We do not share your information with third parties for marketing purposes.</p>
@@ -496,7 +582,7 @@
   <p>You may request to access, correct, or delete your personal information at any time by contacting us directly. You may also opt out of SMS communications by replying STOP to any message.</p>
 
   <h3>Contact Us</h3>
-  <p>Thomas Crowhurst — Crowhurst Insurance Group<br>
+  <p>Thomas Crowhurst — Thomas Crowhurst Insurance<br>
   Northwest Indiana<br>
   Phone: (317) 728-9417<br>
   Email: thomas@crowhurstinsurance.com</p>
@@ -510,23 +596,30 @@
   <h2>Terms &amp; Conditions</h2>
   <p class="privacy-date">Effective Date: March 18, 2026</p>
 
-  <p>By contacting Crowhurst Insurance Group or providing your information, you agree to the following terms.</p>
+  <p>By contacting Thomas Crowhurst Insurance or providing your information, you agree to the following terms.</p>
 
   <h3>Services</h3>
-  <p>Crowhurst Insurance Group provides independent insurance consulting and brokerage services. All consultations are provided free of charge. We are licensed in Indiana, Illinois, Ohio, Michigan, and Vermont.</p>
+  <p>Thomas Crowhurst provides independent insurance consulting and brokerage services. All consultations are provided free of charge. Thomas Crowhurst is multi-state licensed.</p>
 
   <h3>SMS Communications</h3>
-  <p>Crowhurst Insurance Group operates an SMS messaging program to send Medicare information, appointment reminders, and follow-up messages. Program name: Crowhurst Insurance Medicare Outreach. Message frequency varies based on your inquiry status. Message and data rates may apply. To opt out, reply STOP. For help, reply HELP or call (219) 244-2446.</p>
+  <p>Crowhurst Insurance Group operates an SMS messaging program to send Medicare information, appointment reminders, and follow-up messages. Program name: Crowhurst Insurance Medicare Outreach. Message frequency varies based on your inquiry status. Message and data rates may apply. To opt out, reply STOP. For help, reply HELP or call (317) 728-9417.</p>
 
   <h3>No Guarantee of Coverage</h3>
   <p>Information provided during consultations is for educational purposes. Final coverage, pricing, and eligibility are determined by insurance carriers and are subject to their terms and underwriting guidelines.</p>
 
   <h3>Limitation of Liability</h3>
-  <p>Crowhurst Insurance Group is not liable for decisions made based on information provided during consultations. We recommend reviewing all plan documents carefully before enrolling.</p>
+  <p>Thomas Crowhurst is not liable for decisions made based on information provided during consultations. We recommend reviewing all plan documents carefully before enrolling.</p>
 
   <h3>Contact</h3>
   <p>Questions about these terms? Contact us at (317) 728-9417 or thomas@crowhurstinsurance.com.</p>
 </section>
+
+<!-- COMPLIANCE -->
+<div class="compliance-bar">
+  <div class="compliance-inner">
+    <p>Coverage availability varies by carrier and location. We do not offer every carrier in your area. This website is not affiliated with or endorsed by the U.S. government or the federal Medicare program. This is a solicitation of insurance. A licensed insurance agent may contact you. For official Medicare information, visit <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a> or call 1-800-MEDICARE (1-800-633-4227). TTY: 1-877-486-2048.</p>
+  </div>
+</div>
 
 <!-- CTA -->
 <section class="cta-section">
