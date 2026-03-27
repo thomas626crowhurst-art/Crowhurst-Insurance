@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thomas Crowhurst Insurance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #2a2825;
+    --charcoal-mid: #333030;
+    --charcoal-light: #3d3a37;
+    --cream: #f0e8d8;
+    --rust: #c4522a;
+    --rust-dark: #a04020;
+    --olive: #7a8c45;
+    --teal: #3d7a6e;
+    --gold: #c9943a;
+    --text-light: #c8bfb0;
+    --text-muted: #8a8070;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--charcoal); color: var(--cream); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(42,40,37,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(240,232,216,0.07);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--cream); text-decoration: none; }
+  .nav-logo em { font-style: italic; color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-right { display: flex; align-items: center; gap: 1.2rem; }
+  .nav-social { color: var(--text-muted); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; }
+  .nav-social:hover { color: var(--gold); }
+  .nav-social svg { width: 16px; height: 16px; fill: currentColor; }
+  .nav-cta { background: var(--rust); color: var(--cream); padding: 0.55rem 1.4rem; border-radius: 2px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--rust-dark); }
+
+  .hero {
+    min-height: 100vh; background: var(--charcoal);
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 9rem 4rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; top: -100px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(196,82,42,0.07) 0%, transparent 65%); border-radius: 50%; pointer-events: none; }
+  .hero-stripe { position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 5px; height: 200px; background: linear-gradient(to bottom, var(--rust), var(--teal), var(--olive), var(--gold)); border-radius: 0 3px 3px 0; }
+  .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); font-weight: 500; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; animation: fadeUp 0.6s ease both; }
+  .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--rust); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 5vw, 5rem); font-weight: 900; line-height: 1.0; color: var(--cream); margin-bottom: 1.5rem; animation: fadeUp 0.6s 0.1s ease both; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-size: 1rem; line-height: 1.8; color: var(--text-light); max-width: 460px; margin-bottom: 2.5rem; animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; animation: fadeUp 0.6s 0.3s ease both; }
+  .btn-primary { background: var(--rust); color: var(--cream); padding: 0.9rem 2rem; border-radius: 2px; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; display: inline-block; border: 2px solid var(--rust); }
+  .btn-primary:hover { background: transparent; color: var(--rust); }
+  .btn-ghost { color: var(--text-light); font-size: 0.85rem; text-decoration: none; border-bottom: 1px solid rgba(200,191,176,0.3); padding-bottom: 2px; transition: all 0.2s; }
+  .btn-ghost:hover { color: var(--cream); border-color: var(--cream); }
+  .hero-right { display: flex; justify-content: center; align-items: center; animation: fadeUp 0.6s 0.4s ease both; }
+  .hero-card { background: var(--charcoal-mid); border: 1px solid rgba(240,232,216,0.1); border-radius: 3px; padding: 2.5rem; width: 100%; max-width: 360px; position: relative; }
+  .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold)); }
+  .hero-card-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); margin-bottom: 1.5rem; font-weight: 700; }
+  .stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.9rem 0; border-bottom: 1px solid rgba(240,232,216,0.06); }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { font-size: 0.78rem; color: var(--text-muted); }
+  .stat-val { font-size: 0.9rem; color: var(--cream); font-weight: 500; }
+  .stat-val.accent { color: var(--gold); }
+
+  .states-bar { background: var(--rust); padding: 0.85rem 4rem; display: flex; align-items: center; gap: 2rem; }
+  .states-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,232,216,0.7); white-space: nowrap; }
+  .states-list { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  .state-pill { color: var(--cream); font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.7rem; background: rgba(0,0,0,0.15); border-radius: 2px; }
+
+  .section-eyebrow { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin-bottom: 1rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; line-height: 1.1; }
+
+  .services { padding: 7rem 4rem; background: var(--cream); }
+  .services-header { margin-bottom: 4rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(42,40,37,0.12); }
+  .service-card { background: var(--cream); padding: 2.5rem; border-right: 1px solid rgba(42,40,37,0.12); border-bottom: 1px solid rgba(42,40,37,0.12); transition: all 0.3s; position: relative; overflow: hidden; }
+  .service-card:nth-child(3n) { border-right: none; }
+  .service-card:nth-last-child(-n+3) { border-bottom: none; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; height: 3px; width: 0; background: var(--rust); transition: width 0.35s ease; }
+  .service-card:hover { background: var(--charcoal); }
+  .service-card:hover::after { width: 100%; }
+  .service-card:hover .service-name { color: var(--cream); }
+  .service-card:hover .service-desc { color: rgba(240,232,216,0.55); }
+  .service-card:hover .service-num { color: var(--rust); }
+  .service-num { font-family: 'Playfair Display', serif; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 700; letter-spacing: 0.12em; transition: color 0.3s; }
+  .service-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.75rem; transition: color 0.3s; }
+  .service-desc { font-size: 0.86rem; line-height: 1.7; color: #555; transition: color 0.3s; }
+
+  .why { padding: 7rem 4rem; background: var(--charcoal-mid); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .why .section-title { color: var(--cream); margin-bottom: 1.5rem; }
+  .why-desc { font-size: 0.95rem; line-height: 1.8; color: var(--text-light); margin-bottom: 2.5rem; }
+  .why-points { display: flex; flex-direction: column; gap: 1.25rem; }
+  .why-point { display: flex; gap: 1rem; align-items: flex-start; }
+  .why-point-marker { width: 20px; height: 20px; border-radius: 50%; background: var(--rust); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; font-size: 0.6rem; font-weight: 700; color: var(--cream); }
+  .why-point-text { font-size: 0.9rem; color: var(--text-light); line-height: 1.65; }
+  .why-point-text strong { color: var(--cream); }
+  .why-right { display: flex; flex-direction: column; gap: 1rem; padding-top: 1rem; }
+  .metric-card { background: var(--charcoal); border: 1px solid rgba(240,232,216,0.08); border-radius: 2px; padding: 1.75rem 2rem; display: flex; align-items: center; gap: 1.5rem; position: relative; overflow: hidden; transition: border-color 0.3s; }
+  .metric-card:hover { border-color: rgba(196,82,42,0.4); }
+  .metric-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--rust); }
+  .metric-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--gold); line-height: 1; white-space: nowrap; }
+  .metric-label { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+  .contact { padding: 7rem 4rem; background: var(--cream); }
+  .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .contact .section-title { color: var(--charcoal); margin-bottom: 1.5rem; }
+  .contact-desc { font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 2rem; }
+  .contact-detail { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; color: #444; font-size: 0.9rem; }
+  .contact-detail a { color: var(--rust); text-decoration: none; font-weight: 600; }
+  .contact-detail a:hover { text-decoration: underline; }
+  .contact-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rust); flex-shrink: 0; }
+  .optin-form-wrap { background: var(--charcoal); border-radius: 3px; padding: 2.5rem; position: relative; overflow: hidden; }
+  .optin-form-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold)); }
+  .optin-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--cream); margin-bottom: 0.5rem; }
+  .optin-sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.75rem; line-height: 1.6; }
+  .form-field { margin-bottom: 1rem; }
+  .form-field label { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+  .form-field input { width: 100%; padding: 0.75rem 1rem; background: var(--charcoal-light); border: 1px solid rgba(240,232,216,0.1); border-radius: 2px; color: var(--cream); font-size: 0.9rem; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; outline: none; }
+  .form-field input:focus { border-color: rgba(196,82,42,0.6); }
+  .form-field input::placeholder { color: var(--text-muted); }
+  .sms-consent { display: flex; gap: 0.75rem; align-items: flex-start; margin: 1.25rem 0; padding: 1rem; background: rgba(240,232,216,0.04); border: 1px solid rgba(240,232,216,0.08); border-radius: 2px; }
+  .sms-consent input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; accent-color: var(--rust); flex-shrink: 0; cursor: pointer; }
+  .sms-consent-label { font-size: 0.75rem; line-height: 1.6; color: var(--text-muted); }
+  .sms-consent-label strong { color: var(--text-light); }
+  .form-submit { width: 100%; padding: 0.9rem; background: var(--rust); color: var(--cream); border: 2px solid var(--rust); border-radius: 2px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .form-submit:hover { background: transparent; color: var(--rust); }
+  .form-disclaimer { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.5; text-align: center; }
+
+  .about { padding: 7rem 4rem; background: var(--charcoal); }
+  .about-inner { display: grid; grid-template-columns: 340px 1fr; gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+  .about-photo-wrap { position: relative; }
+  .about-photo-wrap::after { content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px; border: 2px solid var(--rust); border-radius: 2px; z-index: 0; opacity: 0.5; }
+  .about-photo { width: 100%; border-radius: 2px; display: block; position: relative; z-index: 1; object-fit: cover; background: var(--charcoal-light); min-height: 380px; }
+  .about .section-title { color: var(--cream); margin-bottom: 1.5rem; }
+  .about-bio { font-size: 0.95rem; line-height: 1.85; color: var(--text-light); margin-bottom: 1rem; }
+
+  .blog { padding: 7rem 4rem; background: var(--charcoal-mid); }
+  .blog .section-title { color: var(--cream); margin-bottom: 3rem; }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(240,232,216,0.06); border: 1.5px solid rgba(240,232,216,0.06); }
+  .blog-card { background: var(--charcoal-mid); padding: 2.5rem; transition: background 0.25s; text-decoration: none; display: block; }
+  .blog-card:hover { background: var(--charcoal); }
+  .blog-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .blog-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--cream); line-height: 1.4; margin-bottom: 0.75rem; }
+  .blog-excerpt { font-size: 0.84rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .blog-read-more { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); }
+
+  .cta-section { padding: 6rem 4rem; background: var(--rust); text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%); border-radius: 50%; }
+  .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 900; color: var(--cream); margin-bottom: 1rem; position: relative; }
+  .cta-section p { font-size: 1rem; color: rgba(240,232,216,0.75); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7; position: relative; }
+  .btn-dark { background: var(--charcoal); color: var(--cream); padding: 1rem 2.5rem; border-radius: 2px; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.2s; border: 2px solid var(--charcoal); }
+  .btn-dark:hover { background: transparent; color: var(--charcoal); }
+
+  .compliance-bar { background: var(--charcoal-light); padding: 1.5rem 4rem; border-top: 1px solid rgba(240,232,216,0.06); }
+  .compliance-bar p { font-size: 0.72rem; line-height: 1.7; color: var(--text-muted); text-align: center; max-width: 900px; margin: 0 auto; }
+  .compliance-bar a { color: rgba(201,148,58,0.7); text-decoration: none; }
+
+  .privacy-wrap { padding: 7rem 4rem; background: var(--charcoal); }
+  .privacy-inner { max-width: 800px; margin: 0 auto; }
+  .privacy-inner h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--cream); margin-bottom: 0.5rem; }
+  .privacy-date { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .privacy-inner p { font-size: 0.9rem; line-height: 1.85; color: var(--text-light); margin-bottom: 1.25rem; }
+  .privacy-inner h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--cream); margin: 2rem 0 0.75rem; font-weight: 700; }
+  .privacy-inner a { color: var(--gold); }
+
+  footer { background: var(--charcoal-mid); padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; border-top: 1px solid rgba(240,232,216,0.08); }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--cream); font-weight: 700; }
+  .footer-logo em { font-style: italic; color: var(--gold); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.75rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
+  .footer-socials { display: flex; gap: 1rem; }
+  .footer-social { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-social:hover { color: var(--rust); }
+  .footer-social svg { width: 16px; height: 16px; fill: currentColor; display: block; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 960px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+    .hero-right, .hero-stripe { display: none; }
+    .states-bar { padding: 0.85rem 1.5rem; }
+    .services { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .why, .contact-inner, .about-inner { grid-template-columns: 1fr; }
+    .why, .contact, .about, .blog, .privacy-wrap { padding: 4rem 1.5rem; }
+    .about-photo-wrap::after { display: none; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 4rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    .compliance-bar { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Thomas Crowhurst <em>Insurance</em></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#blog">Articles</a></li>
+    <li><a href="#privacy">Privacy</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.facebook.com/profile.php?id=61573585264681" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/thomas-c-3728b718a" target="_blank" rel="noopener" class="nav-social" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <a href="tel:+13177289417" class="nav-cta">Call Now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-stripe"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Independent Multi-State Insurance Broker</div>
+    <h1>Medicare Made <em>Simple.</em><br>Coverage That Fits.</h1>
+    <p class="hero-sub">Independent insurance guidance across Medicare Advantage, Medicare Supplement, Final Expense, Annuities, and Life Insurance. No pressure. No quotas. Just a straight answer about your options.</p>
+    <div class="hero-actions">
+      <a href="tel:+13177289417" class="btn-primary">Schedule a Free Review</a>
+      <a href="#services" class="btn-ghost">See what I offer</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-title">Coverage I Offer</div>
+      <div class="stat-row"><span class="stat-label">Medicare Advantage</span><span class="stat-val accent">Multiple Options</span></div>
+      <div class="stat-row"><span class="stat-label">Medicare Supplement</span><span class="stat-val">Plan G &amp; Plan N</span></div>
+      <div class="stat-row"><span class="stat-label">Final Expense Life</span><span class="stat-val">Affordable Coverage</span></div>
+      <div class="stat-row"><span class="stat-label">Annuities</span><span class="stat-val">Guaranteed Income</span></div>
+      <div class="stat-row"><span class="stat-label">Your Cost for a Review</span><span class="stat-val accent">$0 — Always Free</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="states-bar">
+  <span class="states-label">Licensed In</span>
+  <div class="states-list">
+    <span class="state-pill">Indiana</span>
+    <span class="state-pill">Illinois</span>
+    <span class="state-pill">Ohio</span>
+    <span class="state-pill">Michigan</span>
+    <span class="state-pill">Vermont</span>
+  </div>
+</div>
+
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-eyebrow">What I Offer</div>
+    <h2 class="section-title" style="color:var(--charcoal)">Coverage for Every Stage of Life</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-num">01</div><div class="service-name">Medicare Advantage</div><p class="service-desc">All-in-one Medicare plans from multiple carriers. Many include built-in dental, vision, and hearing. I'll show you what's actually available in your area.</p></div>
+    <div class="service-card"><div class="service-num">02</div><div class="service-name">Medicare Supplement</div><p class="service-desc">Medigap plans that cover what Original Medicare leaves behind. Plan G and Plan N across multiple states. See any doctor who accepts Medicare.</p></div>
+    <div class="service-card"><div class="service-num">03</div><div class="service-name">Final Expense Life</div><p class="service-desc">Affordable whole life coverage to protect your family from end-of-life costs. No medical exam required. Guaranteed acceptance options available.</p></div>
+    <div class="service-card"><div class="service-num">04</div><div class="service-name">Annuities</div><p class="service-desc">Fixed and indexed annuities that protect retirement savings from market loss while generating income you can't outlive. Real guarantees, not projections.</p></div>
+    <div class="service-card"><div class="service-num">05</div><div class="service-name">IUL &amp; Life Insurance</div><p class="service-desc">Indexed Universal Life for business owners and individuals building tax-advantaged wealth alongside protection. Long-term strategy, not short-term thinking.</p></div>
+    <div class="service-card"><div class="service-num">06</div><div class="service-name">Ancillary Coverage</div><p class="service-desc">Hospital indemnity, dental, vision, and hearing plans to fill the gaps your primary coverage leaves behind. Small premiums that prevent big surprises.</p></div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="why-left">
+    <div class="section-eyebrow">Why Work With Me</div>
+    <h2 class="section-title">Independent. Unbiased. On Your Side.</h2>
+    <p class="why-desc">I'm not tied to any single carrier. That means I'm shopping the market on your behalf — not steering you toward whoever pays the highest commission. My review costs you nothing. Ever.</p>
+    <div class="why-points">
+      <div class="why-point"><div class="why-point-marker">1</div><div class="why-point-text"><strong>Turning 65?</strong> Your Medicare enrollment window is 7 months — 3 before your birthday, 3 after. Miss it and you pay penalties for life. Let's get this right.</div></div>
+      <div class="why-point"><div class="why-point-marker">2</div><div class="why-point-text"><strong>Already on Medicare?</strong> Annual Enrollment runs Oct 15–Dec 7. I review your plan every year so you're not overpaying or under-covered.</div></div>
+      <div class="why-point"><div class="why-point-marker">3</div><div class="why-point-text"><strong>My review costs you nothing.</strong> Carriers pay me directly — your plan cost is identical whether you work with me or go direct.</div></div>
+    </div>
+  </div>
+  <div class="why-right">
+    <div class="metric-card"><div class="metric-num">$0</div><div class="metric-label">Cost for a consultation<br>Always free, no obligation</div></div>
+    <div class="metric-card"><div class="metric-num">10+</div><div class="metric-label">Carrier partnerships<br>Real options, not one pitch</div></div>
+    <div class="metric-card"><div class="metric-num">100%</div><div class="metric-label">Independent broker<br>No quotas, no bias</div></div>
+    <div class="metric-card"><div class="metric-num">5</div><div class="metric-label">States licensed<br>IN, IL, OH, MI, VT</div></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-eyebrow">Get in Touch</div>
+      <h2 class="section-title">Let's Have a Real Conversation</h2>
+      <p class="contact-desc">No scripts. No pressure. Just a straight conversation about where you are and what makes sense for your situation. Most calls take 15 minutes.</p>
+      <div class="contact-detail"><div class="contact-dot"></div><span>Call or text: <a href="tel:+13177289417">(317) 728-9417</a></span></div>
+      <div class="contact-detail"><div class="contact-dot"></div><span>Email: <a href="mailto:thomas@crowhurstinsurance.com">thomas@crowhurstinsurance.com</a></span></div>
+      <div class="contact-detail"><div class="contact-dot"></div><span>Northwest Indiana — serving clients across 5 states</span></div>
+    </div>
+    <div>
+      <div class="optin-form-wrap">
+        <div class="optin-title">Request a Free Review</div>
+        <div class="optin-sub">Leave your info and I'll reach out within one business day. No spam, no pressure.</div>
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-field"><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="Jane Smith" required></div>
+          <div class="form-field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(219) 555-0100" required></div>
+          <div class="form-field"><label for="zip">Zip Code</label><input type="text" id="zip" name="zip" placeholder="46373" maxlength="5"></div>
+          <div class="sms-consent">
+            <input type="checkbox" id="sms-consent" name="sms-consent" required>
+            <label class="sms-consent-label" for="sms-consent">
+              <strong>I consent to receive SMS text messages</strong> from Thomas Crowhurst Insurance regarding Medicare plan information and appointment reminders. Message frequency varies. Msg &amp; data rates may apply. Reply <strong>STOP</strong> to opt out. Reply <strong>HELP</strong> for help.
+            </label>
+          </div>
+          <button type="submit" class="form-submit">Send My Request</button>
+          <p class="form-disclaimer">By submitting, you agree to our <a href="#privacy" style="color:var(--text-muted)">Privacy Policy</a> and <a href="#terms" style="color:var(--text-muted)">Terms</a>. A licensed insurance agent may contact you.</p>
+        </form>
+        <div id="form-success" style="display:none; text-align:center; padding:2rem 0;">
+          <div style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--cream); margin-bottom:0.5rem;">Got it — I'll be in touch.</div>
+          <div style="font-size:0.85rem; color:var(--text-muted);">Expect a call or text within one business day.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-photo-wrap">
+      <img src="photo.jpg" alt="Thomas Crowhurst" class="about-photo" />
+    </div>
+    <div>
+      <div class="section-eyebrow">About Thomas</div>
+      <h2 class="section-title">A Real Person in Your Corner</h2>
+      <p class="about-bio">I'm Thomas Crowhurst, an independent insurance broker licensed across multiple states. I came to this work the same way most of my clients find me — trying to make sense of a complicated system and looking for someone who would just give it to them straight.</p>
+      <p class="about-bio">I specialize in Medicare Advantage, Medicare Supplement, Final Expense, and Annuities. As an independent broker, I'm contracted with carriers across the country — which means I can look at the full picture of what's available in your area.</p>
+      <p class="about-bio">When you call that number, you get me. Not a call center. Not a voicemail queue. Just a licensed agent who will take the time to understand your situation.</p>
+      <a href="tel:+13177289417" class="btn-primary" style="margin-top:1.5rem; display:inline-block;">Call Thomas Directly</a>
+    </div>
+  </div>
+</section>
+
+<section class="blog" id="blog">
+  <div class="section-eyebrow">Medicare Education</div>
+  <h2 class="section-title">Articles &amp; Guides</h2>
+  <div class="blog-grid">
+    <a href="https://www.facebook.com/profile.php?id=61573585264681" target="_blank" rel="noopener" class="blog-card">
+      <div class="blog-tag">Medicare Basics</div>
+      <div class="blog-title">The 7-Month Medicare Enrollment Window — Don't Miss It</div>
+      <div class="blog-excerpt">Most people turning 65 don't realize they have a limited window to enroll without lifetime penalties. Here's exactly how it works.</div>
+      <div class="blog-read-more">Read on Facebook →</div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61573585264681" target="_blank" rel="noopener" class="blog-card">
+      <div class="blog-tag">Plan Comparison</div>
+      <div class="blog-title">Medicare Advantage vs. Medicare Supplement: Which Is Right for You?</div>
+      <div class="blog-excerpt">These two approaches work very differently. Understanding the tradeoffs before you choose could save you thousands.</div>
+      <div class="blog-read-more">Read on Facebook →</div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61573585264681" target="_blank" rel="noopener" class="blog-card">
+      <div class="blog-tag">Annual Enrollment</div>
+      <div class="blog-title">AEP Explained: Why October 15 Matters for Medicare Members</div>
+      <div class="blog-excerpt">Every year between Oct 15 and Dec 7, you can change your Medicare coverage. Here's how to use that window strategically.</div>
+      <div class="blog-read-more">Read on Facebook →</div>
+    </a>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Turning 65 Soon? Let's Talk.</h2>
+  <p>Your Medicare enrollment window has real deadlines. A free 15-minute call gives you a clear picture of what's available — no obligation, no pressure.</p>
+  <a href="tel:+13177289417" class="btn-dark">Call (317) 728-9417</a>
+</section>
+
+<div class="compliance-bar">
+  <p>Coverage availability varies by carrier and location. We do not offer every carrier in your area. This website is not affiliated with or endorsed by the U.S. government or the federal Medicare program. This is a solicitation of insurance. A licensed insurance agent may contact you. For official Medicare information, visit <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a> or call 1-800-MEDICARE (1-800-633-4227). TTY: 1-877-486-2048.</p>
+</div>
+
+<section class="privacy-wrap" id="privacy">
+  <div class="privacy-inner">
+    <h2>Privacy Policy</h2>
+    <p class="privacy-date">Effective Date: March 18, 2026 | Last Updated: March 18, 2026</p>
+    <p>Thomas Crowhurst ("I," "me," or "my") is committed to protecting your personal information. This Privacy Policy explains how I collect, use, and safeguard information when you contact me or engage with my services.</p>
+    <h3>Information We Collect</h3>
+    <p>We may collect your name, phone number, email address, date of birth, zip code, and insurance-related information you voluntarily provide when requesting a consultation or quote.</p>
+    <h3>How We Use Your Information</h3>
+    <p>We use the information we collect to provide insurance consultations and quotes, send appointment reminders and follow-up communications via phone, email, or SMS text message, and comply with state and federal insurance licensing requirements.</p>
+    <h3>SMS Text Messaging</h3>
+    <p>By providing your phone number and checking the consent box on our contact form, you consent to receive SMS text messages from Thomas Crowhurst Insurance regarding Medicare plan information, appointment reminders, and follow-up communications. Message frequency varies. Message and data rates may apply. To opt out at any time, reply STOP to any text message. For help, reply HELP or contact us directly.</p>
+    <h3>Information Sharing</h3>
+    <p>We do not sell your personal information. We may share information with insurance carriers solely for the purpose of obtaining quotes or processing applications on your behalf.</p>
+    <h3>Data Security</h3>
+    <p>We implement reasonable administrative and technical safeguards to protect your personal information from unauthorized access, use, or disclosure.</p>
+    <h3>Your Rights</h3>
+    <p>You may request to access, correct, or delete your personal information at any time by contacting us directly. You may also opt out of SMS communications by replying STOP to any message.</p>
+    <h3>Contact Us</h3>
+    <p>Thomas Crowhurst — Thomas Crowhurst Insurance<br>Northwest Indiana<br>Phone: (317) 728-9417<br>Email: <a href="mailto:thomas@crowhurstinsurance.com">thomas@crowhurstinsurance.com</a></p>
+    <h3>Changes to This Policy</h3>
+    <p>We may update this Privacy Policy periodically. Changes will be posted on this page with an updated effective date.</p>
+  </div>
+</section>
+
+<section class="privacy-wrap" id="terms" style="padding-top:0; background:var(--charcoal-mid);">
+  <div class="privacy-inner">
+    <h2>Terms &amp; Conditions</h2>
+    <p class="privacy-date">Effective Date: March 18, 2026</p>
+    <p>By contacting Thomas Crowhurst Insurance or providing your information, you agree to the following terms.</p>
+    <h3>Services</h3>
+    <p>Thomas Crowhurst provides independent insurance consulting and brokerage services. All consultations are provided free of charge. Thomas Crowhurst is multi-state licensed.</p>
+    <h3>SMS Communications</h3>
+    <p>Thomas Crowhurst Insurance operates an SMS messaging program to send Medicare information, appointment reminders, and follow-up messages. Program name: Thomas Crowhurst Insurance Medicare Outreach. Message frequency varies. Message and data rates may apply. To opt out, reply STOP. For help, reply HELP or call (317) 728-9417.</p>
+    <h3>No Guarantee of Coverage</h3>
+    <p>Information provided during consultations is for educational purposes. Final coverage, pricing, and eligibility are determined by insurance carriers and are subject to their underwriting guidelines.</p>
+    <h3>Limitation of Liability</h3>
+    <p>Thomas Crowhurst is not liable for decisions made based on information provided during consultations. We recommend reviewing all plan documents carefully before enrolling.</p>
+    <h3>Contact</h3>
+    <p>Questions? Contact us at (317) 728-9417 or <a href="mailto:thomas@crowhurstinsurance.com">thomas@crowhurstinsurance.com</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Thomas Crowhurst <em>Insurance</em></div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#terms">Terms</a>
+  </div>
+  <div class="footer-socials">
+    <a href="https://www.facebook.com/profile.php?id=61573585264681" target="_blank" rel="noopener" class="footer-social" aria-label="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/thomas-c-3728b718a" target="_blank" rel="noopener" class="footer-social" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+  </div>
+  <div class="footer-copy">&copy; 2026 Thomas Crowhurst Insurance. All rights reserved.</div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const consent = document.getElementById('sms-consent').checked;
+  if (!consent) { alert('Please check the SMS consent box to proceed.'); return; }
+  e.target.style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+</script>
+</body>
+</html>
