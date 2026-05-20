@@ -488,6 +488,165 @@
     .hero h1 { font-size: 2.4rem; }
     .hero-actions { flex-direction: column; align-items: flex-start; }
   }
+
+  /* ═══════════════════════════════════════
+     CHAT WIDGET STYLES
+  ═══════════════════════════════════════ */
+  #tc-chat-btn {
+    position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 999;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: var(--rust); border: none; cursor: pointer;
+    box-shadow: 0 4px 24px rgba(196,82,42,0.5);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  #tc-chat-btn:hover { transform: scale(1.08); box-shadow: 0 6px 32px rgba(196,82,42,0.65); }
+  #tc-chat-btn svg { width: 26px; height: 26px; fill: #f0e8d8; }
+  #tc-chat-btn .tc-badge {
+    position: absolute; top: -3px; right: -3px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--gold); color: #2a2825;
+    font-size: 0.62rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    animation: tc-pulse 2.2s infinite;
+    border: 2px solid var(--charcoal);
+  }
+  @keyframes tc-pulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  #tc-chat-window {
+    position: fixed; bottom: 5.5rem; right: 1.75rem; z-index: 998;
+    width: 360px; max-height: 530px;
+    background: var(--charcoal-mid);
+    border: 1px solid rgba(240,232,216,0.1);
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    display: none; flex-direction: column;
+    overflow: hidden;
+    transform: translateY(14px); opacity: 0;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+  }
+  #tc-chat-window.tc-open { display: flex; transform: translateY(0); opacity: 1; }
+  .tc-header {
+    background: var(--charcoal);
+    border-bottom: 1px solid rgba(240,232,216,0.08);
+    padding: 1rem 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+    flex-shrink: 0; position: relative;
+  }
+  .tc-header::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold));
+  }
+  .tc-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--rust);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', Georgia, serif; font-size: 0.88rem;
+    font-weight: 700; color: #f0e8d8; flex-shrink: 0;
+  }
+  .tc-header-info { flex: 1; }
+  .tc-header-name {
+    font-family: 'Playfair Display', Georgia, serif; font-size: 0.88rem;
+    font-weight: 700; color: #f0e8d8; line-height: 1.2;
+  }
+  .tc-header-status {
+    font-size: 0.67rem; color: var(--olive);
+    display: flex; align-items: center; gap: 0.35rem; margin-top: 1px;
+  }
+  .tc-header-status::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--olive); flex-shrink: 0;
+  }
+  .tc-close {
+    background: none; border: none; cursor: pointer;
+    color: var(--text-muted); font-size: 1rem; line-height: 1;
+    padding: 0.25rem; transition: color 0.2s; border-radius: 2px;
+  }
+  .tc-close:hover { color: var(--cream); }
+  .tc-messages {
+    flex: 1; overflow-y: auto; padding: 1.1rem 1.1rem 0.5rem;
+    display: flex; flex-direction: column; gap: 0.85rem;
+    scrollbar-width: thin; scrollbar-color: #3d3a37 transparent;
+  }
+  .tc-msg {
+    max-width: 90%; font-size: 0.84rem; line-height: 1.62;
+    padding: 0.65rem 0.9rem; border-radius: 3px;
+    animation: tc-msgIn 0.22s ease;
+  }
+  @keyframes tc-msgIn { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:none; } }
+  .tc-msg.bot {
+    background: var(--charcoal); color: var(--text-light);
+    border: 1px solid rgba(240,232,216,0.07);
+    align-self: flex-start; border-bottom-left-radius: 0;
+  }
+  .tc-msg.user {
+    background: var(--rust); color: #f0e8d8;
+    align-self: flex-end; border-bottom-right-radius: 0;
+  }
+  .tc-typing {
+    display: flex; gap: 4px; align-items: center;
+    padding: 0.65rem 0.9rem;
+    background: var(--charcoal);
+    border: 1px solid rgba(240,232,216,0.07);
+    border-radius: 3px; border-bottom-left-radius: 0;
+    width: fit-content; align-self: flex-start;
+    animation: tc-msgIn 0.22s ease;
+  }
+  .tc-typing span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-muted); animation: tc-bounce 1.2s infinite;
+  }
+  .tc-typing span:nth-child(2) { animation-delay: 0.18s; }
+  .tc-typing span:nth-child(3) { animation-delay: 0.36s; }
+  @keyframes tc-bounce {
+    0%,60%,100% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
+  }
+  .tc-quick-replies {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    padding: 0.75rem 1.1rem 0.25rem; flex-shrink: 0;
+  }
+  .tc-qr {
+    font-size: 0.71rem; padding: 0.32rem 0.65rem;
+    background: transparent; border: 1px solid rgba(196,82,42,0.4);
+    border-radius: 20px; color: var(--text-light); cursor: pointer;
+    transition: all 0.2s; white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .tc-qr:hover { background: rgba(196,82,42,0.15); border-color: var(--rust); color: var(--cream); }
+  .tc-input-row {
+    display: flex; gap: 0.5rem; padding: 0.8rem 1rem;
+    border-top: 1px solid rgba(240,232,216,0.07);
+    background: var(--charcoal); flex-shrink: 0;
+  }
+  #tc-input {
+    flex: 1; background: var(--charcoal-light);
+    border: 1px solid rgba(240,232,216,0.1); border-radius: 2px;
+    color: var(--cream); font-size: 0.84rem; padding: 0.6rem 0.85rem;
+    font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s;
+    resize: none; line-height: 1.4;
+  }
+  #tc-input:focus { border-color: rgba(196,82,42,0.55); }
+  #tc-input::placeholder { color: var(--text-muted); }
+  #tc-send {
+    background: var(--rust); border: none; border-radius: 2px;
+    color: var(--cream); padding: 0 1rem; cursor: pointer;
+    transition: background 0.2s; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.06em; flex-shrink: 0; font-family: 'DM Sans', sans-serif;
+  }
+  #tc-send:hover { background: var(--rust-dark); }
+  #tc-send:disabled { opacity: 0.45; cursor: not-allowed; }
+  .tc-disclaimer {
+    font-size: 0.62rem; color: #4a4540; text-align: center;
+    padding: 0.4rem 1rem 0.65rem; line-height: 1.4; flex-shrink: 0;
+    background: var(--charcoal);
+  }
+  @media (max-width: 420px) {
+    #tc-chat-window { width: calc(100vw - 2rem); right: 1rem; bottom: 5rem; }
+    #tc-chat-btn { bottom: 1.25rem; right: 1.25rem; }
+  }
 </style>
 </head>
 <body>
@@ -504,7 +663,7 @@
     <a href="https://www.facebook.com/profile.php?id=61573585264681" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook">
       <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
     </a>
-    <a href="https://www.linkedin.com/in/thomas-c-3728b718a" target="_blank" rel="noopener" class="nav-social" aria-label="LinkedIn">
+    <a href="https://www.linkedin.com/in/thomas-c-3728b721a" target="_blank" rel="noopener" class="nav-social" aria-label="LinkedIn">
       <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
     </a>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -522,6 +681,7 @@
   <a href="tel:+13177289417" class="nav-cta" onclick="toggleMenu()">Call (317) 728-9417</a>
 </div>
 
+<!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-stripe"></div>
   <div class="hero-left">
@@ -529,7 +689,7 @@
     <h1>Insurance Made <em>Simple.</em><br>Coverage That Fits.</h1>
     <p class="hero-sub">I'm a broker, so I work for you. I provide independent guidance across Medicare Advantage, Medicare Supplement, Final Expense, Annuities, and Life Insurance — and I shop every carrier to find what actually fits your life.</p>
     <div class="hero-actions">
-      <a href="tel:+13177289417" class="btn-primary">Schedule a Free Review</a>
+      <a href="#contact" class="btn-primary">Request a Free Review</a>
       <a href="#services" class="btn-ghost">See what I offer</a>
     </div>
   </div>
@@ -545,6 +705,7 @@
   </div>
 </section>
 
+<!-- ── SERVICES ── -->
 <section class="services" id="services">
   <div class="services-header reveal">
     <div class="section-eyebrow">What I Offer</div>
@@ -560,6 +721,7 @@
   </div>
 </section>
 
+<!-- ── WHY ── -->
 <section class="why" id="why">
   <div class="why-left reveal">
     <div class="section-eyebrow">Why Work With Me</div>
@@ -578,6 +740,7 @@
   </div>
 </section>
 
+<!-- ── CONTACT ── -->
 <section class="contact" id="contact">
   <div class="contact-inner">
     <div class="reveal">
@@ -591,10 +754,31 @@
       <div class="optin-form-wrap">
         <div class="optin-title">Request a Free Review</div>
         <div class="optin-sub">Leave your info and I'll reach out within one business day. No spam, no pressure.</div>
-        <form id="contactForm" onsubmit="handleSubmit(event)">
-          <div class="form-field"><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="Jane Smith" required></div>
-          <div class="form-field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(219) 555-0100" required></div>
-          <div class="form-field"><label for="zip">Zip Code</label><input type="text" id="zip" name="zip" placeholder="46373" maxlength="5" pattern="[0-9]{5}" inputmode="numeric"></div>
+
+        <!-- ══════════════════════════════════════════
+             FORMSPREE FORM — replace YOUR_FORM_ID
+             with your actual ID from formspree.io
+        ══════════════════════════════════════════ -->
+        <form
+          id="contactForm"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+          onsubmit="handleFormspreeSubmit(event)"
+        >
+          <input type="hidden" name="_subject" value="New Review Request — CrowhurstInsurance.com">
+          <input type="hidden" name="sms_consent" value="Yes — checkbox confirmed">
+          <div class="form-field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+          </div>
+          <div class="form-field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(219) 555-0100" required>
+          </div>
+          <div class="form-field">
+            <label for="zip">Zip Code</label>
+            <input type="text" id="zip" name="zip" placeholder="46373" maxlength="5" pattern="[0-9]{5}" inputmode="numeric">
+          </div>
           <div class="sms-consent">
             <input type="checkbox" id="sms-consent" name="sms-consent" required>
             <label class="sms-consent-label" for="sms-consent">
@@ -604,6 +788,7 @@
           <button type="submit" class="form-submit" id="submitBtn">Send My Request</button>
           <p class="form-disclaimer">By submitting, you agree to our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>. A licensed insurance agent may contact you.</p>
         </form>
+
         <div id="form-success" style="display:none; text-align:center; padding:2rem 0;">
           <div style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--cream); margin-bottom:0.5rem;">Got it — I'll be in touch.</div>
           <div style="font-size:0.85rem; color:var(--text-muted);">Expect a call or text within one business day.</div>
@@ -613,6 +798,7 @@
   </div>
 </section>
 
+<!-- ── ABOUT ── -->
 <section class="about" id="about">
   <div class="about-inner">
     <div class="about-photo-wrap reveal">
@@ -629,6 +815,7 @@
   </div>
 </section>
 
+<!-- ── BLOG ── -->
 <section class="blog" id="blog">
   <div class="section-eyebrow reveal">Medicare Education</div>
   <h2 class="section-title reveal">Articles &amp; Guides</h2>
@@ -654,18 +841,19 @@
   </div>
 </section>
 
+<!-- ── CTA ── -->
 <section class="cta-section">
   <h2>Turning 65 Soon? Let's Talk.</h2>
   <p>Your Medicare enrollment window has real deadlines. A free 15-minute call gives you a clear picture of what's available — no obligation, no pressure.</p>
-  <a href="tel:+13177289417" class="btn-dark">Call (317) 728-9417</a>
+  <a href="#contact" class="btn-dark">Request a Free Review</a>
 </section>
 
+<!-- ── COMPLIANCE ── -->
 <div class="compliance-bar">
   <p>Coverage availability varies by carrier and location. We do not offer every carrier in your area. This website is not affiliated with or endorsed by the U.S. government or the federal Medicare program. This is a solicitation of insurance. A licensed insurance agent may contact you. For official Medicare information, visit <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a> or call 1-800-MEDICARE (1-800-633-4227). TTY: 1-877-486-2048.</p>
 </div>
 
-
-
+<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-logo">Thomas Crowhurst <em>Insurance</em></div>
   <div class="footer-links">
@@ -686,15 +874,60 @@
   <div class="footer-copy">&copy; 2026 Thomas Crowhurst. All rights reserved.</div>
 </footer>
 
+
+<!-- ═══════════════════════════════════════════════════
+     CHAT WIDGET — floating AI assistant
+     Requires: Anthropic API key from console.anthropic.com
+═══════════════════════════════════════════════════ -->
+
+<!-- Chat Toggle Button -->
+<button id="tc-chat-btn" onclick="tcToggle()" aria-label="Ask a question">
+  <svg viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+  <span class="tc-badge">?</span>
+</button>
+
+<!-- Chat Window -->
+<div id="tc-chat-window">
+  <div class="tc-header">
+    <div class="tc-avatar">TC</div>
+    <div class="tc-header-info">
+      <div class="tc-header-name">Thomas Crowhurst Insurance</div>
+      <div class="tc-header-status">AI Assistant — Ask me anything</div>
+    </div>
+    <button class="tc-close" onclick="tcToggle()" aria-label="Close">✕</button>
+  </div>
+
+  <div class="tc-messages" id="tc-messages">
+    <div class="tc-msg bot">
+      Hi there! I can answer questions about Medicare, Final Expense life insurance, or anything else Thomas offers — 24/7. What's on your mind?
+    </div>
+  </div>
+
+  <div class="tc-quick-replies" id="tc-qr-wrap">
+    <button class="tc-qr" onclick="tcQuick('How does Medicare Advantage work?')">Medicare Advantage</button>
+    <button class="tc-qr" onclick="tcQuick('What is Final Expense insurance?')">Final Expense</button>
+    <button class="tc-qr" onclick="tcQuick('When should I enroll in Medicare?')">Enrollment timing</button>
+    <button class="tc-qr" onclick="tcQuick('How much does a consultation cost?')">Cost of a review</button>
+  </div>
+
+  <div class="tc-input-row">
+    <textarea id="tc-input" rows="1" placeholder="Type your question..." onkeydown="tcKey(event)"></textarea>
+    <button id="tc-send" onclick="tcSend()">Send</button>
+  </div>
+  <div class="tc-disclaimer">Educational only. Not insurance advice. Coverage varies by location &amp; carrier.</div>
+</div>
+
+
+<!-- ── SCRIPTS ── -->
 <script>
-  // ── Mobile menu toggle ──
+  // ── Mobile menu ──
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
     document.querySelector('.hamburger').classList.toggle('open');
     document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
   }
 
-  // ── Nav scroll effect ──
+  // ── Nav scroll ──
   let ticking = false;
   window.addEventListener('scroll', function() {
     if (!ticking) {
@@ -717,39 +950,176 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
 
-  // ── Form handler ──
-  function handleSubmit(e) {
+  // ══════════════════════════════════════════
+  // FORMSPREE FORM HANDLER
+  // Sign up free at formspree.io, get your
+  // form ID, replace YOUR_FORM_ID above.
+  // ══════════════════════════════════════════
+  async function handleFormspreeSubmit(e) {
     e.preventDefault();
-    var form = document.getElementById('contactForm');
-    var btn = document.getElementById('submitBtn');
-    var name = document.getElementById('name').value.trim();
-    var phone = document.getElementById('phone').value.trim();
-    var zip = document.getElementById('zip').value.trim();
-
-    if (!name || !phone) return;
-
+    const btn = document.getElementById('submitBtn');
+    const form = document.getElementById('contactForm');
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
-    // Mailto fallback for GitHub Pages (no server)
-    var subject = encodeURIComponent('New Review Request from ' + name);
-    var body = encodeURIComponent(
-      'Name: ' + name + '\n' +
-      'Phone: ' + phone + '\n' +
-      'Zip: ' + zip + '\n' +
-      'SMS Consent: Yes\n' +
-      'Source: Website contact form'
-    );
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
 
-    // Open email client as fallback
-    window.location.href = 'mailto:thomas@crowhurstinsurance.com?subject=' + subject + '&body=' + body;
+      if (response.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Send My Request';
+        alert('Something went wrong. Please call Thomas directly at (317) 728-9417.');
+      }
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Send My Request';
+      alert('Something went wrong. Please call Thomas directly at (317) 728-9417.');
+    }
+  }
 
-    // Show success state
-    setTimeout(function() {
-      form.style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-    }, 500);
+  // ══════════════════════════════════════════
+  // CLAUDE CHAT WIDGET
+  // Get your API key at console.anthropic.com
+  // Replace YOUR_ANTHROPIC_API_KEY below.
+  // ══════════════════════════════════════════
+  const TC_API_KEY = 'YOUR_ANTHROPIC_API_KEY';
+
+  const TC_SYSTEM = `You are a helpful insurance assistant for Thomas Crowhurst Insurance, an independent insurance brokerage based in Northwest Indiana.
+
+ABOUT THOMAS:
+- Independent broker licensed in multiple states (never name or list specific states)
+- Specializes in Medicare Advantage, Medicare Supplement (Plan G & Plan N), Final Expense Life Insurance, Term Life, Annuities, and Ancillary coverage (dental, vision, hospital indemnity)
+- Contracted with 20+ carriers — shops the entire market for each client
+- All consultations are 100% free — carriers pay Thomas directly, never the client
+- Phone: (317) 728-9417 | Email: thomas@crowhurstinsurance.com
+- Tagline: "Insurance the Way It Used to Work"
+- Brand voice: warm, honest, educational, non-pushy — a trusted advisor, not a salesperson
+
+YOUR JOB:
+- Answer Medicare and life insurance questions clearly and helpfully
+- Educate visitors; never pressure them
+- Keep answers concise — 2 to 4 sentences unless the question genuinely needs more
+- When someone has a specific situation or is ready to move forward, warmly encourage them to call Thomas at (317) 728-9417 or fill out the free review form on the page
+- Never quote specific plan prices, premiums, or guarantee specific benefits — always refer to Thomas for that
+- Never list specific states Thomas is licensed in — just say "multiple states"
+
+COMPLIANCE RULES:
+- Always frame responses as general education, not personalized insurance advice
+- Never guarantee approvals, specific rates, or plan-level benefits
+- For specific plan comparisons or enrollment help, always direct to Thomas directly`;
+
+  let tcOpen = false;
+  let tcHistory = [];
+  let tcBusy = false;
+
+  function tcToggle() {
+    tcOpen = !tcOpen;
+    const win = document.getElementById('tc-chat-window');
+    if (tcOpen) {
+      win.style.display = 'flex';
+      requestAnimationFrame(() => win.classList.add('tc-open'));
+      document.getElementById('tc-input').focus();
+      document.querySelector('.tc-badge').style.display = 'none';
+    } else {
+      win.classList.remove('tc-open');
+      setTimeout(() => { win.style.display = 'none'; }, 280);
+    }
+  }
+
+  function tcAddMsg(text, role) {
+    const msgs = document.getElementById('tc-messages');
+    const div = document.createElement('div');
+    div.className = 'tc-msg ' + role;
+    div.textContent = text;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function tcShowTyping() {
+    const msgs = document.getElementById('tc-messages');
+    const el = document.createElement('div');
+    el.className = 'tc-typing'; el.id = 'tc-typing-indicator';
+    el.innerHTML = '<span></span><span></span><span></span>';
+    msgs.appendChild(el);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function tcHideTyping() {
+    const el = document.getElementById('tc-typing-indicator');
+    if (el) el.remove();
+  }
+
+  function tcHideQR() {
+    const qr = document.getElementById('tc-qr-wrap');
+    if (qr) qr.style.display = 'none';
+  }
+
+  function tcQuick(text) {
+    document.getElementById('tc-input').value = text;
+    tcSend();
+  }
+
+  function tcKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); tcSend(); }
+  }
+
+  async function tcSend() {
+    if (tcBusy) return;
+    const input = document.getElementById('tc-input');
+    const text = input.value.trim();
+    if (!text) return;
+
+    input.value = '';
+    tcHideQR();
+    tcAddMsg(text, 'user');
+    tcHistory.push({ role: 'user', content: text });
+
+    tcBusy = true;
+    document.getElementById('tc-send').disabled = true;
+    tcShowTyping();
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': TC_API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 350,
+          system: TC_SYSTEM,
+          messages: tcHistory
+        })
+      });
+
+      const data = await res.json();
+      const reply = data?.content?.[0]?.text ||
+        "I had trouble with that one. Give Thomas a call at (317) 728-9417 — he'll get you sorted out.";
+
+      tcHideTyping();
+      tcAddMsg(reply, 'bot');
+      tcHistory.push({ role: 'assistant', content: reply });
+
+    } catch (err) {
+      tcHideTyping();
+      tcAddMsg("I'm having trouble connecting right now. Call Thomas directly at (317) 728-9417 and he'll be happy to help.", 'bot');
+    }
+
+    tcBusy = false;
+    document.getElementById('tc-send').disabled = false;
+    document.getElementById('tc-input').focus();
   }
 </script>
+
 </body>
 </html>
