@@ -989,7 +989,9 @@
   // Get your API key at console.anthropic.com
   // Replace YOUR_ANTHROPIC_API_KEY below.
   // ══════════════════════════════════════════
-  const TC_API_KEY = 'YOUR_ANTHROPIC_API_KEY';
+  // ── Cloudflare Worker URL (no API key needed here) ──
+  // After deploying cloudflare-worker.js, paste your worker URL below
+ const TC_WORKER_URL = 'https://anthropic-proxy.thomas626crowhurst.workers.dev';
 
   const TC_SYSTEM = `You are a helpful insurance assistant for Thomas Crowhurst Insurance, an independent insurance brokerage based in Northwest Indiana.
 
@@ -1086,13 +1088,13 @@ COMPLIANCE RULES:
     tcShowTyping();
 
     try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
+      const res = await fetch(TC_WORKER_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': TC_API_KEY,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
+
+
+
         },
         body: JSON.stringify({
           model: 'claude-sonnet-4-20250514',
