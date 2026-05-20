@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thomas Crowhurst Insurance | Independent Medicare & Life Insurance Broker</title>
-<meta name="description" content="Independent insurance broker. Medicare Advantage, Medicare Supplement, Final Expense, Annuities & Life Insurance. Free consultations — call (317) 728-9417.">
+<meta name="description" content="Independent insurance broker serving Indiana, Illinois, Ohio, Michigan & Vermont. Medicare Advantage, Medicare Supplement, Final Expense, Annuities & Life Insurance. Free consultations — call (317) 728-9417.">
 <meta property="og:title" content="Thomas Crowhurst Insurance — Independent Broker">
 <meta property="og:description" content="Independent guidance across Medicare, Life Insurance & Annuities. I shop every carrier so you don't have to. Free consultations.">
 <meta property="og:type" content="website">
@@ -231,6 +231,25 @@
   .service-card:hover .service-name { color: var(--cream); }
   .service-card:hover .service-desc { color: rgba(240,232,216,0.55); }
   .service-card:hover .service-num { color: var(--rust); }
+  .service-card:hover .service-hover { opacity: 1; transform: translateY(0); }
+  .service-hover {
+    position: absolute; inset: 0;
+    background: var(--charcoal);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 2rem 2.5rem;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    border-bottom: 3px solid var(--rust);
+    pointer-events: none;
+  }
+  .service-hover-label {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--rust); margin-bottom: 0.85rem;
+  }
+  .service-hover-text {
+    font-size: 0.9rem; line-height: 1.75; color: var(--cream);
+    font-family: 'Playfair Display', serif; font-weight: 700;
+  }
   .service-num {
     font-family: 'Playfair Display', serif; font-size: 0.75rem;
     color: var(--text-muted); margin-bottom: 1rem; font-weight: 700;
@@ -712,12 +731,60 @@
     <h2 class="section-title" style="color:var(--charcoal)">Coverage for Every Stage of Life</h2>
   </div>
   <div class="services-grid reveal">
-    <div class="service-card"><div class="service-num">01</div><div class="service-name">Medicare Advantage</div><p class="service-desc">All-in-one Medicare plans from multiple carriers. Many include built-in dental, vision, and hearing. I'll show you what's actually available in your area.</p></div>
-    <div class="service-card"><div class="service-num">02</div><div class="service-name">Medicare Supplement</div><p class="service-desc">Medigap plans that cover what Original Medicare leaves behind. Plan G and Plan N across multiple states. See any doctor who accepts Medicare.</p></div>
-    <div class="service-card"><div class="service-num">03</div><div class="service-name">Final Expense Life</div><p class="service-desc">Affordable whole life coverage to protect your family from end-of-life costs. No medical exam required. Guaranteed acceptance options available.</p></div>
-    <div class="service-card"><div class="service-num">04</div><div class="service-name">Annuities</div><p class="service-desc">Fixed and indexed annuities that protect retirement savings from market loss while generating income you can't outlive. Real guarantees, not projections.</p></div>
-    <div class="service-card"><div class="service-num">05</div><div class="service-name">IUL &amp; Life Insurance</div><p class="service-desc">Indexed Universal Life for business owners and individuals building tax-advantaged wealth alongside protection. Long-term strategy, not short-term thinking.</p></div>
-    <div class="service-card"><div class="service-num">06</div><div class="service-name">Ancillary Coverage</div><p class="service-desc">Hospital indemnity, dental, vision, and hearing plans to fill the gaps your primary coverage leaves behind. Small premiums that prevent big surprises.</p></div>
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-name">Medicare Advantage</div>
+      <p class="service-desc">All-in-one Medicare plans from multiple carriers. Many include built-in dental, vision, and hearing. I'll show you what's actually available in your area.</p>
+      <div class="service-hover">
+        <div class="service-hover-label">What you're looking for</div>
+        <div class="service-hover-text">"I'm looking for $0 premiums, in-network doctors, built-in dental, vision &amp; hearing, OTC &amp; grocery cards, and rides to appointments — all in one plan."</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-name">Medicare Supplement</div>
+      <p class="service-desc">Medigap plans that cover what Original Medicare leaves behind. Plan G and Plan N across multiple states. See any doctor who accepts Medicare.</p>
+      <div class="service-hover">
+        <div class="service-hover-label">What you're looking for</div>
+        <div class="service-hover-text">"I'm looking to see any doctor who accepts Medicare, avoid surprise bills, have predictable costs, and keep my coverage wherever I travel in the country."</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-name">Final Expense Life</div>
+      <p class="service-desc">Affordable whole life coverage to protect your family from end-of-life costs. No medical exam required. Guaranteed acceptance options available.</p>
+      <div class="service-hover">
+        <div class="service-hover-label">What you're looking for</div>
+        <div class="service-hover-text">"I want to cover funeral and burial costs, pay off final medical bills, leave 'I love you' money for my family, and not put that burden on the people I love."</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-name">Annuities</div>
+      <p class="service-desc">Fixed and indexed annuities that protect retirement savings from market loss while generating income you can't outlive. Real guarantees, not projections.</p>
+      <div class="service-hover">
+        <div class="service-hover-label">What you're looking for</div>
+        <div class="service-hover-text">"I'm looking for guaranteed income I can't outlive, protection from market loss, tax-deferred growth, and a plan that continues for my spouse if I'm gone first."</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-name">IUL &amp; Life Insurance</div>
+      <p class="service-desc">Indexed Universal Life for business owners and individuals building tax-advantaged wealth alongside protection. Long-term strategy, not short-term thinking.</p>
+      <div class="service-hover">
+        <div class="service-hover-label">What you're looking for</div>
+        <div class="service-hover-text">"I want to pay off the mortgage, replace my income if I'm gone, cover my kids or grandkids while rates are low, and build tax-free cash value over time."</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-name">Ancillary Coverage</div>
+      <p class="service-desc">Hospital indemnity, dental, vision, and hearing plans to fill the gaps your primary coverage leaves behind. Small premiums that prevent big surprises.</p>
+      <div class="service-hover">
+        <div class="service-hover-label">What you're looking for</div>
+        <div class="service-hover-text">"I'm looking for cash in my pocket when I'm hospitalized, dental that actually covers what I need, and vision and hearing that fill the gaps my main plan leaves behind."</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -756,12 +823,12 @@
         <div class="optin-sub">Leave your info and I'll reach out within one business day. No spam, no pressure.</div>
 
         <!-- ══════════════════════════════════════════
-             FORMSPREE FORM — replace 
+             FORMSPREE FORM — replace YOUR_FORM_ID
              with your actual ID from formspree.io
         ══════════════════════════════════════════ -->
         <form
           id="contactForm"
-          action="https://formspree.io/f/xjgzyeal"
+          action="https://formspree.io/f/YOUR_FORM_ID"
           method="POST"
           onsubmit="handleFormspreeSubmit(event)"
         >
@@ -891,7 +958,7 @@
   <div class="tc-header">
     <div class="tc-avatar">TC</div>
     <div class="tc-header-info">
-      <div class="tc-header-name">Tommy Bot</div>
+      <div class="tc-header-name">Thomas Crowhurst Insurance</div>
       <div class="tc-header-status">AI Assistant — Ask me anything</div>
     </div>
     <button class="tc-close" onclick="tcToggle()" aria-label="Close">✕</button>
@@ -991,7 +1058,7 @@
   // ══════════════════════════════════════════
   // ── Cloudflare Worker URL (no API key needed here) ──
   // After deploying cloudflare-worker.js, paste your worker URL below
- const TC_WORKER_URL = 'https://anthropic-proxy.thomas626crowhurst.workers.dev';
+  const TC_WORKER_URL = 'https://anthropic-proxy.YOUR-NAME.workers.dev';
 
   const TC_SYSTEM = `You are a helpful insurance assistant for Thomas Crowhurst Insurance, an independent insurance brokerage based in Northwest Indiana.
 
