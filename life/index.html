@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Insurance Finder | Thomas Crowhurst Insurance</title>
+<meta name="description" content="Answer 8 quick questions and find out whether Final Expense, Term Life, or IUL is the right fit for your situation. Free, no pressure.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='4' fill='%232a2825'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='bold' fill='%23c9943a' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #2a2825;
+    --charcoal-mid: #312e2b;
+    --charcoal-light: #3d3a37;
+    --cream: #f0e8d8;
+    --rust: #c4522a;
+    --rust-dark: #a04020;
+    --olive: #7a8c45;
+    --teal: #3d7a6e;
+    --gold: #c9943a;
+    --text-light: #c8bfb0;
+    --text-muted: #8a8070;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--charcoal);
+    color: var(--cream);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(42,40,37,0.97);
+    border-bottom: 1px solid rgba(240,232,216,0.06);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--cream); text-decoration: none; }
+  .nav-logo em { font-style: italic; color: var(--gold); }
+  .nav-back { font-size: 0.78rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+  .nav-back:hover { color: var(--cream); }
+  .nav-cta { background: var(--rust); color: var(--cream); padding: 0.55rem 1.4rem; border-radius: 2px; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--rust-dark); }
+  .quiz-hero { text-align: center; padding: 4rem 2rem 3rem; background: var(--charcoal); border-bottom: 1px solid rgba(240,232,216,0.06); position: relative; overflow: hidden; }
+  .quiz-hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(196,82,42,0.06) 0%, transparent 60%); border-radius: 50%; pointer-events: none; }
+  .quiz-eyebrow { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); font-weight: 500; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
+  .quiz-eyebrow::before, .quiz-eyebrow::after { content: ''; display: block; width: 28px; height: 2px; background: var(--rust); }
+  .quiz-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; line-height: 1.1; color: var(--cream); margin-bottom: 1rem; position: relative; }
+  .quiz-hero h1 em { font-style: italic; color: var(--gold); }
+  .quiz-hero p { font-size: 0.95rem; color: var(--text-light); max-width: 520px; margin: 0 auto; line-height: 1.7; position: relative; }
+  .progress-wrap { max-width: 680px; margin: 2rem auto 0; padding: 0 1.5rem; }
+  .progress-bar-bg { height: 4px; background: var(--charcoal-light); border-radius: 2px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--rust), var(--gold)); border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+  .progress-label { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .quiz-container { max-width: 680px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  .question-card { background: var(--charcoal-mid); border: 1px solid rgba(240,232,216,0.08); border-radius: 3px; padding: 2.5rem; position: relative; overflow: hidden; display: none; animation: fadeUp 0.35s ease forwards; }
+  .question-card.active { display: block; }
+  .question-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold)); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .question-num { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.75rem; }
+  .question-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--cream); line-height: 1.35; margin-bottom: 0.5rem; }
+  .question-sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6; }
+  .options { display: flex; flex-direction: column; gap: 0.75rem; }
+  .option { background: var(--charcoal); border: 1px solid rgba(240,232,216,0.1); border-radius: 2px; padding: 1rem 1.25rem; cursor: pointer; transition: all 0.2s; display: flex; align-items: flex-start; gap: 1rem; text-align: left; }
+  .option:hover { border-color: rgba(196,82,42,0.5); background: rgba(196,82,42,0.06); }
+  .option.selected { border-color: var(--rust); background: rgba(196,82,42,0.12); }
+  .option-marker { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--charcoal-light); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .option.selected .option-marker { background: var(--rust); border-color: var(--rust); }
+  .option.selected .option-marker::after { content: '✓'; font-size: 0.65rem; color: white; font-weight: 700; }
+  .option-label { font-size: 0.9rem; color: var(--cream); font-weight: 500; line-height: 1.4; }
+  .option-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; line-height: 1.5; }
+  .question-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; }
+  .btn-back { background: none; border: 1px solid rgba(240,232,216,0.15); color: var(--text-muted); padding: 0.7rem 1.5rem; border-radius: 2px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .btn-back:hover { color: var(--cream); border-color: rgba(240,232,216,0.3); }
+  .btn-next { background: var(--rust); color: var(--cream); padding: 0.8rem 2rem; border: 2px solid var(--rust); border-radius: 2px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .btn-next:hover { background: transparent; color: var(--rust); }
+  .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+  .result-card { background: var(--charcoal-mid); border: 1px solid rgba(240,232,216,0.08); border-radius: 3px; padding: 2.5rem; position: relative; overflow: hidden; display: none; animation: fadeUp 0.4s ease forwards; }
+  .result-card.active { display: block; }
+  .result-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--rust), var(--gold)); }
+  .result-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(196,82,42,0.15); border: 1px solid rgba(196,82,42,0.3); border-radius: 20px; padding: 0.35rem 1rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 1.25rem; }
+  .result-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: var(--cream); line-height: 1.15; margin-bottom: 1rem; }
+  .result-title em { font-style: italic; color: var(--gold); }
+  .result-summary { font-size: 0.92rem; line-height: 1.8; color: var(--text-light); margin-bottom: 1.5rem; }
+  .result-reasons { background: var(--charcoal); border-radius: 2px; padding: 1.5rem; margin-bottom: 2rem; border-left: 3px solid var(--rust); }
+  .result-reasons-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .result-reason { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.86rem; color: var(--text-light); line-height: 1.6; margin-bottom: 0.65rem; }
+  .result-reason:last-child { margin-bottom: 0; }
+  .result-reason::before { content: '→'; color: var(--rust); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .result-disclaimer { font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; padding: 1rem; background: rgba(240,232,216,0.03); border: 1px solid rgba(240,232,216,0.06); border-radius: 2px; margin-bottom: 2rem; }
+  .result-cta { background: var(--rust); border-radius: 2px; padding: 2rem; text-align: center; position: relative; overflow: hidden; }
+  .result-cta::before { content: ''; position: absolute; top: -80px; right: -80px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%); border-radius: 50%; }
+  .result-cta h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--cream); margin-bottom: 0.5rem; position: relative; }
+  .result-cta p { font-size: 0.85rem; color: rgba(240,232,216,0.8); margin-bottom: 1.5rem; line-height: 1.6; position: relative; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn-cta-primary { background: var(--cream); color: var(--charcoal); padding: 0.85rem 1.75rem; border-radius: 2px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; border: 2px solid var(--cream); }
+  .btn-cta-primary:hover { background: transparent; color: var(--cream); }
+  .btn-cta-secondary { background: transparent; color: var(--cream); padding: 0.85rem 1.75rem; border-radius: 2px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; border: 2px solid rgba(240,232,216,0.5); }
+  .btn-cta-secondary:hover { border-color: var(--cream); }
+  .btn-retake { display: block; text-align: center; margin-top: 1.5rem; font-size: 0.78rem; color: var(--text-muted); cursor: pointer; text-decoration: underline; background: none; border: none; font-family: 'DM Sans', sans-serif; transition: color 0.2s; }
+  .btn-retake:hover { color: var(--cream); }
+  .compliance-bar { background: var(--charcoal-light); padding: 1.25rem 4rem; border-top: 1px solid rgba(240,232,216,0.06); margin-top: 2rem; }
+  .compliance-bar p { font-size: 0.7rem; line-height: 1.7; color: var(--text-muted); text-align: center; max-width: 860px; margin: 0 auto; }
+  .compliance-bar a { color: rgba(201,148,58,0.7); text-decoration: none; }
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.25rem; }
+    .quiz-hero { padding: 2.5rem 1.25rem 2rem; }
+    .question-card, .result-card { padding: 1.75rem 1.25rem; }
+    .cta-buttons { flex-direction: column; }
+    .compliance-bar { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Thomas Crowhurst <em>Insurance</em></a>
+  <a href="/" class="nav-back">← Back to site</a>
+  <a href="tel:+13177289417" class="nav-cta">Call Now</a>
+</nav>
+
+<div class="quiz-hero">
+  <div class="quiz-eyebrow">Free Life Insurance Finder</div>
+  <h1>Final Expense, Term Life,<br>or <em>IUL?</em></h1>
+  <p>Answer 8 quick questions. Get a personalized recommendation — no obligation, no sales pitch.</p>
+  <div class="progress-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">Question 1 of 8</div>
+  </div>
+</div>
+
+<div class="quiz-container">
+
+  <!-- Q1 -->
+  <div class="question-card active" data-q="1">
+    <div class="question-num">Question 1 of 8</div>
+    <div class="question-text">What's your primary reason for wanting life insurance?</div>
+    <div class="question-sub">Pick the one that fits best.</div>
+    <div class="options">
+      <div class="option" data-score-fe="3" data-score-term="0" data-score-iul="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Cover funeral and burial costs</div><div class="option-desc">I don't want my family stuck with end-of-life expenses</div></div>
+      </div>
+      <div class="option" data-score-fe="0" data-score-term="3" data-score-iul="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Replace my income if I die</div><div class="option-desc">Protect my family's financial future while I'm working</div></div>
+      </div>
+      <div class="option" data-score-fe="0" data-score-term="1" data-score-iul="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Build wealth and leave a legacy</div><div class="option-desc">I want coverage that also grows tax-free cash value</div></div>
+      </div>
+      <div class="option" data-score-fe="0" data-score-term="2" data-score-iul="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Pay off the mortgage or debts</div><div class="option-desc">Make sure my family keeps the house if I'm gone</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <div></div>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-1">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-card" data-q="2">
+    <div class="question-num">Question 2 of 8</div>
+    <div class="question-text">How old are you?</div>
+    <div class="question-sub">Age is one of the biggest factors in which type of policy makes sense.</div>
+    <div class="options">
+      <div class="option" data-score-fe="0" data-score-term="2" data-score-iul="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Under 45</div><div class="option-desc">Younger age means lower premiums and more time to build cash value</div></div>
+      </div>
+      <div class="option" data-score-fe="0" data-score-term="3" data-score-iul="2" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">45–59</div><div class="option-desc">Still strong options across all types</div></div>
+      </div>
+      <div class="option" data-score-fe="1" data-score-term="2" data-score-iul="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">60–69</div><div class="option-desc">Term still available; Final Expense becomes more relevant</div></div>
+      </div>
+      <div class="option" data-score-fe="3" data-score-term="0" data-score-iul="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">70 or older</div><div class="option-desc">Final Expense is typically the most accessible option</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-2">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-card" data-q="3">
+    <div class="question-num">Question 3 of 8</div>
+    <div class="question-text">Do you have dependents relying on your income?</div>
+    <div class="question-sub">Spouse, children, or anyone else who depends on your paycheck.</div>
+    <div class="options">
+      <div class="option" data-score-fe="0" data-score-term="3" data-score-iul="2" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Yes — spouse and/or children depend on me</div><div class="option-desc">My income is essential to my family's lifestyle</div></div>
+      </div>
+      <div class="option" data-score-fe="1" data-score-term="1" data-score-iul="2" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Somewhat — a spouse but we're both working</div></div>
+      </div>
+      <div class="option" data-score-fe="2" data-score-term="0" data-score-iul="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">No — I'm mostly on my own</div><div class="option-desc">I want coverage for final expenses or legacy purposes</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-3">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-card" data-q="4">
+    <div class="question-num">Question 4 of 8</div>
+    <div class="question-text">How would you describe your health?</div>
+    <div class="question-sub">This affects what's available and how it's priced.</div>
+    <div class="options">
+      <div class="option" data-score-fe="0" data-score-term="3" data-score-iul="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Good to excellent</div><div class="option-desc">No major conditions, few or no medications</div></div>
+      </div>
+      <div class="option" data-score-fe="1" data-score-term="2" data-score-iul="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Fair — some conditions but managed</div><div class="option-desc">Diabetes, high blood pressure, or similar</div></div>
+      </div>
+      <div class="option" data-score-fe="3" data-score-term="0" data-score-iul="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Poor or complicated history</div><div class="option-desc">I've been declined before or have serious conditions</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-4">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-card" data-q="5">
+    <div class="question-num">Question 5 of 8</div>
+    <div class="question-text">How much coverage are you thinking about?</div>
+    <div class="question-sub">Rough ballpark is fine.</div>
+    <div class="options">
+      <div class="option" data-score-fe="3" data-score-term="0" data-score-iul="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">$5,000 – $25,000</div><div class="option-desc">Enough to cover final expenses and leave a little behind</div></div>
+      </div>
+      <div class="option" data-score-fe="0" data-score-term="3" data-score-iul="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">$100,000 – $500,000</div><div class="option-desc">Income replacement, mortgage payoff, family protection</div></div>
+      </div>
+      <div class="option" data-score-fe="0" data-score-term="1" data-score-iul="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">$500,000+</div><div class="option-desc">Significant legacy, business protection, or wealth building</div></div>
+      </div>
+      <div class="option" data-score-fe="1" data-score-term="1" data-score-iul="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Not sure — I need help figuring that out</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-5">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-card" data-q="6">
+    <div class="question-num">Question 6 of 8</div>
+    <div class="question-text">How long do you need coverage?</div>
+    <div class="question-sub">Some people need protection for a specific period. Others want it to last their entire life.</div>
+    <div class="options">
+      <div class="option" data-score-fe="0" data-score-term="3" data-score-iul="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">A specific period — 10, 20, or 30 years</div><div class="option-desc">While the kids are young or the mortgage is outstanding</div></div>
+      </div>
+      <div class="option" data-score-fe="3" data-score-term="0" data-score-iul="2" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">My entire life — permanent coverage</div><div class="option-desc">I want it there no matter when I pass</div></div>
+      </div>
+      <div class="option" data-score-fe="0" data-score-term="1" data-score-iul="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Permanent, with cash value I can access</div><div class="option-desc">I want coverage that also works as a financial asset</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-6">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question-card" data-q="7">
+    <div class="question-num">Question 7 of 8</div>
+    <div class="question-text">What's your monthly budget for life insurance?</div>
+    <div class="question-sub">Approximate is fine — just helps us point you in the right direction.</div>
+    <div class="options">
+      <div class="option" data-score-fe="3" data-score-term="1" data-score-iul="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Under $50/month</div><div class="option-desc">I need something affordable and straightforward</div></div>
+      </div>
+      <div class="option" data-score-fe="1" data-score-term="3" data-score-iul="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">$50 – $150/month</div><div class="option-desc">Room for solid coverage without stretching the budget</div></div>
+      </div>
+      <div class="option" data-score-fe="0" data-score-term="1" data-score-iul="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">$150+/month</div><div class="option-desc">I'm willing to invest more for permanent or wealth-building coverage</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-7">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-card" data-q="8">
+    <div class="question-num">Question 8 of 8</div>
+    <div class="question-text">Do you have children or grandchildren you'd like to protect?</div>
+    <div class="question-sub">Juvenile policies lock in low rates for life and build cash value from an early age.</div>
+    <div class="options">
+      <div class="option" data-score-fe="0" data-score-term="0" data-score-iul="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Yes — I'd love to cover them too</div><div class="option-desc">Locking in their rates now while they're young and healthy</div></div>
+      </div>
+      <div class="option" data-score-fe="1" data-score-term="2" data-score-iul="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Yes, but I'm focused on my own coverage first</div></div>
+      </div>
+      <div class="option" data-score-fe="2" data-score-term="1" data-score-iul="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">No — just looking for myself</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="showResult()" disabled id="next-8">See My Recommendation →</button>
+    </div>
+  </div>
+
+  <!-- RESULT — Final Expense -->
+  <div class="result-card" id="result-fe">
+    <div class="result-badge">Your Result</div>
+    <div class="result-title">You may be a good fit for<br><em>Final Expense Life Insurance</em></div>
+    <div class="result-summary">Based on your answers, Final Expense whole life insurance aligns well with your situation. It's affordable, permanent, requires no medical exam, and guarantees your family won't be left with end-of-life costs.</div>
+    <div class="result-reasons">
+      <div class="result-reasons-title">Why this fits you</div>
+      <div class="result-reason">No medical exam required — simplified or guaranteed issue options available</div>
+      <div class="result-reason">Permanent whole life coverage — it never expires</div>
+      <div class="result-reason">Affordable premiums, often $30–$80/month depending on age and coverage</div>
+      <div class="result-reason">Pays out to cover funeral costs, medical bills, and leaves a little behind for family</div>
+      <div class="result-reason">Carriers include Mutual of Omaha, American Amicable, and Foresters</div>
+    </div>
+    <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. Final Expense plans vary by carrier, age, and health history. Thomas will compare real options across multiple carriers at no cost to you.</div>
+    <div class="result-cta">
+      <h3>Let's Find the Right Plan for You</h3>
+      <p>Thomas will compare Final Expense plans across multiple carriers — at no cost, no pressure.</p>
+      <div class="cta-buttons">
+        <a href="tel:+13177289417" class="btn-cta-primary">Call (317) 728-9417</a>
+        <a href="/#contact" class="btn-cta-secondary">Request a Free Review</a>
+      </div>
+    </div>
+    <button class="btn-retake" onclick="retake()">← Start over</button>
+  </div>
+
+  <!-- RESULT — Term Life -->
+  <div class="result-card" id="result-term">
+    <div class="result-badge">Your Result</div>
+    <div class="result-title">You may be a good fit for<br><em>Term Life Insurance</em></div>
+    <div class="result-summary">Based on your answers, Term Life insurance aligns well with your situation. It provides maximum coverage at the lowest cost — ideal for income replacement, mortgage protection, and family security during your working years.</div>
+    <div class="result-reasons">
+      <div class="result-reasons-title">Why this fits you</div>
+      <div class="result-reason">Highest death benefit for the lowest monthly premium</div>
+      <div class="result-reason">10, 20, or 30-year terms to match your specific needs</div>
+      <div class="result-reason">Protects your family's income, mortgage, and lifestyle</div>
+      <div class="result-reason">Convertible options available on many policies</div>
+      <div class="result-reason">Available through SBLI EasyTrak and other top carriers</div>
+    </div>
+    <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. Term life rates and eligibility vary by age, health, and carrier. Thomas will compare real options across multiple carriers at no cost to you.</div>
+    <div class="result-cta">
+      <h3>Let's Find the Right Plan for You</h3>
+      <p>Thomas will compare Term Life options across multiple carriers — at no cost, no pressure.</p>
+      <div class="cta-buttons">
+        <a href="tel:+13177289417" class="btn-cta-primary">Call (317) 728-9417</a>
+        <a href="/#contact" class="btn-cta-secondary">Request a Free Review</a>
+      </div>
+    </div>
+    <button class="btn-retake" onclick="retake()">← Start over</button>
+  </div>
+
+  <!-- RESULT — IUL -->
+  <div class="result-card" id="result-iul">
+    <div class="result-badge">Your Result</div>
+    <div class="result-title">You may be a good fit for<br><em>Indexed Universal Life (IUL)</em></div>
+    <div class="result-summary">Based on your answers, an Indexed Universal Life policy aligns well with your goals. IUL offers permanent coverage while building tax-advantaged cash value tied to market index performance — without the downside risk.</div>
+    <div class="result-reasons">
+      <div class="result-reasons-title">Why this fits you</div>
+      <div class="result-reason">Permanent life insurance that never expires</div>
+      <div class="result-reason">Cash value grows tax-deferred, linked to a market index with a floor — you don't lose value in down years</div>
+      <div class="result-reason">Tax-free loans and withdrawals in retirement</div>
+      <div class="result-reason">Can cover children and grandchildren at locked-in juvenile rates</div>
+      <div class="result-reason">Ideal for business owners and high-income earners building a tax-free retirement strategy</div>
+    </div>
+    <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. IUL policies are complex and vary significantly by carrier and design. Thomas will walk you through real illustrations at no cost to you.</div>
+    <div class="result-cta">
+      <h3>Let's Build Your Strategy</h3>
+      <p>Thomas will walk you through IUL options and run real illustrations — at no cost, no pressure.</p>
+      <div class="cta-buttons">
+        <a href="tel:+13177289417" class="btn-cta-primary">Call (317) 728-9417</a>
+        <a href="/#contact" class="btn-cta-secondary">Request a Free Review</a>
+      </div>
+    </div>
+    <button class="btn-retake" onclick="retake()">← Start over</button>
+  </div>
+
+  <!-- RESULT — Too Close -->
+  <div class="result-card" id="result-toss">
+    <div class="result-badge">Your Result</div>
+    <div class="result-title">It's close — and that's<br><em>exactly why you need Thomas</em></div>
+    <div class="result-summary">Your answers suggest more than one type of life insurance could work for you. The right choice depends on details a quiz can't fully capture — your health, budget, goals, and timeline all matter.</div>
+    <div class="result-reasons">
+      <div class="result-reasons-title">What to talk through with Thomas</div>
+      <div class="result-reason">Your exact health history and what you'd qualify for</div>
+      <div class="result-reason">Whether permanent or term coverage fits your timeline</div>
+      <div class="result-reason">How much coverage your family actually needs</div>
+      <div class="result-reason">Whether building cash value makes sense for your situation</div>
+    </div>
+    <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. The best way to get a clear answer is a free 15-minute conversation with a licensed independent broker.</div>
+    <div class="result-cta">
+      <h3>Let's Figure This Out Together</h3>
+      <p>A free 15-minute call gives you a clear answer — no obligation, no pressure.</p>
+      <div class="cta-buttons">
+        <a href="tel:+13177289417" class="btn-cta-primary">Call (317) 728-9417</a>
+        <a href="/#contact" class="btn-cta-secondary">Request a Free Review</a>
+      </div>
+    </div>
+    <button class="btn-retake" onclick="retake()">← Start over</button>
+  </div>
+
+</div>
+
+<div class="compliance-bar">
+  <p>This quiz provides general educational information only and does not constitute insurance advice, a quote, or a guarantee of coverage. Coverage availability and costs vary by carrier, age, and health history. Thomas Crowhurst Insurance is an independent broker — not affiliated with any government agency. A licensed insurance agent may contact you.</p>
+</div>
+
+<script>
+  const TOTAL = 8;
+  let current = 1;
+  let scores = { fe: 0, term: 0, iul: 0 };
+
+  function selectOption(el) {
+    const card = el.closest('.question-card');
+    card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    const q = card.dataset.q;
+    document.getElementById('next-' + q).disabled = false;
+  }
+
+  function nextQuestion() {
+    const card = document.querySelector(`.question-card[data-q="${current}"]`);
+    const selected = card.querySelector('.option.selected');
+    if (!selected) return;
+    scores.fe   += parseInt(selected.dataset.scoreFe   || 0);
+    scores.term += parseInt(selected.dataset.scoreTerm || 0);
+    scores.iul  += parseInt(selected.dataset.scoreIul  || 0);
+    card.classList.remove('active');
+    current++;
+    updateProgress();
+    const next = document.querySelector(`.question-card[data-q="${current}"]`);
+    if (next) next.classList.add('active');
+  }
+
+  function prevQuestion() {
+    const card = document.querySelector(`.question-card[data-q="${current}"]`);
+    card.classList.remove('active');
+    const prev = document.querySelector(`.question-card[data-q="${current - 1}"]`);
+    const prevSelected = prev ? prev.querySelector('.option.selected') : null;
+    if (prevSelected) {
+      scores.fe   -= parseInt(prevSelected.dataset.scoreFe   || 0);
+      scores.term -= parseInt(prevSelected.dataset.scoreTerm || 0);
+      scores.iul  -= parseInt(prevSelected.dataset.scoreIul  || 0);
+    }
+    current--;
+    updateProgress();
+    const prevCard = document.querySelector(`.question-card[data-q="${current}"]`);
+    if (prevCard) prevCard.classList.add('active');
+  }
+
+  function updateProgress() {
+    const pct = ((current - 1) / TOTAL) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = `Question ${current} of ${TOTAL}`;
+  }
+
+  function showResult() {
+    const card = document.querySelector(`.question-card[data-q="${current}"]`);
+    const selected = card.querySelector('.option.selected');
+    if (selected) {
+      scores.fe   += parseInt(selected.dataset.scoreFe   || 0);
+      scores.term += parseInt(selected.dataset.scoreTerm || 0);
+      scores.iul  += parseInt(selected.dataset.scoreIul  || 0);
+    }
+    card.classList.remove('active');
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('progressLabel').textContent = 'Complete';
+
+    const max = Math.max(scores.fe, scores.term, scores.iul);
+    const winners = [
+      scores.fe === max ? 'fe' : null,
+      scores.term === max ? 'term' : null,
+      scores.iul === max ? 'iul' : null
+    ].filter(Boolean);
+
+    let result;
+    if (winners.length > 1) {
+      result = 'result-toss';
+    } else if (winners[0] === 'fe') {
+      result = 'result-fe';
+    } else if (winners[0] === 'term') {
+      result = 'result-term';
+    } else {
+      result = 'result-iul';
+    }
+
+    document.getElementById(result).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function retake() {
+    scores = { fe: 0, term: 0, iul: 0 };
+    current = 1;
+    document.querySelectorAll('.question-card').forEach(c => { c.classList.remove('active'); c.querySelectorAll('.option').forEach(o => o.classList.remove('selected')); });
+    document.querySelectorAll('.result-card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.btn-next').forEach(b => b.disabled = true);
+    document.querySelector('.question-card[data-q="1"]').classList.add('active');
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  updateProgress();
+</script>
+</body>
+</html>
