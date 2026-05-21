@@ -419,12 +419,13 @@
     margin: 0 auto 2.5rem; line-height: 1.7; position: relative;
   }
   .btn-dark {
-    background: var(--charcoal); color: var(--cream); padding: 1rem 2.5rem;
+    background: var(--cream); color: var(--charcoal); padding: 1rem 2.5rem;
     border-radius: 2px; font-size: 0.85rem; font-weight: 700;
     letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
-    display: inline-block; transition: all 0.2s; border: 2px solid var(--charcoal);
+    display: inline-block; transition: all 0.2s; border: 2px solid var(--cream);
+    position: relative; z-index: 2;
   }
-  .btn-dark:hover { background: transparent; color: var(--charcoal); }
+  .btn-dark:hover { background: transparent; color: var(--cream); }
 
   /* ── COMPLIANCE ── */
   .compliance-bar {
@@ -708,7 +709,7 @@
     <h1>Insurance Made <em>Simple.</em><br>Coverage That Fits.</h1>
     <p class="hero-sub">I'm a broker, so I work for you. I provide independent guidance across Medicare Advantage, Medicare Supplement, Final Expense, Annuities, and Life Insurance — and I shop every carrier to find what actually fits your life.</p>
     <div class="hero-actions">
-     <a href="#contact" class="btn-dark" style="position:relative; z-index:2;">Request a Free Review</a>>
+      <a href="#contact" class="btn-primary">Request a Free Review</a>
       <a href="#services" class="btn-ghost">See what I offer</a>
     </div>
   </div>
@@ -828,7 +829,7 @@
         ══════════════════════════════════════════ -->
         <form
           id="contactForm"
-          action="https://formspree.io/f/YOUR_FORM_ID"
+          action="https://formspree.io/f/xjgzyeal"
           method="POST"
           onsubmit="handleFormspreeSubmit(event)"
         >
@@ -912,7 +913,7 @@
 <section class="cta-section">
   <h2>Turning 65 Soon? Let's Talk.</h2>
   <p>Your Medicare enrollment window has real deadlines. A free 15-minute call gives you a clear picture of what's available — no obligation, no pressure.</p>
-  <a href="#contact" class="btn-dark">Request a Free Review</a>
+  <a href="#contact" class="btn-dark" style="position:relative;z-index:2;">Request a Free Review</a>
 </section>
 
 <!-- ── COMPLIANCE ── -->
@@ -949,7 +950,7 @@
 
 <!-- Chat Toggle Button -->
 <button id="tc-chat-btn" onclick="tcToggle()" aria-label="Ask a question">
-  <svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 012 2 2 2 0 01-2 2 2 2 0 01-2-2 2 2 0 012-2m0 5c2.67 0 8 1.33 8 4v1H4v-1c0-2.67 5.33-4 8-4m-4 6h8v2H8v-2m-2 4h12v2H6v-2z"/></svg>
+  <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:#f0e8d8"><path d="M20 9V7a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 00-2 2v4a2 2 0 002 2h1v1a1 1 0 002 0v-1h6v1a1 1 0 002 0v-1h1a2 2 0 002-2v-4a2 2 0 00-2-2zM9 13a1 1 0 110-2 1 1 0 010 2zm6 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
 </button>
 
 <!-- Chat Window -->
@@ -957,7 +958,7 @@
   <div class="tc-header">
     <div class="tc-avatar">TC</div>
     <div class="tc-header-info">
-      <div class="tc-header-name">Thomas Crowhurst Insurance</div>
+      <div class="tc-header-name">Tommy Bot</div>
       <div class="tc-header-status">AI Assistant — Ask me anything</div>
     </div>
     <button class="tc-close" onclick="tcToggle()" aria-label="Close">✕</button>
@@ -1057,7 +1058,7 @@
   // ══════════════════════════════════════════
   // ── Cloudflare Worker URL (no API key needed here) ──
   // After deploying cloudflare-worker.js, paste your worker URL below
-  const TC_WORKER_URL = 'https://anthropic-proxy.thomas626crowhurst.workers.dev';
+  const TC_WORKER_URL = 'https://anthropic-proxy.YOUR-NAME.workers.dev';
 
   const TC_SYSTEM = `You are a helpful insurance assistant for Thomas Crowhurst Insurance, an independent insurance brokerage based in Northwest Indiana.
 
@@ -1094,7 +1095,7 @@ COMPLIANCE RULES:
       win.style.display = 'flex';
       requestAnimationFrame(() => win.classList.add('tc-open'));
       document.getElementById('tc-input').focus();
-      document.querySelector('.tc-badge').style.display = 'none';
+      // badge removed
     } else {
       win.classList.remove('tc-open');
       setTimeout(() => { win.style.display = 'none'; }, 280);
