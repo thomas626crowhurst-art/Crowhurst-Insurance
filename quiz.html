@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medicare Plan Finder | Thomas Crowhurst Insurance</title>
+<meta name="description" content="Answer 9 quick questions and find out whether Medicare Advantage or Medicare Supplement is the right fit for your situation. Free, no pressure.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='4' fill='%232a2825'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='bold' fill='%23c9943a' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #2a2825;
+    --charcoal-mid: #312e2b;
+    --charcoal-light: #3d3a37;
+    --cream: #f0e8d8;
+    --rust: #c4522a;
+    --rust-dark: #a04020;
+    --olive: #7a8c45;
+    --teal: #3d7a6e;
+    --gold: #c9943a;
+    --text-light: #c8bfb0;
+    --text-muted: #8a8070;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--charcoal);
+    color: var(--cream);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(42,40,37,0.97);
+    border-bottom: 1px solid rgba(240,232,216,0.06);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--cream); text-decoration: none; }
+  .nav-logo em { font-style: italic; color: var(--gold); }
+  .nav-back {
+    font-size: 0.78rem; color: var(--text-muted); text-decoration: none;
+    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;
+    transition: color 0.2s; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .nav-back:hover { color: var(--cream); }
+  .nav-cta {
+    background: var(--rust); color: var(--cream); padding: 0.55rem 1.4rem;
+    border-radius: 2px; font-size: 0.76rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--rust-dark); }
+
+  /* ── HERO ── */
+  .quiz-hero {
+    text-align: center; padding: 4rem 2rem 3rem;
+    background: var(--charcoal);
+    border-bottom: 1px solid rgba(240,232,216,0.06);
+    position: relative; overflow: hidden;
+  }
+  .quiz-hero::before {
+    content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(196,82,42,0.06) 0%, transparent 60%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .quiz-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--rust); font-weight: 500; margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  }
+  .quiz-eyebrow::before, .quiz-eyebrow::after {
+    content: ''; display: block; width: 28px; height: 2px; background: var(--rust);
+  }
+  .quiz-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900; line-height: 1.1; color: var(--cream);
+    margin-bottom: 1rem; position: relative;
+  }
+  .quiz-hero h1 em { font-style: italic; color: var(--gold); }
+  .quiz-hero p {
+    font-size: 0.95rem; color: var(--text-light); max-width: 520px;
+    margin: 0 auto; line-height: 1.7; position: relative;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-wrap {
+    max-width: 680px; margin: 2rem auto 0; padding: 0 1.5rem;
+    position: relative;
+  }
+  .progress-bar-bg {
+    height: 4px; background: var(--charcoal-light); border-radius: 2px; overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%; background: linear-gradient(90deg, var(--rust), var(--gold));
+    border-radius: 2px; transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* ── QUIZ CONTAINER ── */
+  .quiz-container {
+    max-width: 680px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* ── QUESTION CARD ── */
+  .question-card {
+    background: var(--charcoal-mid);
+    border: 1px solid rgba(240,232,216,0.08);
+    border-radius: 3px; padding: 2.5rem;
+    position: relative; overflow: hidden;
+    display: none;
+    animation: fadeUp 0.35s ease forwards;
+  }
+  .question-card.active { display: block; }
+  .question-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold));
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .question-num {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--rust); margin-bottom: 0.75rem;
+  }
+  .question-text {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem;
+    font-weight: 700; color: var(--cream); line-height: 1.35; margin-bottom: 0.5rem;
+  }
+  .question-sub {
+    font-size: 0.82rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6;
+  }
+
+  /* ── OPTIONS ── */
+  .options { display: flex; flex-direction: column; gap: 0.75rem; }
+  .option {
+    background: var(--charcoal); border: 1px solid rgba(240,232,216,0.1);
+    border-radius: 2px; padding: 1rem 1.25rem;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: flex-start; gap: 1rem;
+    text-align: left;
+  }
+  .option:hover { border-color: rgba(196,82,42,0.5); background: rgba(196,82,42,0.06); }
+  .option.selected {
+    border-color: var(--rust); background: rgba(196,82,42,0.12);
+  }
+  .option-marker {
+    width: 20px; height: 20px; border-radius: 50%;
+    border: 2px solid var(--charcoal-light); flex-shrink: 0; margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .option.selected .option-marker {
+    background: var(--rust); border-color: var(--rust);
+  }
+  .option.selected .option-marker::after {
+    content: '✓'; font-size: 0.65rem; color: white; font-weight: 700;
+  }
+  .option-content {}
+  .option-label {
+    font-size: 0.9rem; color: var(--cream); font-weight: 500; line-height: 1.4;
+  }
+  .option-desc {
+    font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; line-height: 1.5;
+  }
+
+  /* ── NAV BUTTONS ── */
+  .question-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 2rem;
+  }
+  .btn-back {
+    background: none; border: 1px solid rgba(240,232,216,0.15);
+    color: var(--text-muted); padding: 0.7rem 1.5rem;
+    border-radius: 2px; font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-back:hover { color: var(--cream); border-color: rgba(240,232,216,0.3); }
+  .btn-next {
+    background: var(--rust); color: var(--cream); padding: 0.8rem 2rem;
+    border: 2px solid var(--rust); border-radius: 2px; font-size: 0.82rem;
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-next:hover { background: transparent; color: var(--rust); }
+  .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── RESULT CARD ── */
+  .result-card {
+    background: var(--charcoal-mid);
+    border: 1px solid rgba(240,232,216,0.08);
+    border-radius: 3px; padding: 2.5rem;
+    position: relative; overflow: hidden;
+    display: none;
+    animation: fadeUp 0.4s ease forwards;
+  }
+  .result-card.active { display: block; }
+  .result-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--rust), var(--gold));
+  }
+  .result-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(196,82,42,0.15); border: 1px solid rgba(196,82,42,0.3);
+    border-radius: 20px; padding: 0.35rem 1rem;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--rust); margin-bottom: 1.25rem;
+  }
+  .result-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 900; color: var(--cream); line-height: 1.15; margin-bottom: 1rem;
+  }
+  .result-title em { font-style: italic; color: var(--gold); }
+  .result-summary {
+    font-size: 0.92rem; line-height: 1.8; color: var(--text-light); margin-bottom: 1.5rem;
+  }
+  .result-reasons {
+    background: var(--charcoal); border-radius: 2px;
+    padding: 1.5rem; margin-bottom: 2rem;
+    border-left: 3px solid var(--rust);
+  }
+  .result-reasons-title {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--rust); margin-bottom: 1rem;
+  }
+  .result-reason {
+    display: flex; gap: 0.75rem; align-items: flex-start;
+    font-size: 0.86rem; color: var(--text-light); line-height: 1.6;
+    margin-bottom: 0.65rem;
+  }
+  .result-reason:last-child { margin-bottom: 0; }
+  .result-reason::before {
+    content: '→'; color: var(--rust); font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  }
+  .result-disclaimer {
+    font-size: 0.75rem; color: var(--text-muted); line-height: 1.6;
+    padding: 1rem; background: rgba(240,232,216,0.03);
+    border: 1px solid rgba(240,232,216,0.06); border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+
+  /* ── CTA BLOCK ── */
+  .result-cta {
+    background: var(--rust); border-radius: 2px; padding: 2rem;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .result-cta::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%);
+    border-radius: 50%;
+  }
+  .result-cta h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem;
+    font-weight: 900; color: var(--cream); margin-bottom: 0.5rem; position: relative;
+  }
+  .result-cta p {
+    font-size: 0.85rem; color: rgba(240,232,216,0.8);
+    margin-bottom: 1.5rem; line-height: 1.6; position: relative;
+  }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn-cta-primary {
+    background: var(--cream); color: var(--charcoal); padding: 0.85rem 1.75rem;
+    border-radius: 2px; font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+    transition: all 0.2s; border: 2px solid var(--cream);
+  }
+  .btn-cta-primary:hover { background: transparent; color: var(--cream); }
+  .btn-cta-secondary {
+    background: transparent; color: var(--cream); padding: 0.85rem 1.75rem;
+    border-radius: 2px; font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+    transition: all 0.2s; border: 2px solid rgba(240,232,216,0.5);
+  }
+  .btn-cta-secondary:hover { border-color: var(--cream); }
+
+  .btn-retake {
+    display: block; text-align: center; margin-top: 1.5rem;
+    font-size: 0.78rem; color: var(--text-muted); cursor: pointer;
+    text-decoration: underline; background: none; border: none;
+    font-family: 'DM Sans', sans-serif; transition: color 0.2s;
+  }
+  .btn-retake:hover { color: var(--cream); }
+
+  /* ── COMPLIANCE ── */
+  .compliance-bar {
+    background: var(--charcoal-light); padding: 1.25rem 4rem;
+    border-top: 1px solid rgba(240,232,216,0.06); margin-top: 2rem;
+  }
+  .compliance-bar p {
+    font-size: 0.7rem; line-height: 1.7; color: var(--text-muted);
+    text-align: center; max-width: 860px; margin: 0 auto;
+  }
+  .compliance-bar a { color: rgba(201,148,58,0.7); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.25rem; }
+    .quiz-hero { padding: 2.5rem 1.25rem 2rem; }
+    .question-card, .result-card { padding: 1.75rem 1.25rem; }
+    .cta-buttons { flex-direction: column; }
+    .compliance-bar { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Thomas Crowhurst <em>Insurance</em></a>
+  <a href="index.html" class="nav-back">← Back to site</a>
+  <a href="tel:+13177289417" class="nav-cta">Call Now</a>
+</nav>
+
+<div class="quiz-hero">
+  <div class="quiz-eyebrow">Free Medicare Plan Finder</div>
+  <h1>Medicare Advantage or<br><em>Medicare Supplement?</em></h1>
+  <p>Answer 9 quick questions. Get a personalized recommendation — no obligation, no sales pitch.</p>
+  <div class="progress-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">Question 1 of 9</div>
+  </div>
+</div>
+
+<div class="quiz-container">
+
+  <!-- Q1 -->
+  <div class="question-card active" data-q="1">
+    <div class="question-num">Question 1 of 9</div>
+    <div class="question-text">When are you turning 65 or enrolling in Medicare?</div>
+    <div class="question-sub">This helps us understand where you are in the process.</div>
+    <div class="options">
+      <div class="option" data-value="soon" data-score-ma="0" data-score-ms="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Within the next 6 months</div><div class="option-desc">Your enrollment window is open or opening soon</div></div>
+      </div>
+      <div class="option" data-value="year" data-score-ma="0" data-score-ms="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Within the next 1–2 years</div><div class="option-desc">Planning ahead — smart move</div></div>
+      </div>
+      <div class="option" data-value="already" data-score-ma="0" data-score-ms="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">I'm already on Medicare</div><div class="option-desc">Looking to review or switch plans</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <div></div>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-1">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-card" data-q="2">
+    <div class="question-num">Question 2 of 9</div>
+    <div class="question-text">How would you describe your overall health?</div>
+    <div class="question-sub">Be honest — this is just for your recommendation, not an application.</div>
+    <div class="options">
+      <div class="option" data-score-ma="2" data-score-ms="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Generally healthy</div><div class="option-desc">I rarely see doctors and take few or no medications</div></div>
+      </div>
+      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Moderate</div><div class="option-desc">I have a few conditions and see doctors a couple times a year</div></div>
+      </div>
+      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">I use healthcare regularly</div><div class="option-desc">Ongoing conditions, specialists, or frequent visits</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-2">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-card" data-q="3">
+    <div class="question-num">Question 3 of 9</div>
+    <div class="question-text">Do you have a family history of serious illness?</div>
+    <div class="question-sub">Heart disease, cancer, diabetes, stroke — conditions that can mean higher healthcare use down the road.</div>
+    <div class="options">
+      <div class="option" data-score-ma="1" data-score-ms="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">No significant family history</div></div>
+      </div>
+      <div class="option" data-score-ma="0" data-score-ms="2" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Yes — one or more close relatives</div><div class="option-desc">Heart disease, cancer, diabetes, or similar</div></div>
+      </div>
+      <div class="option" data-score-ma="0" data-score-ms="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Not sure / I'd rather not say</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-3">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-card" data-q="4">
+    <div class="question-num">Question 4 of 9</div>
+    <div class="question-text">Do you have doctors you want to keep seeing?</div>
+    <div class="question-sub">Medicare Advantage plans use networks — your current doctors may or may not be included.</div>
+    <div class="options">
+      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Yes — keeping my doctors is very important</div><div class="option-desc">I have specialists or a primary care doctor I trust</div></div>
+      </div>
+      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Somewhat — I have a preference but I'm flexible</div></div>
+      </div>
+      <div class="option" data-score-ma="2" data-score-ms="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Not really — I'm open to whoever is in network</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-4">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-card" data-q="5">
+    <div class="question-num">Question 5 of 9</div>
+    <div class="question-text">Do you travel or spend time in multiple states?</div>
+    <div class="question-sub">Medicare Advantage plans are typically local. Medicare Supplement works anywhere Medicare is accepted — nationwide.</div>
+    <div class="options">
+      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Yes — I travel frequently or snowbird</div><div class="option-desc">I spend significant time outside my home state</div></div>
+      </div>
+      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Occasionally — a trip here and there</div></div>
+      </div>
+      <div class="option" data-score-ma="2" data-score-ms="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">No — I stay close to home</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-5">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-card" data-q="6">
+    <div class="question-num">Question 6 of 9</div>
+    <div class="question-text">What matters most to you in a health plan?</div>
+    <div class="question-sub">Pick the one that resonates most.</div>
+    <div class="options">
+      <div class="option" data-score-ma="3" data-score-ms="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Lowest possible monthly premium</div><div class="option-desc">I want to keep my monthly costs as low as I can</div></div>
+      </div>
+      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Predictable costs no matter what happens</div><div class="option-desc">I don't want surprise bills if I get sick</div></div>
+      </div>
+      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">A balance of both</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-6">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question-card" data-q="7">
+    <div class="question-num">Question 7 of 9</div>
+    <div class="question-text">Are dental, vision, and hearing benefits important to you?</div>
+    <div class="question-sub">Medicare Advantage often includes these. Medicare Supplement typically does not — you'd add separate ancillary plans.</div>
+    <div class="options">
+      <div class="option" data-score-ma="2" data-score-ms="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Yes — very important</div><div class="option-desc">I want dental, vision, and hearing all in one plan</div></div>
+      </div>
+      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Somewhat — nice to have but not a dealbreaker</div></div>
+      </div>
+      <div class="option" data-score-ma="0" data-score-ms="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Not really — I'll handle those separately</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-7">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-card" data-q="8">
+    <div class="question-num">Question 8 of 9</div>
+    <div class="question-text">How do you feel about referrals and prior authorizations?</div>
+    <div class="question-sub">Some Medicare Advantage plans require referrals to see specialists and prior approval for certain procedures.</div>
+    <div class="options">
+      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">I don't want to deal with that at all</div><div class="option-desc">I want to see any doctor, anytime, without hoops</div></div>
+      </div>
+      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">I can handle some — as long as it's not excessive</div></div>
+      </div>
+      <div class="option" data-score-ma="2" data-score-ms="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Doesn't bother me — I'm used to managed care</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="nextQuestion()" disabled id="next-8">Next →</button>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="question-card" data-q="9">
+    <div class="question-num">Question 9 of 9</div>
+    <div class="question-text">What best describes your current financial situation?</div>
+    <div class="question-sub">This helps us understand what kind of plan structure fits best.</div>
+    <div class="options">
+      <div class="option" data-score-ma="3" data-score-ms="0" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Fixed income — every dollar counts</div><div class="option-desc">I need to keep monthly costs as low as possible</div></div>
+      </div>
+      <div class="option" data-score-ma="1" data-score-ms="2" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">Comfortable — I can handle a reasonable premium</div><div class="option-desc">I'd pay more monthly to avoid large unexpected bills</div></div>
+      </div>
+      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)">
+        <div class="option-marker"></div>
+        <div class="option-content"><div class="option-label">I prioritize peace of mind over monthly cost</div><div class="option-desc">Predictability matters more than the premium amount</div></div>
+      </div>
+    </div>
+    <div class="question-nav">
+      <button class="btn-back" onclick="prevQuestion()">← Back</button>
+      <button class="btn-next" onclick="showResult()" disabled id="next-9">See My Recommendation →</button>
+    </div>
+  </div>
+
+  <!-- RESULT — Medicare Advantage -->
+  <div class="result-card" id="result-ma">
+    <div class="result-badge">Your Result</div>
+    <div class="result-title">You may be a good fit for<br><em>Medicare Advantage</em></div>
+    <div class="result-summary">Based on your answers, Medicare Advantage aligns well with your situation. You're relatively healthy, value low monthly costs, and prefer having dental, vision, and hearing bundled into one plan.</div>
+    <div class="result-reasons">
+      <div class="result-reasons-title">Why this fits you</div>
+      <div class="result-reason">$0 or low monthly premium keeps your costs down</div>
+      <div class="result-reason">Built-in dental, vision, and hearing in many plans</div>
+      <div class="result-reason">OTC and grocery benefit cards on select plans</div>
+      <div class="result-reason">All-in-one coverage — one plan, one card</div>
+    </div>
+    <div class="result-disclaimer">
+      This is a general recommendation based on your answers — not a quote or guarantee of coverage. Medicare Advantage plans vary significantly by carrier, location, and your specific health situation. The best way to know for sure is to speak with a licensed broker who can compare real options in your area.
+    </div>
+    <div class="result-cta">
+      <h3>Let's Find the Right Plan for You</h3>
+      <p>Thomas will compare every Medicare Advantage plan available in your area — at no cost to you.</p>
+      <div class="cta-buttons">
+        <a href="tel:+13177289417" class="btn-cta-primary">Call (317) 728-9417</a>
+        <a href="index.html#contact" class="btn-cta-secondary">Request a Free Review</a>
+      </div>
+    </div>
+    <button class="btn-retake" onclick="retake()">← Start over</button>
+  </div>
+
+  <!-- RESULT — Medicare Supplement -->
+  <div class="result-card" id="result-ms">
+    <div class="result-badge">Your Result</div>
+    <div class="result-title">You may be a good fit for<br><em>Medicare Supplement</em></div>
+    <div class="result-summary">Based on your answers, Medicare Supplement (Medigap) aligns well with your situation. You value freedom, predictability, and the ability to see any doctor who accepts Medicare — without networks, referrals, or surprise bills.</div>
+    <div class="result-reasons">
+      <div class="result-reasons-title">Why this fits you</div>
+      <div class="result-reason">See any doctor in the country who accepts Medicare — no networks</div>
+      <div class="result-reason">Predictable costs — no surprise bills if you get sick</div>
+      <div class="result-reason">No referrals required to see specialists</div>
+      <div class="result-reason">Coverage travels with you anywhere in the US</div>
+    </div>
+    <div class="result-disclaimer">
+      This is a general recommendation based on your answers — not a quote or guarantee of coverage. Medicare Supplement plans vary by carrier, age, and health history. In most states, waiting too long to enroll can affect your eligibility. The best way to know for sure is to speak with a licensed broker who can compare real options in your area.
+    </div>
+    <div class="result-cta">
+      <h3>Let's Find the Right Plan for You</h3>
+      <p>Thomas will compare Medicare Supplement plans across multiple carriers — at no cost to you.</p>
+      <div class="cta-buttons">
+        <a href="tel:+13177289417" class="btn-cta-primary">Call (317) 728-9417</a>
+        <a href="index.html#contact" class="btn-cta-secondary">Request a Free Review</a>
+      </div>
+    </div>
+    <button class="btn-retake" onclick="retake()">← Start over</button>
+  </div>
+
+  <!-- RESULT — Too Close to Call -->
+  <div class="result-card" id="result-toss">
+    <div class="result-badge">Your Result</div>
+    <div class="result-title">It's close — and that's<br><em>exactly why you need Thomas</em></div>
+    <div class="result-summary">Your answers suggest you're right in the middle. Both Medicare Advantage and Medicare Supplement have real merit for your situation — and the right choice depends on details that a quiz can't fully capture.</div>
+    <div class="result-reasons">
+      <div class="result-reasons-title">What to talk through with Thomas</div>
+      <div class="result-reason">Which doctors you want to keep — and whether they're in local networks</div>
+      <div class="result-reason">Your prescription drug situation and how plans handle Part D</div>
+      <div class="result-reason">Your actual out-of-pocket risk tolerance</div>
+      <div class="result-reason">What plans are actually available in your zip code</div>
+    </div>
+    <div class="result-disclaimer">
+      This is a general recommendation based on your answers — not a quote or guarantee of coverage. The best way to make the right call is a free 15-minute conversation with a licensed independent broker.
+    </div>
+    <div class="result-cta">
+      <h3>Let's Figure This Out Together</h3>
+      <p>A free 15-minute call with Thomas gives you a clear answer — no obligation, no pressure.</p>
+      <div class="cta-buttons">
+        <a href="tel:+13177289417" class="btn-cta-primary">Call (317) 728-9417</a>
+        <a href="index.html#contact" class="btn-cta-secondary">Request a Free Review</a>
+      </div>
+    </div>
+    <button class="btn-retake" onclick="retake()">← Start over</button>
+  </div>
+
+</div>
+
+<div class="compliance-bar">
+  <p>This quiz provides general educational information only and does not constitute insurance advice, a quote, or a guarantee of coverage. Coverage availability and costs vary by carrier, location, age, and health history. Thomas Crowhurst Insurance is an independent broker — not affiliated with Medicare or any government agency. For official Medicare information, visit <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a> or call 1-800-MEDICARE (1-800-633-4227).</p>
+</div>
+
+<script>
+  const TOTAL = 9;
+  let current = 1;
+  let scores = { ma: 0, ms: 0 };
+
+  function selectOption(el) {
+    const card = el.closest('.question-card');
+    card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    const q = card.dataset.q;
+    document.getElementById('next-' + q).disabled = false;
+  }
+
+  function nextQuestion() {
+    const card = document.querySelector(`.question-card[data-q="${current}"]`);
+    const selected = card.querySelector('.option.selected');
+    if (!selected) return;
+
+    // Accumulate scores
+    scores.ma += parseInt(selected.dataset.scoreMa || 0);
+    scores.ms += parseInt(selected.dataset.scoreMs || 0);
+
+    card.classList.remove('active');
+    current++;
+    updateProgress();
+
+    const next = document.querySelector(`.question-card[data-q="${current}"]`);
+    if (next) next.classList.add('active');
+  }
+
+  function prevQuestion() {
+    const card = document.querySelector(`.question-card[data-q="${current}"]`);
+    card.classList.remove('active');
+
+    // Subtract the previous answer's score
+    const prev = document.querySelector(`.question-card[data-q="${current - 1}"]`);
+    const prevSelected = prev ? prev.querySelector('.option.selected') : null;
+    if (prevSelected) {
+      scores.ma -= parseInt(prevSelected.dataset.scoreMa || 0);
+      scores.ms -= parseInt(prevSelected.dataset.scoreMs || 0);
+    }
+
+    current--;
+    updateProgress();
+    const prevCard = document.querySelector(`.question-card[data-q="${current}"]`);
+    if (prevCard) prevCard.classList.add('active');
+  }
+
+  function updateProgress() {
+    const pct = ((current - 1) / TOTAL) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = `Question ${current} of ${TOTAL}`;
+  }
+
+  function showResult() {
+    // Grab last question score
+    const card = document.querySelector(`.question-card[data-q="${current}"]`);
+    const selected = card.querySelector('.option.selected');
+    if (selected) {
+      scores.ma += parseInt(selected.dataset.scoreMa || 0);
+      scores.ms += parseInt(selected.dataset.scoreMs || 0);
+    }
+
+    card.classList.remove('active');
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('progressLabel').textContent = 'Complete';
+
+    const diff = Math.abs(scores.ma - scores.ms);
+    let result;
+    if (diff <= 2) {
+      result = 'result-toss';
+    } else if (scores.ma > scores.ms) {
+      result = 'result-ma';
+    } else {
+      result = 'result-ms';
+    }
+
+    document.getElementById(result).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function retake() {
+    scores = { ma: 0, ms: 0 };
+    current = 1;
+    document.querySelectorAll('.question-card').forEach(c => {
+      c.classList.remove('active');
+      c.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    });
+    document.querySelectorAll('.result-card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.btn-next').forEach(b => b.disabled = true);
+    document.querySelector('.question-card[data-q="1"]').classList.add('active');
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  updateProgress();
+</script>
+
+</body>
+</html>
