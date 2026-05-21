@@ -736,7 +736,7 @@
     document.querySelectorAll('.btn-next').forEach(b => b.disabled = true);
     document.querySelector('.question-card[data-q="1"]').classList.add('active');
     updateProgress();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+document.querySelector('.quiz-container').scrollIntoView({ behavior: 'smooth' });  }
   }
 
   updateProgress();
