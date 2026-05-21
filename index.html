@@ -509,6 +509,51 @@
     .hero-actions { flex-direction: column; align-items: flex-start; }
   }
 
+
+  /* ── PLAN FINDER ── */
+  .plan-finder {
+    padding: 5rem 4rem; background: var(--charcoal);
+    border-top: 1px solid rgba(240,232,216,0.06);
+    border-bottom: 1px solid rgba(240,232,216,0.06);
+  }
+  .plan-finder-header { text-align: center; margin-bottom: 3rem; }
+  .plan-finder-header .section-title { color: var(--cream); margin-bottom: 0.75rem; }
+  .plan-finder-header p { font-size: 0.92rem; color: var(--text-muted); }
+  .plan-finder-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; max-width: 900px; margin: 0 auto;
+  }
+  .finder-card {
+    background: var(--charcoal-mid); border: 1px solid rgba(240,232,216,0.08);
+    border-radius: 3px; padding: 2.5rem; text-decoration: none;
+    display: block; position: relative; overflow: hidden;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .finder-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--rust), var(--gold));
+  }
+  .finder-card:hover { border-color: rgba(196,82,42,0.4); transform: translateY(-3px); }
+  .finder-card-eyebrow {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--rust); margin-bottom: 0.75rem;
+  }
+  .finder-card-title {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem;
+    font-weight: 900; color: var(--cream); margin-bottom: 0.75rem; line-height: 1.2;
+  }
+  .finder-card-title em { font-style: italic; color: var(--gold); }
+  .finder-card-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.5rem; }
+  .finder-card-cta {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--rust);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  @media (max-width: 600px) {
+    .plan-finder { padding: 3.5rem 1.5rem; }
+    .plan-finder-grid { grid-template-columns: 1fr; }
+  }
+
   /* ═══════════════════════════════════════
      CHAT WIDGET STYLES
   ═══════════════════════════════════════ */
@@ -791,6 +836,30 @@
         <div class="service-hover-text">"I'm looking for cash in my pocket when I'm hospitalized, dental that actually covers what I need, and vision and hearing that fill the gaps my main plan leaves behind."</div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- ── PLAN FINDER ── -->
+<section class="plan-finder">
+  <div class="plan-finder-header reveal">
+    <div class="section-eyebrow">Free Tools</div>
+    <h2 class="section-title">Not Sure Where to Start?</h2>
+    <p>Answer a few questions and get a personalized recommendation in under 2 minutes.</p>
+  </div>
+  <div class="plan-finder-grid reveal">
+    <a href="quiz" class="finder-card">
+      <div class="finder-card-eyebrow">Medicare</div>
+      <div class="finder-card-title">Medicare <em>Plan Finder</em></div>
+      <div class="finder-card-desc">Medicare Advantage or Medicare Supplement? Answer 9 questions about your health, doctors, travel habits, and budget — and find out which one actually fits your life.</div>
+      <div class="finder-card-cta">Take the quiz →</div>
+    </a>
+    <a href="life" class="finder-card">
+      <div class="finder-card-eyebrow">Life Insurance</div>
+      <div class="finder-card-title">Life Insurance <em>Finder</em></div>
+      <div class="finder-card-desc">Final Expense, Term Life, or IUL? Answer 8 questions about your goals, age, health, and family situation — and get a recommendation that matches where you are in life.</div>
+      <div class="finder-card-cta">Take the quiz →</div>
+    </a>
   </div>
 </section>
 
