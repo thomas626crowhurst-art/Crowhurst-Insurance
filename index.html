@@ -520,8 +520,8 @@
   .plan-finder-header .section-title { color: var(--cream); margin-bottom: 0.75rem; }
   .plan-finder-header p { font-size: 0.92rem; color: var(--text-muted); }
   .plan-finder-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1.5rem; max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr)
+    gap: 1.5rem; max-width: 1200px; margin: 0 auto;
   }
   .finder-card {
     background: var(--charcoal-mid); border: 1px solid rgba(240,232,216,0.08);
@@ -853,6 +853,12 @@
       <div class="finder-card-title">Medicare <em>Plan Finder</em></div>
       <div class="finder-card-desc">Medicare Advantage or Medicare Supplement? Answer 9 questions about your health, doctors, travel habits, and budget — and find out which one actually fits your life.</div>
       <div class="finder-card-cta">Take the quiz →</div>
+    </a>
+    <a href="/social-security" class="finder-card">
+      <div class="finder-card-eyebrow">Retirement Planning</div>
+      <div class="finder-card-title">Social Security <em>Planning Tools</em></div>
+      <div class="finder-card-desc">When should you claim Social Security? Will your income trigger an IRMAA surcharge on your Medicare premium? Free tools and a personalized recommendation.</div>
+      <div class="finder-card-cta">Explore the tools &#8594;</div>
     </a>
     <a href="life" class="finder-card">
       <div class="finder-card-eyebrow">Life Insurance</div>
