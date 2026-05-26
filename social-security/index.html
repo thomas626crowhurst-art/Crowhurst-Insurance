@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Security Planning | Thomas Crowhurst Insurance</title>
+<meta name="description" content="When should you claim Social Security? Use our free quiz and IRMAA calculator to understand your options before you turn 65. Thomas Crowhurst — independent broker, Northwest Indiana.">
+<meta property="og:title" content="Social Security Planning — Free Tools from Thomas Crowhurst Insurance">
+<meta property="og:description" content="Find out when to claim Social Security and what IRMAA means for your Medicare premiums. Free tools, no pressure.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='4' fill='%232a2825'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='bold' fill='%23c9943a' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root{--charcoal:#2a2825;--charcoal-mid:#312e2b;--charcoal-light:#3d3a37;--cream:#f0e8d8;--rust:#c4522a;--rust-dark:#a04020;--olive:#7a8c45;--teal:#3d7a6e;--gold:#c9943a;--text-light:#c8bfb0;--text-muted:#8a8070;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--charcoal);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4rem;background:rgba(42,40,37,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(240,232,216,0.06);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--cream);text-decoration:none;}
+  .nav-logo em{font-style:italic;color:var(--gold);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{color:var(--text-light);text-decoration:none;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--cream);}
+  .nav-right{display:flex;align-items:center;gap:1.2rem;}
+  .nav-cta{background:var(--rust);color:var(--cream);padding:0.55rem 1.4rem;border-radius:2px;font-size:0.76rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;}
+  .nav-cta:hover{background:var(--rust-dark);}
+  .hamburger{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative;z-index:110;}
+  .hamburger span{display:block;width:100%;height:2px;background:var(--cream);position:absolute;left:0;transition:all 0.3s ease;}
+  .hamburger span:nth-child(1){top:0;}.hamburger span:nth-child(2){top:9px;}.hamburger span:nth-child(3){top:18px;}
+  .hamburger.open span:nth-child(1){transform:rotate(45deg);top:9px;}.hamburger.open span:nth-child(2){opacity:0;}.hamburger.open span:nth-child(3){transform:rotate(-45deg);top:9px;}
+  .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(42,40,37,0.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{color:var(--cream);text-decoration:none;font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;}
+  .mobile-menu .nav-cta{font-family:'DM Sans',sans-serif;font-size:0.85rem;margin-top:1rem;padding:0.8rem 2rem;}
+
+  /* HERO */
+  .hero{padding:9rem 4rem 6rem;background:var(--charcoal);position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-150px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(196,82,42,0.06) 0%,transparent 60%);border-radius:50%;pointer-events:none;}
+  .hero-eyebrow{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--rust);font-weight:500;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;}
+  .hero-eyebrow::before{content:'';display:block;width:28px;height:2px;background:var(--rust);}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:900;line-height:1.05;color:var(--cream);margin-bottom:1.5rem;}
+  .hero h1 em{font-style:italic;color:var(--gold);}
+  .hero-sub{font-size:1rem;line-height:1.8;color:var(--text-light);max-width:560px;margin-bottom:3rem;}
+  .hero-tools{display:flex;gap:1.25rem;flex-wrap:wrap;}
+  .hero-tool-btn{display:flex;align-items:center;gap:0.75rem;background:var(--charcoal-mid);border:1px solid rgba(240,232,216,0.1);border-radius:2px;padding:1rem 1.5rem;text-decoration:none;transition:all 0.2s;color:var(--cream);}
+  .hero-tool-btn:hover{border-color:rgba(196,82,42,0.4);background:rgba(196,82,42,0.08);}
+  .hero-tool-btn-icon{width:36px;height:36px;border-radius:50%;background:var(--rust);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+  .hero-tool-btn-text{font-size:0.82rem;}
+  .hero-tool-btn-label{font-weight:700;color:var(--cream);display:block;}
+  .hero-tool-btn-sub{font-size:0.72rem;color:var(--text-muted);}
+
+  /* SECTIONS */
+  section{scroll-margin-top:80px;}
+  .section-wrap{max-width:900px;margin:0 auto;padding:5rem 4rem;}
+  .section-eyebrow{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--rust);font-weight:700;margin-bottom:1rem;}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:900;line-height:1.1;color:var(--cream);margin-bottom:1.5rem;}
+  .section-title em{font-style:italic;color:var(--gold);}
+  .section-divider{border:none;border-top:1px solid rgba(240,232,216,0.06);margin:0;}
+
+  /* SS QUIZ */
+  .quiz-section{background:var(--charcoal-mid);}
+  .quiz-card{background:var(--charcoal);border:1px solid rgba(240,232,216,0.08);border-radius:3px;padding:2.5rem;position:relative;overflow:hidden;margin-bottom:1.5rem;display:none;animation:fadeUp 0.35s ease forwards;}
+  .quiz-card.active{display:block;}
+  .quiz-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rust),var(--teal),var(--olive),var(--gold));}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  .quiz-q-num{font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.75rem;}
+  .quiz-q-text{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--cream);line-height:1.35;margin-bottom:0.5rem;}
+  .quiz-q-sub{font-size:0.82rem;color:var(--text-muted);margin-bottom:1.75rem;line-height:1.6;}
+  .quiz-options{display:flex;flex-direction:column;gap:0.75rem;}
+  .qopt{background:var(--charcoal-mid);border:1px solid rgba(240,232,216,0.1);border-radius:2px;padding:1rem 1.25rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:flex-start;gap:1rem;}
+  .qopt:hover{border-color:rgba(196,82,42,0.5);background:rgba(196,82,42,0.06);}
+  .qopt.selected{border-color:var(--rust);background:rgba(196,82,42,0.12);}
+  .qopt-marker{width:20px;height:20px;border-radius:50%;border:2px solid var(--charcoal-light);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+  .qopt.selected .qopt-marker{background:var(--rust);border-color:var(--rust);}
+  .qopt.selected .qopt-marker::after{content:'✓';font-size:0.65rem;color:white;font-weight:700;}
+  .qopt-label{font-size:0.9rem;color:var(--cream);font-weight:500;line-height:1.4;}
+  .qopt-desc{font-size:0.78rem;color:var(--text-muted);margin-top:0.2rem;line-height:1.5;}
+  .quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;}
+  .btn-qback{background:none;border:1px solid rgba(240,232,216,0.15);color:var(--text-muted);padding:0.7rem 1.5rem;border-radius:2px;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+  .btn-qback:hover{color:var(--cream);border-color:rgba(240,232,216,0.3);}
+  .btn-qnext{background:var(--rust);color:var(--cream);padding:0.8rem 2rem;border:2px solid var(--rust);border-radius:2px;font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+  .btn-qnext:hover{background:transparent;color:var(--rust);}
+  .btn-qnext:disabled{opacity:0.4;cursor:not-allowed;}
+  .progress-bar-bg{height:4px;background:var(--charcoal-light);border-radius:2px;overflow:hidden;margin-bottom:0.5rem;}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--rust),var(--gold));border-radius:2px;transition:width 0.4s ease;}
+  .progress-label{font-size:0.7rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2rem;}
+
+  /* Quiz result */
+  .quiz-result{background:var(--charcoal);border:1px solid rgba(240,232,216,0.08);border-radius:3px;padding:2.5rem;position:relative;overflow:hidden;display:none;animation:fadeUp 0.4s ease forwards;}
+  .quiz-result.active{display:block;}
+  .quiz-result::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rust),var(--gold));}
+  .result-badge{display:inline-flex;align-items:center;background:rgba(196,82,42,0.15);border:1px solid rgba(196,82,42,0.3);border-radius:20px;padding:0.35rem 1rem;font-size:0.68rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--rust);margin-bottom:1.25rem;}
+  .result-headline{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:900;color:var(--cream);line-height:1.2;margin-bottom:1rem;}
+  .result-headline em{font-style:italic;color:var(--gold);}
+  .result-body{font-size:0.92rem;line-height:1.8;color:var(--text-light);margin-bottom:1.5rem;}
+  .result-points{background:var(--charcoal-mid);border-radius:2px;padding:1.5rem;border-left:3px solid var(--rust);margin-bottom:2rem;}
+  .result-points-title{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:1rem;}
+  .result-point{display:flex;gap:0.75rem;align-items:flex-start;font-size:0.86rem;color:var(--text-light);line-height:1.6;margin-bottom:0.65rem;}
+  .result-point:last-child{margin-bottom:0;}
+  .result-point::before{content:'→';color:var(--rust);font-weight:700;flex-shrink:0;margin-top:1px;}
+  .result-cta-box{background:var(--rust);border-radius:2px;padding:2rem;text-align:center;}
+  .result-cta-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--cream);margin-bottom:0.5rem;}
+  .result-cta-box p{font-size:0.85rem;color:rgba(240,232,216,0.8);margin-bottom:1.5rem;line-height:1.6;}
+  .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .btn-cream{background:var(--cream);color:var(--charcoal);padding:0.85rem 1.75rem;border-radius:2px;font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;border:2px solid var(--cream);}
+  .btn-cream:hover{background:transparent;color:var(--cream);}
+  .btn-outline-cream{background:transparent;color:var(--cream);padding:0.85rem 1.75rem;border-radius:2px;font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;border:2px solid rgba(240,232,216,0.5);}
+  .btn-outline-cream:hover{border-color:var(--cream);}
+  .btn-retake{display:block;text-align:center;margin-top:1.25rem;font-size:0.78rem;color:var(--text-muted);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'DM Sans',sans-serif;}
+  .btn-retake:hover{color:var(--cream);}
+
+  /* Lead capture */
+  .lead-card{background:var(--charcoal);border:1px solid rgba(240,232,216,0.08);border-radius:3px;padding:2.5rem;position:relative;overflow:hidden;display:none;animation:fadeUp 0.4s ease forwards;}
+  .lead-card.active{display:block;}
+  .lead-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rust),var(--gold));}
+  .lead-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--cream);margin-bottom:0.5rem;}
+  .lead-sub{font-size:0.85rem;color:var(--text-muted);margin-bottom:2rem;line-height:1.6;}
+  .lead-field{margin-bottom:1rem;}
+  .lead-field label{display:block;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.4rem;}
+  .lead-field input{width:100%;padding:0.75rem 1rem;background:var(--charcoal-light);border:1px solid rgba(240,232,216,0.1);border-radius:2px;color:var(--cream);font-size:0.9rem;font-family:'DM Sans',sans-serif;transition:border-color 0.2s;outline:none;}
+  .lead-field input:focus{border-color:rgba(196,82,42,0.6);}
+  .lead-field input::placeholder{color:var(--text-muted);}
+  .btn-submit{width:100%;padding:0.9rem;background:var(--rust);color:var(--cream);border:2px solid var(--rust);border-radius:2px;font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;margin-top:0.5rem;}
+  .btn-submit:hover{background:transparent;color:var(--rust);}
+  .btn-submit:disabled{opacity:0.6;cursor:not-allowed;}
+  .lead-disclaimer{font-size:0.7rem;color:var(--text-muted);margin-top:0.75rem;line-height:1.5;text-align:center;}
+
+  /* IRMAA CALCULATOR */
+  .irmaa-section{background:var(--charcoal);}
+  .irmaa-card{background:var(--charcoal-mid);border:1px solid rgba(240,232,216,0.08);border-radius:3px;padding:2.5rem;position:relative;overflow:hidden;}
+  .irmaa-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rust),var(--teal),var(--olive),var(--gold));}
+  .irmaa-inputs{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:2rem;}
+  .irmaa-field label{display:block;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;}
+  .irmaa-field input,.irmaa-field select{width:100%;padding:0.85rem 1rem;background:var(--charcoal);border:1px solid rgba(240,232,216,0.12);border-radius:2px;color:var(--cream);font-size:0.9rem;font-family:'DM Sans',sans-serif;transition:border-color 0.2s;outline:none;-webkit-appearance:none;}
+  .irmaa-field input:focus,.irmaa-field select:focus{border-color:rgba(196,82,42,0.6);}
+  .irmaa-field select option{background:var(--charcoal-mid);}
+  .irmaa-field .field-hint{font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;line-height:1.5;}
+  .btn-calc{background:var(--rust);color:var(--cream);padding:0.9rem 2.5rem;border:2px solid var(--rust);border-radius:2px;font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+  .btn-calc:hover{background:transparent;color:var(--rust);}
+  .irmaa-result{margin-top:2rem;display:none;animation:fadeUp 0.35s ease forwards;}
+  .irmaa-result.show{display:block;}
+  .irmaa-no-surcharge{background:rgba(122,140,69,0.12);border:1px solid rgba(122,140,69,0.3);border-radius:2px;padding:1.5rem 2rem;text-align:center;}
+  .irmaa-no-surcharge .big{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:900;color:var(--olive);margin-bottom:0.5rem;}
+  .irmaa-no-surcharge p{font-size:0.88rem;color:var(--text-light);line-height:1.6;}
+  .irmaa-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
+  .irmaa-tier-card{background:var(--charcoal);border:1px solid rgba(240,232,216,0.08);border-radius:2px;padding:1.25rem;text-align:center;}
+  .irmaa-tier-card.highlight{border-color:var(--rust);background:rgba(196,82,42,0.08);}
+  .irmaa-tier-label{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;}
+  .irmaa-tier-card.highlight .irmaa-tier-label{color:var(--rust);}
+  .irmaa-tier-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--cream);line-height:1;}
+  .irmaa-tier-card.highlight .irmaa-tier-val{color:var(--gold);}
+  .irmaa-tier-sub{font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;line-height:1.4;}
+  .irmaa-warning{background:rgba(196,82,42,0.1);border:1px solid rgba(196,82,42,0.25);border-radius:2px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;font-size:0.86rem;color:var(--text-light);line-height:1.65;}
+  .irmaa-warning strong{color:var(--rust);}
+  .irmaa-table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;font-size:0.82rem;}
+  .irmaa-table th{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);padding:0.6rem 0.75rem;text-align:left;border-bottom:1px solid rgba(240,232,216,0.08);}
+  .irmaa-table td{padding:0.65rem 0.75rem;border-bottom:1px solid rgba(240,232,216,0.05);color:var(--text-light);}
+  .irmaa-table tr.current-tier td{background:rgba(196,82,42,0.08);color:var(--cream);font-weight:600;}
+  .irmaa-table tr.current-tier td:first-child{border-left:3px solid var(--rust);}
+  .irmaa-call-box{background:var(--rust);border-radius:2px;padding:1.75rem 2rem;text-align:center;margin-top:1.5rem;}
+  .irmaa-call-box h4{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--cream);margin-bottom:0.4rem;}
+  .irmaa-call-box p{font-size:0.84rem;color:rgba(240,232,216,0.8);margin-bottom:1.25rem;line-height:1.6;}
+
+  /* INFO SECTION */
+  .info-section{background:var(--charcoal-mid);}
+  .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
+  .info-card{background:var(--charcoal);border:1px solid rgba(240,232,216,0.08);border-radius:2px;padding:2rem;position:relative;overflow:hidden;}
+  .info-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--rust);}
+  .info-card-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:rgba(201,148,58,0.2);line-height:1;margin-bottom:0.75rem;}
+  .info-card-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:0.75rem;line-height:1.3;}
+  .info-card-body{font-size:0.84rem;color:var(--text-muted);line-height:1.7;}
+
+  /* COMPLIANCE + FOOTER */
+  .compliance-bar{background:var(--charcoal-light);padding:1.5rem 4rem;border-top:1px solid rgba(240,232,216,0.06);}
+  .compliance-bar p{font-size:0.72rem;line-height:1.7;color:var(--text-muted);text-align:center;max-width:900px;margin:0 auto;}
+  .compliance-bar a{color:rgba(201,148,58,0.7);text-decoration:none;}
+  footer{background:var(--charcoal-mid);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;border-top:1px solid rgba(240,232,216,0.08);}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:1rem;color:var(--cream);font-weight:700;}
+  .footer-logo em{font-style:italic;color:var(--gold);}
+  .footer-links{display:flex;gap:2rem;}
+  .footer-links a{font-size:0.75rem;color:var(--text-muted);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--cream);}
+  .footer-copy{font-size:0.72rem;color:var(--text-muted);}
+
+  /* Tommy Bot */
+  #tc-chat-btn{position:fixed;bottom:1.75rem;right:1.75rem;z-index:999;width:58px;height:58px;border-radius:50%;background:var(--rust);border:none;cursor:pointer;box-shadow:0 4px 24px rgba(196,82,42,0.5);display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;animation:btn-pulse 2.5s infinite;}
+  @keyframes btn-pulse{0%,100%{box-shadow:0 4px 24px rgba(196,82,42,0.5);}50%{box-shadow:0 4px 32px rgba(196,82,42,0.85),0 0 0 8px rgba(196,82,42,0.15);}}
+  #tc-chat-btn:hover{transform:scale(1.08);animation:none;}
+  #tc-chat-btn svg{width:28px;height:28px;fill:#f0e8d8;}
+  #tc-chat-btn .tc-badge{position:absolute;top:-3px;right:-3px;width:20px;height:20px;border-radius:50%;background:var(--gold);color:#2a2825;font-size:0.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;animation:tc-pulse 2.2s infinite;border:2px solid var(--charcoal);}
+  @keyframes tc-pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+  #tc-chat-window{position:fixed;bottom:5.5rem;right:1.75rem;z-index:998;width:360px;max-height:530px;background:var(--charcoal-mid);border:1px solid rgba(240,232,216,0.1);border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,0.6);display:none;flex-direction:column;overflow:hidden;transform:translateY(14px);opacity:0;transition:transform 0.28s ease,opacity 0.28s ease;}
+  #tc-chat-window.tc-open{display:flex;transform:translateY(0);opacity:1;}
+  .tc-header{background:var(--charcoal);border-bottom:1px solid rgba(240,232,216,0.08);padding:1rem 1.25rem;display:flex;align-items:center;gap:0.75rem;flex-shrink:0;position:relative;}
+  .tc-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rust),var(--teal),var(--olive),var(--gold));}
+  .tc-avatar{width:38px;height:38px;border-radius:50%;background:var(--rust);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',Georgia,serif;font-size:0.88rem;font-weight:700;color:#f0e8d8;flex-shrink:0;}
+  .tc-header-info{flex:1;}
+  .tc-header-name{font-family:'Playfair Display',Georgia,serif;font-size:0.88rem;font-weight:700;color:#f0e8d8;line-height:1.2;}
+  .tc-header-status{font-size:0.67rem;color:var(--olive);display:flex;align-items:center;gap:0.35rem;margin-top:1px;}
+  .tc-header-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--olive);flex-shrink:0;}
+  .tc-close{background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:1rem;padding:0.25rem;transition:color 0.2s;}
+  .tc-close:hover{color:var(--cream);}
+  .tc-messages{flex:1;overflow-y:auto;padding:1.1rem 1.1rem 0.5rem;display:flex;flex-direction:column;gap:0.85rem;scrollbar-width:thin;scrollbar-color:#3d3a37 transparent;}
+  .tc-msg{max-width:90%;font-size:0.84rem;line-height:1.62;padding:0.65rem 0.9rem;border-radius:3px;animation:tc-msgIn 0.22s ease;}
+  @keyframes tc-msgIn{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:none;}}
+  .tc-msg.bot{background:var(--charcoal);color:var(--text-light);border:1px solid rgba(240,232,216,0.07);align-self:flex-start;border-bottom-left-radius:0;}
+  .tc-msg.user{background:var(--rust);color:#f0e8d8;align-self:flex-end;border-bottom-right-radius:0;}
+  .tc-typing{display:flex;gap:4px;align-items:center;padding:0.65rem 0.9rem;background:var(--charcoal);border:1px solid rgba(240,232,216,0.07);border-radius:3px;border-bottom-left-radius:0;width:fit-content;align-self:flex-start;}
+  .tc-typing span{width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:tc-bounce 1.2s infinite;}
+  .tc-typing span:nth-child(2){animation-delay:0.18s;}.tc-typing span:nth-child(3){animation-delay:0.36s;}
+  @keyframes tc-bounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
+  .tc-quick-replies{display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.75rem 1.1rem 0.25rem;flex-shrink:0;}
+  .tc-qr{font-size:0.71rem;padding:0.32rem 0.65rem;background:transparent;border:1px solid rgba(196,82,42,0.4);border-radius:20px;color:var(--text-light);cursor:pointer;transition:all 0.2s;white-space:nowrap;font-family:'DM Sans',sans-serif;}
+  .tc-qr:hover{background:rgba(196,82,42,0.15);border-color:var(--rust);color:var(--cream);}
+  .tc-input-row{display:flex;gap:0.5rem;padding:0.8rem 1rem;border-top:1px solid rgba(240,232,216,0.07);background:var(--charcoal);flex-shrink:0;}
+  #tc-input{flex:1;background:var(--charcoal-light);border:1px solid rgba(240,232,216,0.1);border-radius:2px;color:var(--cream);font-size:0.84rem;padding:0.6rem 0.85rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;resize:none;line-height:1.4;}
+  #tc-input:focus{border-color:rgba(196,82,42,0.55);}
+  #tc-input::placeholder{color:var(--text-muted);}
+  #tc-send{background:var(--rust);border:none;border-radius:2px;color:var(--cream);padding:0 1rem;cursor:pointer;transition:background 0.2s;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;flex-shrink:0;font-family:'DM Sans',sans-serif;}
+  #tc-send:hover{background:var(--rust-dark);}
+  #tc-send:disabled{opacity:0.45;cursor:not-allowed;}
+  .tc-disclaimer{font-size:0.62rem;color:#4a4540;text-align:center;padding:0.4rem 1rem 0.65rem;line-height:1.4;flex-shrink:0;background:var(--charcoal);}
+
+  @media(max-width:960px){nav{padding:1rem 1.5rem;}.nav-links{display:none;}.hamburger{display:block;}.hero{padding:7rem 1.5rem 4rem;}.section-wrap{padding:4rem 1.5rem;}.irmaa-inputs{grid-template-columns:1fr;}.irmaa-tiers{grid-template-columns:1fr 1fr;}.info-grid{grid-template-columns:1fr;}.compliance-bar{padding:1.5rem;}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center;}.footer-links{flex-wrap:wrap;justify-content:center;}.cta-btns{flex-direction:column;}}
+  @media(max-width:600px){.irmaa-tiers{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Thomas Crowhurst <em>Insurance</em></a>
+  <ul class="nav-links">
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="tel:+13177289417" class="nav-cta">Call Now</a>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/#services" onclick="toggleMenu()">Services</a>
+  <a href="/blog" onclick="toggleMenu()">Blog</a>
+  <a href="/#about" onclick="toggleMenu()">About</a>
+  <a href="/#contact" onclick="toggleMenu()">Contact</a>
+  <a href="tel:+13177289417" class="nav-cta" onclick="toggleMenu()">Call (317) 728-9417</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Retirement Planning Tools</div>
+  <h1>Social Security and<br>Medicare — <em>Done Right.</em></h1>
+  <p class="hero-sub">The two biggest financial decisions you make before retirement. Use our free tools to understand your options before it is too late to change them.</p>
+  <div class="hero-tools">
+    <a href="#ss-quiz" class="hero-tool-btn">
+      <div class="hero-tool-btn-icon">📋</div>
+      <div class="hero-tool-btn-text">
+        <span class="hero-tool-btn-label">Social Security Quiz</span>
+        <span class="hero-tool-btn-sub">When should you claim?</span>
+      </div>
+    </a>
+    <a href="#irmaa" class="hero-tool-btn">
+      <div class="hero-tool-btn-icon">🧮</div>
+      <div class="hero-tool-btn-text">
+        <span class="hero-tool-btn-label">IRMAA Calculator</span>
+        <span class="hero-tool-btn-sub">Will your income raise your Medicare premium?</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- SOCIAL SECURITY QUIZ -->
+<section class="quiz-section" id="ss-quiz">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Free Tool</div>
+    <div class="section-title">When Should You Claim<br>Social <em>Security?</em></div>
+    <p style="font-size:0.95rem;color:var(--text-light);line-height:1.75;margin-bottom:2.5rem;max-width:620px;">Claiming at 62 versus 70 can mean a difference of hundreds of thousands of dollars over your lifetime. Answer 8 questions to get a personalized recommendation.</p>
+
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="ssFill" style="width:0%"></div></div>
+    <div class="progress-label" id="ssLabel">Question 1 of 8</div>
+
+    <!-- Q1 -->
+    <div class="quiz-card active" data-ssq="1">
+      <div class="quiz-q-num">Question 1 of 8</div>
+      <div class="quiz-q-text">How old are you right now?</div>
+      <div class="quiz-options">
+        <div class="qopt" data-score-early="2" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Under 55</div><div class="qopt-desc">You have time — but planning now matters</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">55 to 61</div><div class="qopt-desc">Getting closer — time to think seriously about your strategy</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="2" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">62 to 66</div><div class="qopt-desc">In or near your claiming window</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">67 or older</div><div class="qopt-desc">Still working or already delayed — let us think through the next move</div></div></div>
+      </div>
+      <div class="quiz-nav"><div></div><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-1">Next →</button></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-card" data-ssq="2">
+      <div class="quiz-q-num">Question 2 of 8</div>
+      <div class="quiz-q-text">How would you describe your health?</div>
+      <div class="quiz-q-sub">Longevity is the biggest factor in when to claim. Be honest — this stays between you and the calculator.</div>
+      <div class="quiz-options">
+        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Excellent — I expect to live well into my 80s or beyond</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="2" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Good — average health for my age</div></div></div>
+        <div class="qopt" data-score-early="2" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Fair — some health concerns</div></div></div>
+        <div class="qopt" data-score-early="3" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Poor — I have serious health conditions</div></div></div>
+      </div>
+      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">← Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-2">Next →</button></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-card" data-ssq="3">
+      <div class="quiz-q-num">Question 3 of 8</div>
+      <div class="quiz-q-text">Are you married?</div>
+      <div class="quiz-q-sub">Spousal and survivor benefits can significantly change the optimal claiming strategy.</div>
+      <div class="quiz-options">
+        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes — and my spouse will rely on my benefit</div><div class="qopt-desc">The higher earner delaying often maximizes lifetime household income</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes — but we both have our own strong benefits</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Divorced or widowed</div><div class="qopt-desc">You may have options based on an ex or deceased spouse record</div></div></div>
+        <div class="qopt" data-score-early="2" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Single — no spousal benefit considerations</div></div></div>
+      </div>
+      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">← Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-3">Next →</button></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-card" data-ssq="4">
+      <div class="quiz-q-num">Question 4 of 8</div>
+      <div class="quiz-q-text">Are you still working or planning to work after 62?</div>
+      <div class="quiz-q-sub">If you claim before full retirement age while working, Social Security reduces your benefit based on earnings. This matters a lot.</div>
+      <div class="quiz-options">
+        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes — I plan to keep working past 62</div><div class="qopt-desc">Claiming early while working can reduce or eliminate your benefit temporarily</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="2" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Part time or winding down</div></div></div>
+        <div class="qopt" data-score-early="2" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">No — I will be fully retired by 62</div></div></div>
+      </div>
+      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">← Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-4">Next →</button></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-card" data-ssq="5">
+      <div class="quiz-q-num">Question 5 of 8</div>
+      <div class="quiz-q-text">Do you have other retirement income sources?</div>
+      <div class="quiz-q-sub">Pension, 401k, IRA, rental income — the more other income you have, the less urgency there is to claim Social Security early.</div>
+      <div class="quiz-options">
+        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes — I have significant other retirement income</div><div class="qopt-desc">I can afford to wait and let my SS benefit grow</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="2" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Some — but Social Security is still important</div></div></div>
+        <div class="qopt" data-score-early="3" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">No — Social Security will be my main income</div><div class="qopt-desc">I need to start collecting as soon as I can</div></div></div>
+      </div>
+      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">← Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-5">Next →</button></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-card" data-ssq="6">
+      <div class="quiz-q-num">Question 6 of 8</div>
+      <div class="quiz-q-text">Do you have a sense of your family longevity?</div>
+      <div class="quiz-q-sub">Parents and grandparents who lived into their late 80s or 90s suggest you may live longer too.</div>
+      <div class="quiz-options">
+        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes — long-lived family, 85 or older is common</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Average — mid-70s to early 80s</div></div></div>
+        <div class="qopt" data-score-early="3" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Shorter than average — family history of early death</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Not sure</div></div></div>
+      </div>
+      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">← Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-6">Next →</button></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-card" data-ssq="7">
+      <div class="quiz-q-num">Question 7 of 8</div>
+      <div class="quiz-q-text">How do you feel about the idea of waiting for a larger monthly check?</div>
+      <div class="quiz-options">
+        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">I am comfortable waiting — bigger monthly income matters to me</div><div class="qopt-desc">Every year past 62 increases my benefit up to 8 percent per year</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="2" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">I would wait if the math clearly favors it</div></div></div>
+        <div class="qopt" data-score-early="3" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">I want my money now — a bird in hand</div><div class="qopt-desc">I would rather have the income now even if smaller</div></div></div>
+      </div>
+      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">← Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-7">Next →</button></div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="quiz-card" data-ssq="8">
+      <div class="quiz-q-num">Question 8 of 8</div>
+      <div class="quiz-q-text">Have you thought about how Social Security timing affects your Medicare enrollment?</div>
+      <div class="quiz-q-sub">These two decisions are closely connected. Your Medicare start date and premium can depend on when and how you claim Social Security.</div>
+      <div class="quiz-options">
+        <div class="qopt" data-score-early="0" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes — I understand the connection</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">No — I had no idea they were connected</div><div class="qopt-desc">This is exactly why this conversation matters</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Somewhat — I want to understand more</div></div></div>
+      </div>
+      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">← Back</button><button class="btn-qnext" onclick="ssShowLead()" disabled id="ssnext-8">See My Recommendation →</button></div>
+    </div>
+
+    <!-- LEAD CAPTURE -->
+    <div class="lead-card" id="ss-lead">
+      <div class="lead-title">Almost there — where should I send your results?</div>
+      <div class="lead-sub">Thomas will review your answers and follow up with personalized guidance on Social Security timing and how it connects to your Medicare enrollment. Free, no pressure.</div>
+      <form id="ssLeadForm" onsubmit="ssSubmitLead(event)">
+        <div class="lead-field"><label>Full Name</label><input type="text" id="ss-name" placeholder="Jane Smith" required></div>
+        <div class="lead-field"><label>Phone Number</label><input type="tel" id="ss-phone" placeholder="(219) 555-0100" required></div>
+        <div class="lead-field"><label>Email Address</label><input type="email" id="ss-email" placeholder="jane@email.com" required></div>
+        <div class="lead-field"><label>Zip Code</label><input type="text" id="ss-zip" placeholder="46373" maxlength="5" inputmode="numeric"></div>
+        <button type="submit" class="btn-submit" id="ssSubmitBtn">Get My Recommendation →</button>
+        <p class="lead-disclaimer">By submitting you agree to our <a href="/privacy.html">Privacy Policy</a>. A licensed insurance agent may contact you.</p>
+      </form>
+      <div id="ss-lead-success" style="display:none;text-align:center;padding:2rem 0;">
+        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--cream);margin-bottom:0.5rem;">Got it — Thomas will be in touch.</div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;">Here is your recommendation.</div>
+        <button onclick="ssShowResult()" class="btn-qnext" style="margin:0 auto;display:block;">View My Results →</button>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="quiz-result" id="ss-result-wait">
+      <div class="result-badge">Your Result</div>
+      <div class="result-headline">Consider <em>waiting</em> to claim Social Security</div>
+      <div class="result-body">Based on your answers, delaying your Social Security claim — ideally to age 70 — is likely to maximize your lifetime benefit. Every year you wait past 62 increases your monthly check by roughly 6 to 8 percent. Over a long retirement that adds up to a significant difference.</div>
+      <div class="result-points">
+        <div class="result-points-title">Why waiting likely makes sense for you</div>
+        <div class="result-point">Good health and family longevity suggest you will live long enough for delayed claiming to pay off</div>
+        <div class="result-point">Waiting locks in a higher benefit for life — and for a surviving spouse after you are gone</div>
+        <div class="result-point">Other income sources mean you do not need Social Security immediately to cover expenses</div>
+        <div class="result-point">The break-even point for waiting is typically around age 80 — and many people live past it</div>
+      </div>
+      <div class="result-cta-box">
+        <h3>Let Thomas Walk You Through the Numbers</h3>
+        <p>Social Security timing connects directly to your Medicare enrollment and retirement income plan. A free conversation with Thomas gives you the full picture.</p>
+        <div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a><a href="/#contact" class="btn-outline-cream">Request a Free Review</a></div>
+      </div>
+      <button class="btn-retake" onclick="ssRetake()">← Start over</button>
+    </div>
+
+    <div class="quiz-result" id="ss-result-early">
+      <div class="result-badge">Your Result</div>
+      <div class="result-headline">Claiming <em>earlier</em> may make sense for you</div>
+      <div class="result-body">Based on your answers, claiming Social Security at or near 62 may be the right move for your situation. Whether it is health concerns, financial need, or simply the math of your specific life expectancy, earlier claiming can be the right decision for many people.</div>
+      <div class="result-points">
+        <div class="result-points-title">Why earlier claiming may fit your situation</div>
+        <div class="result-point">If health is a concern, claiming earlier means more total years of receiving benefits</div>
+        <div class="result-point">If Social Security is your primary income source, having it sooner reduces financial stress</div>
+        <div class="result-point">The break-even calculation favors earlier claiming when life expectancy is shorter</div>
+        <div class="result-point">Your specific situation may allow for strategies that minimize the permanent reduction</div>
+      </div>
+      <div class="result-cta-box">
+        <h3>Let Thomas Walk You Through the Numbers</h3>
+        <p>Your Medicare enrollment timing is connected to when you claim Social Security. A free conversation with Thomas makes sure these decisions work together.</p>
+        <div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a><a href="/#contact" class="btn-outline-cream">Request a Free Review</a></div>
+      </div>
+      <button class="btn-retake" onclick="ssRetake()">← Start over</button>
+    </div>
+
+    <div class="quiz-result" id="ss-result-spouse">
+      <div class="result-badge">Your Result</div>
+      <div class="result-headline">Your spouse's benefit changes <em>everything</em></div>
+      <div class="result-body">Based on your answers, spousal and survivor benefit strategy is likely the most important factor in your Social Security decision. The higher earner delaying to 70 can significantly increase the surviving spouse's lifetime income. This requires careful coordination.</div>
+      <div class="result-points">
+        <div class="result-points-title">What to think through with Thomas</div>
+        <div class="result-point">The higher earner delaying to 70 locks in the maximum survivor benefit for the other spouse</div>
+        <div class="result-point">The lower earner can often claim earlier while the higher earner waits</div>
+        <div class="result-point">Divorced spouses may qualify for benefits based on a former spouse's record</div>
+        <div class="result-point">Widows and widowers have special claiming rules that can significantly increase benefits</div>
+      </div>
+      <div class="result-cta-box">
+        <h3>Let Thomas Walk You Through the Numbers</h3>
+        <p>Spousal Social Security strategy is one of the most complex and highest-stakes decisions in retirement planning. Thomas can help you think it through at no cost.</p>
+        <div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a><a href="/#contact" class="btn-outline-cream">Request a Free Review</a></div>
+      </div>
+      <button class="btn-retake" onclick="ssRetake()">← Start over</button>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- IRMAA CALCULATOR -->
+<section class="irmaa-section" id="irmaa">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Free Calculator — 2026 Data</div>
+    <div class="section-title">Will Your Income Raise Your<br>Medicare <em>Premium?</em></div>
+    <p style="font-size:0.95rem;color:var(--text-light);line-height:1.75;margin-bottom:2.5rem;max-width:620px;">IRMAA is a surcharge added to your Medicare Part B and Part D premiums if your income is above certain thresholds. Enter your income and find out exactly what you will pay in 2026.</p>
+
+    <div class="irmaa-card">
+      <div class="irmaa-inputs">
+        <div class="irmaa-field">
+          <label>Filing Status</label>
+          <select id="irmaaFiling">
+            <option value="single">Single / Head of Household</option>
+            <option value="joint">Married Filing Jointly</option>
+            <option value="separate">Married Filing Separately</option>
+          </select>
+        </div>
+        <div class="irmaa-field">
+          <label>2024 MAGI (Modified Adjusted Gross Income)</label>
+          <input type="number" id="irmaaMagi" placeholder="e.g. 150000" min="0" step="1000">
+          <div class="field-hint">Your 2024 tax return MAGI is used to set 2026 Medicare premiums. Find it on line 11 of your Form 1040 plus line 2a (tax-exempt interest).</div>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="calcIrmaa()">Calculate My Premium →</button>
+
+      <div class="irmaa-result" id="irmaaResult">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- INFO CARDS -->
+<section class="info-section">
+  <div class="section-wrap">
+    <div class="section-eyebrow">What You Need to Know</div>
+    <div class="section-title">Three Things That Can <em>Cost You</em><br>If You Get Them Wrong</div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-num">01</div>
+        <div class="info-card-title">Claiming Social Security too early while still working</div>
+        <div class="info-card-body">If you claim before full retirement age and continue working, Social Security can reduce your benefit by $1 for every $2 you earn above the annual limit. That money is not lost forever, but the timing matters.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-num">02</div>
+        <div class="info-card-title">Missing your Medicare enrollment window</div>
+        <div class="info-card-body">You have a 7-month window around your 65th birthday to enroll without penalty. Miss it and you pay a 10 percent premium penalty for every 12-month period you were eligible but did not sign up — for life.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-num">03</div>
+        <div class="info-card-title">Not planning for IRMAA before a big income year</div>
+        <div class="info-card-body">A Roth conversion, home sale, or RMD can spike your income and push you into a higher IRMAA bracket two years later. Planning ahead can save hundreds of dollars per month in Medicare premiums.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- BOTTOM CTA -->
+<section style="background:var(--rust);padding:5rem 4rem;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,0.06) 0%,transparent 60%);border-radius:50%;pointer-events:none;"></div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--cream);margin-bottom:1rem;position:relative;">These Decisions Are Connected.<br>Let Thomas Help You Get Them Right.</h2>
+  <p style="font-size:1rem;color:rgba(240,232,216,0.8);max-width:520px;margin:0 auto 2.5rem;line-height:1.7;position:relative;">Social Security timing, Medicare enrollment, IRMAA planning — a 15-minute call covers all of it. Free, no pressure.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;">
+    <a href="tel:+13177289417" style="background:var(--cream);color:var(--charcoal);padding:1rem 2.5rem;border-radius:2px;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:2px solid var(--cream);transition:all 0.2s;">Call (317) 728-9417</a>
+    <a href="/#contact" style="background:transparent;color:var(--cream);padding:1rem 2.5rem;border-radius:2px;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:2px solid rgba(240,232,216,0.5);transition:all 0.2s;">Request a Free Review</a>
+  </div>
+</section>
+
+<div class="compliance-bar">
+  <p>This page provides general educational information only and does not constitute financial, legal, or insurance advice. Social Security and Medicare rules are complex and individual situations vary. Always consult with a qualified professional before making claiming or enrollment decisions. Thomas Crowhurst Insurance is an independent broker, not affiliated with the Social Security Administration or Medicare. For official Social Security information visit <a href="https://www.ssa.gov" target="_blank" rel="noopener">ssa.gov</a>. For official Medicare information visit <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a>.</p>
+</div>
+
+<footer>
+  <div class="footer-logo">Thomas Crowhurst <em>Insurance</em></div>
+  <div class="footer-links">
+    <a href="/#services">Services</a>
+    <a href="/blog">Blog</a>
+    <a href="/#about">About</a>
+    <a href="/#contact">Contact</a>
+    <a href="/privacy.html">Privacy</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 Thomas Crowhurst. All rights reserved.</div>
+</footer>
+
+<!-- Tommy Bot -->
+<button id="tc-chat-btn" onclick="tcToggle()" aria-label="Ask a question">
+  <svg viewBox="0 0 24 24"><path d="M20 9V7a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 00-2 2v4a2 2 0 002 2h1v1a1 1 0 002 0v-1h6v1a1 1 0 002 0v-1h1a2 2 0 002-2v-4a2 2 0 00-2-2zM9 13a1 1 0 110-2 1 1 0 010 2zm6 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
+  <span class="tc-badge">?</span>
+</button>
+<div id="tc-chat-window">
+  <div class="tc-header">
+    <div class="tc-avatar">TC</div>
+    <div class="tc-header-info">
+      <div class="tc-header-name">Tommy Bot</div>
+      <div class="tc-header-status">AI Assistant — Ask me anything</div>
+    </div>
+    <button class="tc-close" onclick="tcToggle()" aria-label="Close">&#10005;</button>
+  </div>
+  <div class="tc-messages" id="tc-messages">
+    <div class="tc-msg bot">Have a question about Social Security timing, IRMAA, or how these connect to your Medicare enrollment? I am here to help.</div>
+  </div>
+  <div class="tc-quick-replies" id="tc-qr-wrap">
+    <button class="tc-qr" onclick="tcQuick('When should I claim Social Security?')">When to claim SS</button>
+    <button class="tc-qr" onclick="tcQuick('What is IRMAA and how does it affect my Medicare premium?')">What is IRMAA</button>
+    <button class="tc-qr" onclick="tcQuick('How does Social Security affect my Medicare enrollment?')">SS and Medicare</button>
+    <button class="tc-qr" onclick="tcQuick('What is the spousal benefit strategy for Social Security?')">Spousal benefits</button>
+  </div>
+  <div class="tc-input-row">
+    <textarea id="tc-input" rows="1" placeholder="Type your question..." onkeydown="tcKey(event)"></textarea>
+    <button id="tc-send" onclick="tcSend()">Send</button>
+  </div>
+  <div class="tc-disclaimer">Educational only. Not financial or insurance advice.</div>
+</div>
+
+<script>
+// ── Nav ──
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');document.querySelector('.hamburger').classList.toggle('open');document.body.style.overflow=document.getElementById('mobileMenu').classList.contains('open')?'hidden':'';}
+
+// ── SS QUIZ ──
+let ssQ = 1;
+const SS_TOTAL = 8;
+let ssScores = {early:0, wait:0, spouse:0};
+let ssPendingResult = '';
+
+function ssSelect(el){
+  const card = el.closest('.quiz-card');
+  card.querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  const q = card.dataset.ssq;
+  document.getElementById('ssnext-'+q).disabled = false;
+}
+
+function ssUpdateProgress(){
+  const pct = ((ssQ-1)/SS_TOTAL)*100;
+  document.getElementById('ssFill').style.width = pct+'%';
+  document.getElementById('ssLabel').textContent = `Question ${ssQ} of ${SS_TOTAL}`;
+}
+
+function ssNext(){
+  const card = document.querySelector(`.quiz-card[data-ssq="${ssQ}"]`);
+  const sel = card.querySelector('.qopt.selected');
+  if(sel){
+    ssScores.early += parseInt(sel.dataset.scoreEarly||0);
+    ssScores.wait += parseInt(sel.dataset.scoreWait||0);
+    if(ssQ===3 && sel.dataset.scoreWait==='3') ssScores.spouse += 3;
+  }
+  card.classList.remove('active');
+  ssQ++;
+  ssUpdateProgress();
+  const next = document.querySelector(`.quiz-card[data-ssq="${ssQ}"]`);
+  if(next) next.classList.add('active');
+}
+
+function ssPrev(){
+  const card = document.querySelector(`.quiz-card[data-ssq="${ssQ}"]`);
+  card.classList.remove('active');
+  const prev = document.querySelector(`.quiz-card[data-ssq="${ssQ-1}"]`);
+  const prevSel = prev ? prev.querySelector('.qopt.selected') : null;
+  if(prevSel){
+    ssScores.early -= parseInt(prevSel.dataset.scoreEarly||0);
+    ssScores.wait -= parseInt(prevSel.dataset.scoreWait||0);
+  }
+  ssQ--;
+  ssUpdateProgress();
+  const prevCard = document.querySelector(`.quiz-card[data-ssq="${ssQ}"]`);
+  if(prevCard) prevCard.classList.add('active');
+}
+
+function ssShowLead(){
+  const card = document.querySelector(`.quiz-card[data-ssq="${ssQ}"]`);
+  const sel = card.querySelector('.qopt.selected');
+  if(sel){
+    ssScores.early += parseInt(sel.dataset.scoreEarly||0);
+    ssScores.wait += parseInt(sel.dataset.scoreWait||0);
+  }
+
+  // Determine result
+  if(ssScores.spouse >= 3){ ssPendingResult = 'ss-result-spouse'; }
+  else if(ssScores.wait > ssScores.early){ ssPendingResult = 'ss-result-wait'; }
+  else { ssPendingResult = 'ss-result-early'; }
+
+  card.classList.remove('active');
+  document.getElementById('ssFill').style.width = '95%';
+  document.getElementById('ssLabel').textContent = 'Almost done...';
+  document.getElementById('ss-lead').classList.add('active');
+  document.getElementById('ss-lead').scrollIntoView({behavior:'smooth'});
+}
+
+async function ssSubmitLead(e){
+  e.preventDefault();
+  const btn = document.getElementById('ssSubmitBtn');
+  btn.disabled = true; btn.textContent = 'Sending...';
+  const name = document.getElementById('ss-name').value;
+  const phone = document.getElementById('ss-phone').value;
+  const email = document.getElementById('ss-email').value;
+  const zip = document.getElementById('ss-zip').value;
+  const result = ssPendingResult.replace('ss-result-','').replace('-',' ').toUpperCase();
+
+  const fd = new FormData();
+  fd.append('_subject','New Social Security Quiz Lead — '+name);
+  fd.append('Name',name); fd.append('Phone',phone);
+  fd.append('Email',email); fd.append('Zip',zip);
+  fd.append('Quiz Result','SS Claim Strategy: '+result);
+  fd.append('Source','Social Security Quiz — crowhurstinsurance.com/social-security');
+  document.querySelectorAll('.quiz-card[data-ssq]').forEach(c=>{
+    const sel = c.querySelector('.qopt.selected');
+    if(sel) fd.append('Q'+c.dataset.ssq, sel.querySelector('.qopt-label').textContent);
+  });
+
+  try{
+    const res = await fetch('https://formspree.io/f/xjgzyeal',{method:'POST',body:fd,headers:{'Accept':'application/json'}});
+    if(res.ok){
+      document.getElementById('ssLeadForm').style.display='none';
+      document.getElementById('ss-lead-success').style.display='block';
+    } else { btn.disabled=false; btn.textContent='Get My Recommendation →'; alert('Something went wrong. Call Thomas at (317) 728-9417.'); }
+  } catch(err){ btn.disabled=false; btn.textContent='Get My Recommendation →'; alert('Something went wrong. Call Thomas at (317) 728-9417.'); }
+}
+
+function ssShowResult(){
+  document.getElementById('ss-lead').classList.remove('active');
+  document.getElementById('ssFill').style.width='100%';
+  document.getElementById('ssLabel').textContent='Complete';
+  document.getElementById(ssPendingResult).classList.add('active');
+  document.getElementById(ssPendingResult).scrollIntoView({behavior:'smooth'});
+}
+
+function ssRetake(){
+  ssScores={early:0,wait:0,spouse:0}; ssQ=1; ssPendingResult='';
+  document.querySelectorAll('.quiz-card').forEach(c=>{c.classList.remove('active');c.querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));});
+  document.querySelectorAll('.quiz-result').forEach(c=>c.classList.remove('active'));
+  document.getElementById('ss-lead').classList.remove('active');
+  document.getElementById('ssLeadForm').style.display='block';
+  document.getElementById('ss-lead-success').style.display='none';
+  document.querySelectorAll('.btn-qnext').forEach(b=>b.disabled=true);
+  document.querySelector('.quiz-card[data-ssq="1"]').classList.add('active');
+  ssUpdateProgress();
+  document.getElementById('ss-quiz').scrollIntoView({behavior:'smooth'});
+}
+
+ssUpdateProgress();
+
+// ── IRMAA CALCULATOR ──
+// 2026 brackets (based on 2024 MAGI)
+const IRMAA_2026 = {
+  single:[
+    {max:109000, partB:202.90, partD:0, label:'Standard'},
+    {max:137000, partB:284.10, partD:14.50, label:'Tier 1'},
+    {max:171000, partB:405.80, partD:37.50, label:'Tier 2'},
+    {max:205000, partB:527.50, partD:60.40, label:'Tier 3'},
+    {max:500000, partB:649.20, partD:83.30, label:'Tier 4'},
+    {max:Infinity, partB:689.90, partD:91.00, label:'Tier 5'},
+  ],
+  joint:[
+    {max:218000, partB:202.90, partD:0, label:'Standard'},
+    {max:274000, partB:284.10, partD:14.50, label:'Tier 1'},
+    {max:342000, partB:405.80, partD:37.50, label:'Tier 2'},
+    {max:410000, partB:527.50, partD:60.40, label:'Tier 3'},
+    {max:750000, partB:649.20, partD:83.30, label:'Tier 4'},
+    {max:Infinity, partB:689.90, partD:91.00, label:'Tier 5'},
+  ],
+  separate:[
+    {max:109000, partB:202.90, partD:0, label:'Standard'},
+    {max:Infinity, partB:689.90, partD:91.00, label:'Tier 5'},
+  ]
+};
+
+function calcIrmaa(){
+  const filing = document.getElementById('irmaaFiling').value;
+  const magi = parseFloat(document.getElementById('irmaaMagi').value);
+  if(!magi || magi < 0){ alert('Please enter your 2024 MAGI.'); return; }
+
+  const brackets = IRMAA_2026[filing];
+  let tier = brackets[brackets.length-1];
+  let tierIndex = brackets.length-1;
+  for(let i=0;i<brackets.length;i++){
+    if(magi <= brackets[i].max){ tier = brackets[i]; tierIndex = i; break; }
+  }
+
+  const partBSurcharge = tier.partB - 202.90;
+  const annualExtra = (partBSurcharge + tier.partD) * 12;
+  const resultEl = document.getElementById('irmaaResult');
+
+  if(tierIndex === 0){
+    resultEl.innerHTML = `
+      <div class="irmaa-no-surcharge">
+        <div class="big">No IRMAA Surcharge</div>
+        <p>Based on your 2024 income, you are below the IRMAA threshold. Your 2026 standard Part B premium is <strong>$202.90 per month</strong>. No surcharge applies.</p>
+        <p style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted);">Keep in mind that any significant income event in 2025 — Roth conversion, home sale, large capital gain — will affect your 2027 Medicare premium.</p>
+      </div>
+      <div class="irmaa-call-box" style="margin-top:1.5rem;">
+        <h4>Want to keep it that way?</h4>
+        <p>Thomas can help you understand what income events to watch for before they affect your Medicare premium.</p>
+        <div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a></div>
+      </div>`;
+  } else {
+    // Find next lower tier info
+    const prevTier = brackets[tierIndex-1];
+    const amountOverPrevThreshold = magi - prevTier.max;
+    const amountToNextTier = tierIndex < brackets.length-1 ? brackets[tierIndex].max - magi : null;
+
+    let tableRows = brackets.map((b,i) => {
+      const isCurrent = i === tierIndex;
+      const surcharge = b.partB - 202.90;
+      const maxLabel = b.max === Infinity ? 'Over '+(filing==='joint'?'$750,000':filing==='separate'?'$109,000':'$500,000') : '$'+b.max.toLocaleString();
+      return `<tr class="${isCurrent?'current-tier':''}">
+        <td>${b.label}${isCurrent?' ← You':''}</td>
+        <td>${filing==='joint'?'Up to $'+(brackets[i>0?i-1:0].max=== Infinity?'—':brackets[i>0?i-1:0].max.toLocaleString()):''} ${b.max===Infinity?maxLabel:'Up to $'+b.max.toLocaleString()}</td>
+        <td>$${b.partB.toFixed(2)}/mo</td>
+        <td>${b.partD>0?'+$'+b.partD.toFixed(2)+'/mo':'—'}</td>
+      </tr>`;
+    }).join('');
+
+    let warningText = '';
+    if(amountToNextTier && amountToNextTier < 15000){
+      warningText = `<div class="irmaa-warning"><strong>Heads up:</strong> You are only $${amountToNextTier.toLocaleString()} away from the next tier. Any income event — a Roth conversion, capital gain, or RMD — that pushes your 2024 MAGI over $${brackets[tierIndex].max.toLocaleString()} would move you to ${brackets[tierIndex+1]?.label||'the next tier'} and increase your monthly premium by $${((brackets[tierIndex+1||tierIndex]?.partB||tier.partB) - tier.partB).toFixed(2)}/month.</div>`;
+    }
+
+    resultEl.innerHTML = `
+      <div class="irmaa-tiers">
+        <div class="irmaa-tier-card highlight">
+          <div class="irmaa-tier-label">Your Part B Premium</div>
+          <div class="irmaa-tier-val">$${tier.partB.toFixed(2)}</div>
+          <div class="irmaa-tier-sub">per month (${tier.label})</div>
+        </div>
+        <div class="irmaa-tier-card highlight">
+          <div class="irmaa-tier-label">Part D Surcharge</div>
+          <div class="irmaa-tier-val">${tier.partD>0?'+$'+tier.partD.toFixed(2):'$0'}</div>
+          <div class="irmaa-tier-sub">per month, on top of plan premium</div>
+        </div>
+        <div class="irmaa-tier-card highlight">
+          <div class="irmaa-tier-label">Extra Annual Cost</div>
+          <div class="irmaa-tier-val">$${Math.round(annualExtra).toLocaleString()}</div>
+          <div class="irmaa-tier-sub">vs. standard premium (Part B + D surcharge)</div>
+        </div>
+      </div>
+      ${warningText}
+      <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem;">2026 IRMAA brackets based on 2024 MAGI. Source: SSA POMS HI 01101.020.</p>
+      <table class="irmaa-table">
+        <thead><tr><th>Tier</th><th>2024 MAGI</th><th>Part B Total</th><th>Part D Add-on</th></tr></thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+      <div class="irmaa-call-box">
+        <h4>IRMAA Affects More Than Just Your Premium</h4>
+        <p>A Roth conversion, home sale, or RMD in 2025 will affect your 2027 Medicare premium. Thomas can help you plan around it before it is too late.</p>
+        <div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a><a href="/#contact" class="btn-outline-cream">Free Review</a></div>
+      </div>`;
+  }
+
+  resultEl.classList.add('show');
+  resultEl.scrollIntoView({behavior:'smooth'});
+}
+
+// ── TOMMY BOT ──
+const TC_WORKER_URL='https://anthropic-proxy.thomas626crowhurst.workers.dev';
+const TC_SYSTEM=`You are a helpful insurance and retirement planning assistant for Thomas Crowhurst Insurance, an independent insurance brokerage based in Northwest Indiana. Thomas is an independent broker licensed in multiple states. Specializes in Medicare Advantage, Medicare Supplement, Final Expense Life Insurance, Term Life with Living Benefits, Annuities, and Ancillary coverage. Also helps clients think through Social Security claiming strategies and IRMAA planning. All consultations are 100% free. Phone: (317) 728-9417. Keep answers warm, educational, concise. Never quote specific prices or guarantee benefits. Always direct to Thomas for specific situations. For Social Security questions, provide general educational information and always recommend speaking with a professional for specific advice.`;
+let tcOpen=false,tcHistory=[],tcBusy=false;
+function tcToggle(){tcOpen=!tcOpen;const w=document.getElementById('tc-chat-window');if(tcOpen){w.style.display='flex';requestAnimationFrame(()=>w.classList.add('tc-open'));document.getElementById('tc-input').focus();const b=document.querySelector('.tc-badge');if(b)b.style.display='none';}else{w.classList.remove('tc-open');setTimeout(()=>{w.style.display='none';},280);}}
+function tcAddMsg(t,r){const m=document.getElementById('tc-messages');const d=document.createElement('div');d.className='tc-msg '+r;d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight;}
+function tcShowTyping(){const m=document.getElementById('tc-messages');const e=document.createElement('div');e.className='tc-typing';e.id='tc-typing-indicator';e.innerHTML='<span></span><span></span><span></span>';m.appendChild(e);m.scrollTop=m.scrollHeight;}
+function tcHideTyping(){const e=document.getElementById('tc-typing-indicator');if(e)e.remove();}
+function tcHideQR(){const q=document.getElementById('tc-qr-wrap');if(q)q.style.display='none';}
+function tcQuick(t){document.getElementById('tc-input').value=t;tcSend();}
+function tcKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();tcSend();}}
+async function tcSend(){if(tcBusy)return;const inp=document.getElementById('tc-input');const txt=inp.value.trim();if(!txt)return;inp.value='';tcHideQR();tcAddMsg(txt,'user');tcHistory.push({role:'user',content:txt});tcBusy=true;document.getElementById('tc-send').disabled=true;tcShowTyping();try{const r=await fetch(TC_WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:350,system:TC_SYSTEM,messages:tcHistory})});const d=await r.json();const reply=d?.content?.[0]?.text||"Give Thomas a call at (317) 728-9417 and he will get you sorted out.";tcHideTyping();tcAddMsg(reply,'bot');tcHistory.push({role:'assistant',content:reply});}catch(err){tcHideTyping();tcAddMsg("Having trouble connecting. Call Thomas at (317) 728-9417.",'bot');}tcBusy=false;document.getElementById('tc-send').disabled=false;document.getElementById('tc-input').focus();}
+</script>
+
+</body>
+</html>
