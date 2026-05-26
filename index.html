@@ -28,693 +28,252 @@
     --text-light: #c8bfb0;
     --text-muted: #8a8070;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--charcoal);
-    color: var(--cream);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.1rem 4rem;
-    background: rgba(42,40,37,0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(240,232,216,0.06);
-    transition: padding 0.3s, background 0.3s;
-  }
-  nav.scrolled {
-    padding: 0.8rem 4rem;
-    background: rgba(42,40,37,0.97);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--charcoal); color: var(--cream); overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 4rem; background: rgba(42,40,37,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(240,232,216,0.06); transition: padding 0.3s, background 0.3s; }
+  nav.scrolled { padding: 0.8rem 4rem; background: rgba(42,40,37,0.97); box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
   .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--cream); text-decoration: none; }
   .nav-logo em { font-style: italic; color: var(--gold); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    color: var(--text-light); text-decoration: none; font-size: 0.78rem;
-    letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
-    transition: color 0.2s; position: relative;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px;
-    background: var(--gold); transition: width 0.25s ease;
-  }
+  .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--gold); transition: width 0.25s ease; }
   .nav-links a:hover { color: var(--cream); }
   .nav-links a:hover::after { width: 100%; }
   .nav-right { display: flex; align-items: center; gap: 1.2rem; }
   .nav-social { color: var(--text-muted); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; }
   .nav-social:hover { color: var(--gold); }
   .nav-social svg { width: 16px; height: 16px; fill: currentColor; }
-  .nav-cta {
-    background: var(--rust); color: var(--cream); padding: 0.55rem 1.4rem;
-    border-radius: 2px; font-size: 0.76rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
+  .nav-cta { background: var(--rust); color: var(--cream); padding: 0.55rem 1.4rem; border-radius: 2px; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.15s; }
   .nav-cta:hover { background: var(--rust-dark); transform: translateY(-1px); }
-
-  /* ── MOBILE MENU ── */
-  .hamburger {
-    display: none; background: none; border: none; cursor: pointer;
-    width: 28px; height: 20px; position: relative; z-index: 110;
-  }
-  .hamburger span {
-    display: block; width: 100%; height: 2px; background: var(--cream);
-    position: absolute; left: 0; transition: all 0.3s ease;
-  }
+  .hamburger { display: none; background: none; border: none; cursor: pointer; width: 28px; height: 20px; position: relative; z-index: 110; }
+  .hamburger span { display: block; width: 100%; height: 2px; background: var(--cream); position: absolute; left: 0; transition: all 0.3s ease; }
   .hamburger span:nth-child(1) { top: 0; }
   .hamburger span:nth-child(2) { top: 9px; }
   .hamburger span:nth-child(3) { top: 18px; }
   .hamburger.open span:nth-child(1) { transform: rotate(45deg); top: 9px; }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: rotate(-45deg); top: 9px; }
-
-  .mobile-menu {
-    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(42,40,37,0.98); z-index: 99;
-    flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
-  }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(42,40,37,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    color: var(--cream); text-decoration: none; font-family: 'Playfair Display', serif;
-    font-size: 1.6rem; font-weight: 700; transition: color 0.2s;
-  }
+  .mobile-menu a { color: var(--cream); text-decoration: none; font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; transition: color 0.2s; }
   .mobile-menu a:hover { color: var(--gold); }
   .mobile-menu .nav-cta { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; margin-top: 1rem; padding: 0.8rem 2rem; }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh; background: var(--charcoal);
-    display: grid; grid-template-columns: 1.15fr 0.85fr;
-    align-items: center; padding: 8rem 4rem 5rem;
-    position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: ''; position: absolute; top: -150px; right: -250px;
-    width: 800px; height: 800px;
-    background: radial-gradient(circle, rgba(196,82,42,0.06) 0%, transparent 60%);
-    border-radius: 50%; pointer-events: none;
-  }
-  .hero::after {
-    content: ''; position: absolute; bottom: -100px; left: 20%;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(61,122,110,0.04) 0%, transparent 55%);
-    border-radius: 50%; pointer-events: none;
-  }
-  .hero-stripe {
-    position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-    width: 4px; height: 180px;
-    background: linear-gradient(to bottom, var(--rust), var(--teal), var(--olive), var(--gold));
-    border-radius: 0 3px 3px 0;
-  }
-  .hero-eyebrow {
-    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--rust); font-weight: 500; margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 0.75rem;
-    opacity: 0; animation: fadeUp 0.6s ease forwards;
-  }
+  .hero { min-height: 100vh; background: var(--charcoal); display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: center; padding: 8rem 4rem 5rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -150px; right: -250px; width: 800px; height: 800px; background: radial-gradient(circle, rgba(196,82,42,0.06) 0%, transparent 60%); border-radius: 50%; pointer-events: none; }
+  .hero::after { content: ''; position: absolute; bottom: -100px; left: 20%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(61,122,110,0.04) 0%, transparent 55%); border-radius: 50%; pointer-events: none; }
+  .hero-stripe { position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 180px; background: linear-gradient(to bottom, var(--rust), var(--teal), var(--olive), var(--gold)); border-radius: 0 3px 3px 0; }
+  .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); font-weight: 500; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; opacity: 0; animation: fadeUp 0.6s ease forwards; }
   .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--rust); }
-  .hero h1 {
-    font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 4.8vw, 4.6rem);
-    font-weight: 900; line-height: 1.05; color: var(--cream); margin-bottom: 1.5rem;
-    opacity: 0; animation: fadeUp 0.6s 0.1s ease forwards;
-  }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 4.8vw, 4.6rem); font-weight: 900; line-height: 1.05; color: var(--cream); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.6s 0.1s ease forwards; }
   .hero h1 em { font-style: italic; color: var(--gold); }
-  .hero-sub {
-    font-size: 0.98rem; line-height: 1.8; color: var(--text-light);
-    max-width: 470px; margin-bottom: 2.5rem;
-    opacity: 0; animation: fadeUp 0.6s 0.2s ease forwards;
-  }
-  .hero-actions {
-    display: flex; gap: 1.2rem; align-items: center;
-    opacity: 0; animation: fadeUp 0.6s 0.3s ease forwards;
-  }
-  .btn-primary {
-    background: var(--rust); color: var(--cream); padding: 0.9rem 2rem;
-    border-radius: 2px; font-size: 0.82rem; font-weight: 700;
-    letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
-    transition: all 0.2s; display: inline-block; border: 2px solid var(--rust);
-  }
+  .hero-sub { font-size: 0.98rem; line-height: 1.8; color: var(--text-light); max-width: 470px; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.6s 0.2s ease forwards; }
+  .hero-actions { display: flex; gap: 1.2rem; align-items: center; opacity: 0; animation: fadeUp 0.6s 0.3s ease forwards; }
+  .btn-primary { background: var(--rust); color: var(--cream); padding: 0.9rem 2rem; border-radius: 2px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; display: inline-block; border: 2px solid var(--rust); }
   .btn-primary:hover { background: transparent; color: var(--rust); }
-  .btn-ghost {
-    color: var(--text-light); font-size: 0.85rem; text-decoration: none;
-    border-bottom: 1px solid rgba(200,191,176,0.3); padding-bottom: 2px;
-    transition: all 0.2s;
-  }
+  .btn-ghost { color: var(--text-light); font-size: 0.85rem; text-decoration: none; border-bottom: 1px solid rgba(200,191,176,0.3); padding-bottom: 2px; transition: all 0.2s; }
   .btn-ghost:hover { color: var(--cream); border-color: var(--cream); }
-  .hero-right {
-    display: flex; justify-content: center; align-items: center;
-    opacity: 0; animation: fadeUp 0.6s 0.4s ease forwards;
-  }
-  .hero-card {
-    background: var(--charcoal-mid); border: 1px solid rgba(240,232,216,0.08);
-    border-radius: 3px; padding: 2.5rem; width: 100%; max-width: 360px;
-    position: relative;
-  }
-  .hero-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold));
-  }
+  .hero-right { display: flex; justify-content: center; align-items: center; opacity: 0; animation: fadeUp 0.6s 0.4s ease forwards; }
+  .hero-card { background: var(--charcoal-mid); border: 1px solid rgba(240,232,216,0.08); border-radius: 3px; padding: 2.5rem; width: 100%; max-width: 360px; position: relative; }
+  .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold)); }
   .hero-card-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); margin-bottom: 1.5rem; font-weight: 700; }
-  .stat-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 0.9rem 0; border-bottom: 1px solid rgba(240,232,216,0.06);
-  }
+  .stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.9rem 0; border-bottom: 1px solid rgba(240,232,216,0.06); }
   .stat-row:last-child { border-bottom: none; }
   .stat-label { font-size: 0.78rem; color: var(--text-muted); }
   .stat-val { font-size: 0.88rem; color: var(--cream); font-weight: 500; }
   .stat-val.accent { color: var(--gold); }
-
-  /* ── SECTION SHARED ── */
-  .section-eyebrow {
-    font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--rust); font-weight: 700; margin-bottom: 1rem;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 900; line-height: 1.1;
-  }
-
-  /* ── SERVICES ── */
+  .section-eyebrow { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin-bottom: 1rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; line-height: 1.1; }
   .services { padding: 7rem 4rem; background: var(--cream); position: relative; }
-  .services::before {
-    content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(201,148,58,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
+  .services::before { content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(201,148,58,0.06) 0%, transparent 70%); pointer-events: none; }
   .services-header { margin-bottom: 4rem; }
   .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(42,40,37,0.12); }
-  .service-card {
-    background: var(--cream); padding: 2.5rem;
-    border-right: 1px solid rgba(42,40,37,0.12);
-    border-bottom: 1px solid rgba(42,40,37,0.12);
-    transition: all 0.35s; position: relative; overflow: hidden;
-  }
+  .service-card { background: var(--cream); padding: 2.5rem; border-right: 1px solid rgba(42,40,37,0.12); border-bottom: 1px solid rgba(42,40,37,0.12); transition: all 0.35s; position: relative; overflow: hidden; }
   .service-card:nth-child(3n) { border-right: none; }
   .service-card:nth-last-child(-n+3) { border-bottom: none; }
-  .service-card::after {
-    content: ''; position: absolute; bottom: 0; left: 0; height: 3px;
-    width: 0; background: var(--rust); transition: width 0.4s ease;
-  }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; height: 3px; width: 0; background: var(--rust); transition: width 0.4s ease; }
   .service-card:hover { background: var(--charcoal); }
   .service-card:hover::after { width: 100%; }
   .service-card:hover .service-name { color: var(--cream); }
   .service-card:hover .service-desc { color: rgba(240,232,216,0.55); }
   .service-card:hover .service-num { color: var(--rust); }
   .service-card:hover .service-hover { opacity: 1; transform: translateY(0); }
-  .service-hover {
-    position: absolute; inset: 0;
-    background: var(--charcoal);
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 2rem 2.5rem;
-    opacity: 0; transform: translateY(8px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-    border-bottom: 3px solid var(--rust);
-    pointer-events: none;
-  }
-  .service-hover-label {
-    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--rust); margin-bottom: 0.85rem;
-  }
-  .service-hover-text {
-    font-size: 0.9rem; line-height: 1.75; color: var(--cream);
-    font-family: 'Playfair Display', serif; font-weight: 700;
-  }
-  .service-num {
-    font-family: 'Playfair Display', serif; font-size: 0.75rem;
-    color: var(--text-muted); margin-bottom: 1rem; font-weight: 700;
-    letter-spacing: 0.12em; transition: color 0.3s;
-  }
-  .service-name {
-    font-family: 'Playfair Display', serif; font-size: 1.15rem;
-    font-weight: 700; color: var(--charcoal); margin-bottom: 0.75rem;
-    transition: color 0.3s;
-  }
+  .service-hover { position: absolute; inset: 0; background: var(--charcoal); display: flex; flex-direction: column; justify-content: center; padding: 2rem 2.5rem; opacity: 0; transform: translateY(8px); transition: opacity 0.35s ease, transform 0.35s ease; border-bottom: 3px solid var(--rust); pointer-events: none; }
+  .service-hover-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.85rem; }
+  .service-hover-text { font-size: 0.9rem; line-height: 1.75; color: var(--cream); font-family: 'Playfair Display', serif; font-weight: 700; }
+  .service-num { font-family: 'Playfair Display', serif; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 700; letter-spacing: 0.12em; transition: color 0.3s; }
+  .service-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.75rem; transition: color 0.3s; }
   .service-desc { font-size: 0.86rem; line-height: 1.7; color: #555; transition: color 0.3s; }
-
-  /* ── WHY ── */
-  .why {
-    padding: 7rem 4rem; background: var(--charcoal-mid);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
-    align-items: start; position: relative;
-  }
-  .why::before {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(240,232,216,0.06), transparent);
-  }
+  .why { padding: 7rem 4rem; background: var(--charcoal-mid); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; position: relative; }
+  .why::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(240,232,216,0.06), transparent); }
   .why .section-title { color: var(--cream); margin-bottom: 1.5rem; }
   .why-desc { font-size: 0.95rem; line-height: 1.8; color: var(--text-light); margin-bottom: 2.5rem; }
   .why-points { display: flex; flex-direction: column; gap: 1.25rem; }
   .why-point { display: flex; gap: 1rem; align-items: flex-start; }
-  .why-point-marker {
-    width: 20px; height: 20px; border-radius: 50%;
-    background: var(--rust); display: flex; align-items: center;
-    justify-content: center; flex-shrink: 0; margin-top: 2px;
-    font-size: 0.6rem; font-weight: 700; color: var(--cream);
-  }
+  .why-point-marker { width: 20px; height: 20px; border-radius: 50%; background: var(--rust); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; font-size: 0.6rem; font-weight: 700; color: var(--cream); }
   .why-point-text { font-size: 0.9rem; color: var(--text-light); line-height: 1.65; }
   .why-point-text strong { color: var(--cream); }
   .why-right { display: flex; flex-direction: column; gap: 1rem; padding-top: 1rem; }
-  .metric-card {
-    background: var(--charcoal); border: 1px solid rgba(240,232,216,0.08);
-    border-radius: 2px; padding: 1.75rem 2rem; display: flex;
-    align-items: center; gap: 1.5rem; position: relative; overflow: hidden;
-    transition: border-color 0.3s, transform 0.2s;
-  }
+  .metric-card { background: var(--charcoal); border: 1px solid rgba(240,232,216,0.08); border-radius: 2px; padding: 1.75rem 2rem; display: flex; align-items: center; gap: 1.5rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.2s; }
   .metric-card:hover { border-color: rgba(196,82,42,0.35); transform: translateX(4px); }
-  .metric-card::before {
-    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-    width: 3px; background: var(--rust);
-  }
-  .metric-num {
-    font-family: 'Playfair Display', serif; font-size: 2.8rem;
-    font-weight: 900; color: var(--gold); line-height: 1; white-space: nowrap;
-  }
+  .metric-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--rust); }
+  .metric-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--gold); line-height: 1; white-space: nowrap; }
   .metric-label { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
-
-  /* ── CONTACT ── */
   .contact { padding: 7rem 4rem; background: var(--cream); }
-  .contact-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
-  }
+  .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
   .contact .section-title { color: var(--charcoal); margin-bottom: 1.5rem; }
   .contact-desc { font-size: 0.95rem; line-height: 1.8; color: #555; margin-bottom: 2rem; }
   .contact-detail { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; color: #444; font-size: 0.9rem; }
   .contact-detail a { color: var(--rust); text-decoration: none; font-weight: 600; }
   .contact-detail a:hover { text-decoration: underline; }
   .contact-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rust); flex-shrink: 0; }
-  .optin-form-wrap {
-    background: var(--charcoal); border-radius: 3px; padding: 2.5rem;
-    position: relative; overflow: hidden;
-  }
-  .optin-form-wrap::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold));
-  }
+  .optin-form-wrap { background: var(--charcoal); border-radius: 3px; padding: 2.5rem; position: relative; overflow: hidden; }
+  .optin-form-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold)); }
   .optin-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--cream); margin-bottom: 0.5rem; }
   .optin-sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.75rem; line-height: 1.6; }
   .form-field { margin-bottom: 1rem; }
-  .form-field label {
-    display: block; font-size: 0.7rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--text-muted); margin-bottom: 0.4rem;
-  }
-  .form-field input {
-    width: 100%; padding: 0.75rem 1rem; background: var(--charcoal-light);
-    border: 1px solid rgba(240,232,216,0.1); border-radius: 2px;
-    color: var(--cream); font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
-    transition: border-color 0.2s; outline: none;
-  }
+  .form-field label { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+  .form-field input { width: 100%; padding: 0.75rem 1rem; background: var(--charcoal-light); border: 1px solid rgba(240,232,216,0.1); border-radius: 2px; color: var(--cream); font-size: 0.9rem; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; outline: none; }
   .form-field input:focus { border-color: rgba(196,82,42,0.6); }
   .form-field input::placeholder { color: var(--text-muted); }
-  .sms-consent {
-    display: flex; gap: 0.75rem; align-items: flex-start; margin: 1.25rem 0;
-    padding: 1rem; background: rgba(240,232,216,0.04);
-    border: 1px solid rgba(240,232,216,0.08); border-radius: 2px;
-  }
+  .sms-consent { display: flex; gap: 0.75rem; align-items: flex-start; margin: 1.25rem 0; padding: 1rem; background: rgba(240,232,216,0.04); border: 1px solid rgba(240,232,216,0.08); border-radius: 2px; }
   .sms-consent input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; accent-color: var(--rust); flex-shrink: 0; cursor: pointer; }
   .sms-consent-label { font-size: 0.75rem; line-height: 1.6; color: var(--text-muted); }
   .sms-consent-label strong { color: var(--text-light); }
-  .form-submit {
-    width: 100%; padding: 0.9rem; background: var(--rust); color: var(--cream);
-    border: 2px solid var(--rust); border-radius: 2px; font-size: 0.82rem;
-    font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
-  }
+  .form-submit { width: 100%; padding: 0.9rem; background: var(--rust); color: var(--cream); border: 2px solid var(--rust); border-radius: 2px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
   .form-submit:hover { background: transparent; color: var(--rust); }
   .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
   .form-disclaimer { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.5; text-align: center; }
   .form-disclaimer a { color: var(--text-muted); }
-
-  /* ── ABOUT ── */
   .about { padding: 7rem 4rem; background: var(--charcoal); }
-  .about-inner {
-    display: grid; grid-template-columns: 340px 1fr; gap: 5rem;
-    align-items: center; max-width: 1100px; margin: 0 auto;
-  }
+  .about-inner { display: grid; grid-template-columns: 340px 1fr; gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto; }
   .about-photo-wrap { position: relative; }
-  .about-photo-wrap::after {
-    content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px;
-    border: 2px solid var(--rust); border-radius: 2px; z-index: 0; opacity: 0.4;
-  }
-  .about-photo {
-    width: 100%; border-radius: 2px; display: block; position: relative;
-    z-index: 1; object-fit: cover; aspect-ratio: 4/5;
-    background: var(--charcoal-light);
-  }
+  .about-photo-wrap::after { content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px; border: 2px solid var(--rust); border-radius: 2px; z-index: 0; opacity: 0.4; }
+  .about-photo { width: 100%; border-radius: 2px; display: block; position: relative; z-index: 1; object-fit: cover; aspect-ratio: 4/5; background: var(--charcoal-light); }
   .about .section-title { color: var(--cream); margin-bottom: 1.5rem; }
   .about-bio { font-size: 0.95rem; line-height: 1.85; color: var(--text-light); margin-bottom: 1rem; }
-
-  /* ── BLOG ── */
   .blog { padding: 7rem 4rem; background: var(--charcoal-mid); }
   .blog .section-title { color: var(--cream); margin-bottom: 3rem; }
-  .blog-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
-    background: rgba(240,232,216,0.06); border: 1.5px solid rgba(240,232,216,0.06);
-  }
-  .blog-card {
-    background: var(--charcoal-mid); padding: 2.5rem;
-    transition: background 0.25s; text-decoration: none; display: block;
-  }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(240,232,216,0.06); border: 1.5px solid rgba(240,232,216,0.06); }
+  .blog-card { background: var(--charcoal-mid); padding: 2.5rem; transition: background 0.25s; text-decoration: none; display: block; }
   .blog-card:hover { background: var(--charcoal); }
-  .blog-tag {
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--rust); margin-bottom: 1rem;
-  }
-  .blog-title {
-    font-family: 'Playfair Display', serif; font-size: 1.1rem;
-    font-weight: 700; color: var(--cream); line-height: 1.4; margin-bottom: 0.75rem;
-  }
+  .blog-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+  .blog-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--cream); line-height: 1.4; margin-bottom: 0.75rem; }
   .blog-excerpt { font-size: 0.84rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.5rem; }
   .blog-read-more { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); }
-
-  /* ── CTA ── */
-  .cta-section {
-    padding: 6rem 4rem; background: var(--rust);
-    text-align: center; position: relative; overflow: hidden;
-  }
-  .cta-section::before {
-    content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%);
-    border-radius: 50%;
-  }
-  .cta-section h2 {
-    font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 900; color: var(--cream); margin-bottom: 1rem; position: relative;
-  }
-  .cta-section p {
-    font-size: 1rem; color: rgba(240,232,216,0.75); max-width: 520px;
-    margin: 0 auto 2.5rem; line-height: 1.7; position: relative;
-  }
-  .btn-dark {
-    background: var(--cream); color: var(--charcoal); padding: 1rem 2.5rem;
-    border-radius: 2px; font-size: 0.85rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
-    display: inline-block; transition: all 0.2s; border: 2px solid var(--cream);
-    position: relative; z-index: 2;
-  }
+  .cta-section { padding: 6rem 4rem; background: var(--rust); text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%); border-radius: 50%; }
+  .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 900; color: var(--cream); margin-bottom: 1rem; position: relative; }
+  .cta-section p { font-size: 1rem; color: rgba(240,232,216,0.75); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7; position: relative; }
+  .btn-dark { background: var(--cream); color: var(--charcoal); padding: 1rem 2.5rem; border-radius: 2px; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.2s; border: 2px solid var(--cream); position: relative; z-index: 2; }
   .btn-dark:hover { background: transparent; color: var(--cream); }
-
-  /* ── COMPLIANCE ── */
-  .compliance-bar {
-    background: var(--charcoal-light); padding: 1.5rem 4rem;
-    border-top: 1px solid rgba(240,232,216,0.06);
-  }
-  .compliance-bar p {
-    font-size: 0.72rem; line-height: 1.7; color: var(--text-muted);
-    text-align: center; max-width: 900px; margin: 0 auto;
-  }
+  .compliance-bar { background: var(--charcoal-light); padding: 1.5rem 4rem; border-top: 1px solid rgba(240,232,216,0.06); }
+  .compliance-bar p { font-size: 0.72rem; line-height: 1.7; color: var(--text-muted); text-align: center; max-width: 900px; margin: 0 auto; }
   .compliance-bar a { color: rgba(201,148,58,0.7); text-decoration: none; }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--charcoal-mid); padding: 3rem 4rem;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 1.5rem;
-    border-top: 1px solid rgba(240,232,216,0.08);
-  }
+  footer { background: var(--charcoal-mid); padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; border-top: 1px solid rgba(240,232,216,0.08); }
   .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--cream); font-weight: 700; }
   .footer-logo em { font-style: italic; color: var(--gold); }
   .footer-links { display: flex; gap: 2rem; }
-  .footer-links a {
-    font-size: 0.75rem; color: var(--text-muted); text-decoration: none;
-    letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s;
-  }
+  .footer-links a { font-size: 0.75rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
   .footer-links a:hover { color: var(--cream); }
   .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
   .footer-socials { display: flex; gap: 1rem; }
   .footer-social { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
   .footer-social:hover { color: var(--rust); }
   .footer-social svg { width: 16px; height: 16px; fill: currentColor; display: block; }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0; transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    .reveal { opacity: 1; transform: none; }
-  }
-
-  /* ── RESPONSIVE ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } .reveal { opacity: 1; transform: none; } }
   @media (max-width: 960px) {
-    nav { padding: 1rem 1.5rem; }
-    nav.scrolled { padding: 0.7rem 1.5rem; }
-    .nav-links { display: none; }
-    .hamburger { display: block; }
-    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
-    .hero-right, .hero-stripe { display: none; }
-    .services { padding: 4rem 1.5rem; }
-    .services-grid { grid-template-columns: 1fr 1fr; }
-    .service-card:nth-child(2n) { border-right: none; }
-    .service-card:nth-child(3n) { border-right: 1px solid rgba(42,40,37,0.12); }
-    .why, .contact-inner, .about-inner { grid-template-columns: 1fr; }
-    .why, .contact, .about, .blog { padding: 4rem 1.5rem; }
-    .about-inner { gap: 2.5rem; }
-    .about-photo-wrap { max-width: 280px; }
-    .about-photo-wrap::after { display: none; }
-    .blog-grid { grid-template-columns: 1fr; }
-    .cta-section { padding: 4rem 1.5rem; }
-    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
-    .footer-links { flex-wrap: wrap; justify-content: center; }
-    .compliance-bar { padding: 1.5rem; }
-    .contact-inner { gap: 3rem; }
-    .why { gap: 3rem; }
+    nav { padding: 1rem 1.5rem; } nav.scrolled { padding: 0.7rem 1.5rem; } .nav-links { display: none; } .hamburger { display: block; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; } .hero-right, .hero-stripe { display: none; }
+    .services { padding: 4rem 1.5rem; } .services-grid { grid-template-columns: 1fr 1fr; }
+    .service-card:nth-child(2n) { border-right: none; } .service-card:nth-child(3n) { border-right: 1px solid rgba(42,40,37,0.12); }
+    .why, .contact-inner, .about-inner { grid-template-columns: 1fr; } .why, .contact, .about, .blog { padding: 4rem 1.5rem; }
+    .about-inner { gap: 2.5rem; } .about-photo-wrap { max-width: 280px; } .about-photo-wrap::after { display: none; }
+    .blog-grid { grid-template-columns: 1fr; } .cta-section { padding: 4rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; } .footer-links { flex-wrap: wrap; justify-content: center; }
+    .compliance-bar { padding: 1.5rem; } .contact-inner { gap: 3rem; } .why { gap: 3rem; }
   }
-  @media (max-width: 600px) {
-    .services-grid { grid-template-columns: 1fr; }
-    .service-card { border-right: none !important; }
-    .hero h1 { font-size: 2.4rem; }
-    .hero-actions { flex-direction: column; align-items: flex-start; }
-  }
+  @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } .service-card { border-right: none !important; } .hero h1 { font-size: 2.4rem; } .hero-actions { flex-direction: column; align-items: flex-start; } }
 
+  /* ── PLAN FINDER ── */
+  .plan-finder { padding: 5rem 4rem; background: var(--charcoal); border-top: 1px solid rgba(240,232,216,0.06); border-bottom: 1px solid rgba(240,232,216,0.06); }
+  .plan-finder-header { text-align: center; margin-bottom: 3rem; }
+  .plan-finder-header .section-title { color: var(--cream); margin-bottom: 0.75rem; }
+  .plan-finder-header p { font-size: 0.92rem; color: var(--text-muted); }
+  .plan-finder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1200px; margin: 0 auto; }
+  .finder-card { border-radius: 3px; padding: 2.5rem; text-decoration: none; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform 0.2s; }
+  .finder-card:hover { transform: translateY(-4px); }
+  .finder-card-medicare { background: var(--charcoal-mid); border: 1px solid rgba(196,82,42,0.35); }
+  .finder-card-life { background: var(--rust); border: none; }
+  .finder-card-ss { background: var(--charcoal-mid); border: 1px solid rgba(61,122,110,0.35); }
+  .finder-card-glow { position: absolute; top: -60px; right: -60px; width: 180px; height: 180px; border-radius: 50%; pointer-events: none; }
+  .finder-card-medicare .finder-card-glow { background: radial-gradient(circle, rgba(196,82,42,0.2) 0%, transparent 70%); }
+  .finder-card-life .finder-card-glow { background: radial-gradient(circle, rgba(240,232,216,0.12) 0%, transparent 70%); }
+  .finder-card-ss .finder-card-glow { background: radial-gradient(circle, rgba(61,122,110,0.25) 0%, transparent 70%); }
+  .finder-card-img { margin-bottom: 1.25rem; height: 60px; display: flex; align-items: center; }
+  .finder-card-eyebrow { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .finder-card-medicare .finder-card-eyebrow { color: var(--rust); }
+  .finder-card-life .finder-card-eyebrow { color: rgba(240,232,216,0.7); }
+  .finder-card-ss .finder-card-eyebrow { color: var(--teal); }
+  .finder-card-divider { width: 32px; height: 2px; margin-bottom: 1.1rem; }
+  .finder-card-medicare .finder-card-divider { background: var(--rust); }
+  .finder-card-life .finder-card-divider { background: rgba(240,232,216,0.4); }
+  .finder-card-ss .finder-card-divider { background: var(--teal); }
+  .finder-card-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 900; color: var(--cream); margin-bottom: 0.75rem; line-height: 1.2; }
+  .finder-card-desc { font-size: 0.84rem; line-height: 1.65; margin-bottom: 1.5rem; flex: 1; }
+  .finder-card-medicare .finder-card-desc { color: var(--text-muted); }
+  .finder-card-life .finder-card-desc { color: rgba(240,232,216,0.75); }
+  .finder-card-ss .finder-card-desc { color: var(--text-muted); }
+  .finder-card-cta { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; }
+  .finder-card-medicare .finder-card-cta { color: var(--rust); }
+  .finder-card-life .finder-card-cta { color: var(--cream); }
+  .finder-card-ss .finder-card-cta { color: var(--teal); }
+  @media (max-width: 960px) { .plan-finder-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .plan-finder { padding: 3.5rem 1.5rem; } }
 
-/* ── PLAN FINDER ── */
-.plan-finder {
-  padding: 5rem 4rem; background: var(--charcoal);
-  border-top: 1px solid rgba(240,232,216,0.06);
-  border-bottom: 1px solid rgba(240,232,216,0.06);
-}
-.plan-finder-header { text-align: center; margin-bottom: 3rem; }
-.plan-finder-header .section-title { color: var(--cream); margin-bottom: 0.75rem; }
-.plan-finder-header p { font-size: 0.92rem; color: var(--text-muted); }
-.plan-finder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1200px; margin: 0 auto; }
-.finder-card { border-radius: 3px; padding: 2.5rem; text-decoration: none; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform 0.2s; }
-.finder-card:hover { transform: translateY(-4px); }
-.finder-card-medicare { background: var(--charcoal-mid); border: 1px solid rgba(196,82,42,0.35); }
-.finder-card-life { background: var(--rust); border: none; }
-.finder-card-ss { background: var(--charcoal-mid); border: 1px solid rgba(61,122,110,0.35); }
-.finder-card-glow { position: absolute; top: -60px; right: -60px; width: 180px; height: 180px; border-radius: 50%; pointer-events: none; }
-.finder-card-medicare .finder-card-glow { background: radial-gradient(circle, rgba(196,82,42,0.2) 0%, transparent 70%); }
-.finder-card-life .finder-card-glow { background: radial-gradient(circle, rgba(240,232,216,0.12) 0%, transparent 70%); }
-.finder-card-ss .finder-card-glow { background: radial-gradient(circle, rgba(61,122,110,0.25) 0%, transparent 70%); }
-.finder-card-icon { font-size: 2rem; margin-bottom: 1.25rem; }
-.finder-card-medicare .finder-card-icon { color: var(--rust); }
-.finder-card-life .finder-card-icon { color: var(--cream); }
-.finder-card-ss .finder-card-icon { color: var(--teal); }
-.finder-card-eyebrow { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.6rem; }
-.finder-card-medicare .finder-card-eyebrow { color: var(--rust); }
-.finder-card-life .finder-card-eyebrow { color: rgba(240,232,216,0.7); }
-.finder-card-ss .finder-card-eyebrow { color: var(--teal); }
-.finder-card-divider { width: 32px; height: 2px; margin-bottom: 1.1rem; }
-.finder-card-medicare .finder-card-divider { background: var(--rust); }
-.finder-card-life .finder-card-divider { background: rgba(240,232,216,0.4); }
-.finder-card-ss .finder-card-divider { background: var(--teal); }
-.finder-card-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 900; color: var(--cream); margin-bottom: 0.75rem; line-height: 1.2; }
-.finder-card-desc { font-size: 0.84rem; line-height: 1.65; margin-bottom: 1.5rem; flex: 1; }
-.finder-card-medicare .finder-card-desc { color: var(--text-muted); }
-.finder-card-life .finder-card-desc { color: rgba(240,232,216,0.75); }
-.finder-card-ss .finder-card-desc { color: var(--text-muted); }
-.finder-card-cta { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; }
-.finder-card-medicare .finder-card-cta { color: var(--rust); }
-.finder-card-life .finder-card-cta { color: var(--cream); }
-.finder-card-ss .finder-card-cta { color: var(--teal); }
-@media (max-width: 960px) { .plan-finder-grid { grid-template-columns: 1fr; } }
-@media (max-width: 600px) { .plan-finder { padding: 3.5rem 1.5rem; } }
-  /* ═══════════════════════════════════════
-     CHAT WIDGET STYLES
-  ═══════════════════════════════════════ */
-  #tc-chat-btn {
-    position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 999;
-    width: 58px; height: 58px; border-radius: 50%;
-    background: var(--rust); border: none; cursor: pointer;
-    box-shadow: 0 4px 24px rgba(196,82,42,0.5);
-    display: flex; align-items: center; justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  #tc-chat-btn { animation: btn-pulse 2.5s infinite; }
-  @keyframes btn-pulse {
-    0%,100% { box-shadow: 0 4px 24px rgba(196,82,42,0.5); }
-    50% { box-shadow: 0 4px 32px rgba(196,82,42,0.85), 0 0 0 8px rgba(196,82,42,0.15); }
-  }
+  /* ── CHAT WIDGET ── */
+  #tc-chat-btn { position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 999; width: 58px; height: 58px; border-radius: 50%; background: var(--rust); border: none; cursor: pointer; box-shadow: 0 4px 24px rgba(196,82,42,0.5); display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s; animation: btn-pulse 2.5s infinite; }
+  @keyframes btn-pulse { 0%,100% { box-shadow: 0 4px 24px rgba(196,82,42,0.5); } 50% { box-shadow: 0 4px 32px rgba(196,82,42,0.85), 0 0 0 8px rgba(196,82,42,0.15); } }
   #tc-chat-btn:hover { transform: scale(1.08); box-shadow: 0 6px 32px rgba(196,82,42,0.65); animation: none; }
   #tc-chat-btn svg { width: 26px; height: 26px; fill: #f0e8d8; }
-  #tc-chat-btn .tc-badge {
-    position: absolute; top: -3px; right: -3px;
-    width: 20px; height: 20px; border-radius: 50%;
-    background: var(--gold); color: #2a2825;
-    font-size: 0.62rem; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    animation: tc-pulse 2.2s infinite;
-    border: 2px solid var(--charcoal);
-  }
-  @keyframes tc-pulse {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-  }
-  #tc-chat-window {
-    position: fixed; bottom: 5.5rem; right: 1.75rem; z-index: 998;
-    width: 360px; max-height: 530px;
-    background: var(--charcoal-mid);
-    border: 1px solid rgba(240,232,216,0.1);
-    border-radius: 4px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    display: none; flex-direction: column;
-    overflow: hidden;
-    transform: translateY(14px); opacity: 0;
-    transition: transform 0.28s ease, opacity 0.28s ease;
-  }
+  #tc-chat-btn .tc-badge { position: absolute; top: -3px; right: -3px; width: 20px; height: 20px; border-radius: 50%; background: var(--gold); color: #2a2825; font-size: 0.62rem; font-weight: 700; display: flex; align-items: center; justify-content: center; animation: tc-pulse 2.2s infinite; border: 2px solid var(--charcoal); }
+  @keyframes tc-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+  #tc-chat-window { position: fixed; bottom: 5.5rem; right: 1.75rem; z-index: 998; width: 360px; max-height: 530px; background: var(--charcoal-mid); border: 1px solid rgba(240,232,216,0.1); border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); display: none; flex-direction: column; overflow: hidden; transform: translateY(14px); opacity: 0; transition: transform 0.28s ease, opacity 0.28s ease; }
   #tc-chat-window.tc-open { display: flex; transform: translateY(0); opacity: 1; }
-  .tc-header {
-    background: var(--charcoal);
-    border-bottom: 1px solid rgba(240,232,216,0.08);
-    padding: 1rem 1.25rem;
-    display: flex; align-items: center; gap: 0.75rem;
-    flex-shrink: 0; position: relative;
-  }
-  .tc-header::after {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold));
-  }
-  .tc-avatar {
-    width: 38px; height: 38px; border-radius: 50%;
-    background: var(--rust);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', Georgia, serif; font-size: 0.88rem;
-    font-weight: 700; color: #f0e8d8; flex-shrink: 0;
-  }
+  .tc-header { background: var(--charcoal); border-bottom: 1px solid rgba(240,232,216,0.08); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; position: relative; }
+  .tc-header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold)); }
+  .tc-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--rust); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', Georgia, serif; font-size: 0.88rem; font-weight: 700; color: #f0e8d8; flex-shrink: 0; }
   .tc-header-info { flex: 1; }
-  .tc-header-name {
-    font-family: 'Playfair Display', Georgia, serif; font-size: 0.88rem;
-    font-weight: 700; color: #f0e8d8; line-height: 1.2;
-  }
-  .tc-header-status {
-    font-size: 0.67rem; color: var(--olive);
-    display: flex; align-items: center; gap: 0.35rem; margin-top: 1px;
-  }
-  .tc-header-status::before {
-    content: ''; width: 6px; height: 6px;
-    border-radius: 50%; background: var(--olive); flex-shrink: 0;
-  }
-  .tc-close {
-    background: none; border: none; cursor: pointer;
-    color: var(--text-muted); font-size: 1rem; line-height: 1;
-    padding: 0.25rem; transition: color 0.2s; border-radius: 2px;
-  }
+  .tc-header-name { font-family: 'Playfair Display', Georgia, serif; font-size: 0.88rem; font-weight: 700; color: #f0e8d8; line-height: 1.2; }
+  .tc-header-status { font-size: 0.67rem; color: var(--olive); display: flex; align-items: center; gap: 0.35rem; margin-top: 1px; }
+  .tc-header-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--olive); flex-shrink: 0; }
+  .tc-close { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1rem; line-height: 1; padding: 0.25rem; transition: color 0.2s; border-radius: 2px; }
   .tc-close:hover { color: var(--cream); }
-  .tc-messages {
-    flex: 1; overflow-y: auto; padding: 1.1rem 1.1rem 0.5rem;
-    display: flex; flex-direction: column; gap: 0.85rem;
-    scrollbar-width: thin; scrollbar-color: #3d3a37 transparent;
-  }
-  .tc-msg {
-    max-width: 90%; font-size: 0.84rem; line-height: 1.62;
-    padding: 0.65rem 0.9rem; border-radius: 3px;
-    animation: tc-msgIn 0.22s ease;
-  }
+  .tc-messages { flex: 1; overflow-y: auto; padding: 1.1rem 1.1rem 0.5rem; display: flex; flex-direction: column; gap: 0.85rem; scrollbar-width: thin; scrollbar-color: #3d3a37 transparent; }
+  .tc-msg { max-width: 90%; font-size: 0.84rem; line-height: 1.62; padding: 0.65rem 0.9rem; border-radius: 3px; animation: tc-msgIn 0.22s ease; }
   @keyframes tc-msgIn { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:none; } }
-  .tc-msg.bot {
-    background: var(--charcoal); color: var(--text-light);
-    border: 1px solid rgba(240,232,216,0.07);
-    align-self: flex-start; border-bottom-left-radius: 0;
-  }
-  .tc-msg.user {
-    background: var(--rust); color: #f0e8d8;
-    align-self: flex-end; border-bottom-right-radius: 0;
-  }
-  .tc-typing {
-    display: flex; gap: 4px; align-items: center;
-    padding: 0.65rem 0.9rem;
-    background: var(--charcoal);
-    border: 1px solid rgba(240,232,216,0.07);
-    border-radius: 3px; border-bottom-left-radius: 0;
-    width: fit-content; align-self: flex-start;
-    animation: tc-msgIn 0.22s ease;
-  }
-  .tc-typing span {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--text-muted); animation: tc-bounce 1.2s infinite;
-  }
+  .tc-msg.bot { background: var(--charcoal); color: var(--text-light); border: 1px solid rgba(240,232,216,0.07); align-self: flex-start; border-bottom-left-radius: 0; }
+  .tc-msg.user { background: var(--rust); color: #f0e8d8; align-self: flex-end; border-bottom-right-radius: 0; }
+  .tc-typing { display: flex; gap: 4px; align-items: center; padding: 0.65rem 0.9rem; background: var(--charcoal); border: 1px solid rgba(240,232,216,0.07); border-radius: 3px; border-bottom-left-radius: 0; width: fit-content; align-self: flex-start; animation: tc-msgIn 0.22s ease; }
+  .tc-typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); animation: tc-bounce 1.2s infinite; }
   .tc-typing span:nth-child(2) { animation-delay: 0.18s; }
   .tc-typing span:nth-child(3) { animation-delay: 0.36s; }
-  @keyframes tc-bounce {
-    0%,60%,100% { transform: translateY(0); }
-    30% { transform: translateY(-5px); }
-  }
-  .tc-quick-replies {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
-    padding: 0.75rem 1.1rem 0.25rem; flex-shrink: 0;
-  }
-  .tc-qr {
-    font-size: 0.71rem; padding: 0.32rem 0.65rem;
-    background: transparent; border: 1px solid rgba(196,82,42,0.4);
-    border-radius: 20px; color: var(--text-light); cursor: pointer;
-    transition: all 0.2s; white-space: nowrap;
-    font-family: 'DM Sans', sans-serif;
-  }
+  @keyframes tc-bounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
+  .tc-quick-replies { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0.75rem 1.1rem 0.25rem; flex-shrink: 0; }
+  .tc-qr { font-size: 0.71rem; padding: 0.32rem 0.65rem; background: transparent; border: 1px solid rgba(196,82,42,0.4); border-radius: 20px; color: var(--text-light); cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: 'DM Sans', sans-serif; }
   .tc-qr:hover { background: rgba(196,82,42,0.15); border-color: var(--rust); color: var(--cream); }
-  .tc-input-row {
-    display: flex; gap: 0.5rem; padding: 0.8rem 1rem;
-    border-top: 1px solid rgba(240,232,216,0.07);
-    background: var(--charcoal); flex-shrink: 0;
-  }
-  #tc-input {
-    flex: 1; background: var(--charcoal-light);
-    border: 1px solid rgba(240,232,216,0.1); border-radius: 2px;
-    color: var(--cream); font-size: 0.84rem; padding: 0.6rem 0.85rem;
-    font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s;
-    resize: none; line-height: 1.4;
-  }
+  .tc-input-row { display: flex; gap: 0.5rem; padding: 0.8rem 1rem; border-top: 1px solid rgba(240,232,216,0.07); background: var(--charcoal); flex-shrink: 0; }
+  #tc-input { flex: 1; background: var(--charcoal-light); border: 1px solid rgba(240,232,216,0.1); border-radius: 2px; color: var(--cream); font-size: 0.84rem; padding: 0.6rem 0.85rem; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; resize: none; line-height: 1.4; }
   #tc-input:focus { border-color: rgba(196,82,42,0.55); }
   #tc-input::placeholder { color: var(--text-muted); }
-  #tc-send {
-    background: var(--rust); border: none; border-radius: 2px;
-    color: var(--cream); padding: 0 1rem; cursor: pointer;
-    transition: background 0.2s; font-size: 0.78rem; font-weight: 700;
-    letter-spacing: 0.06em; flex-shrink: 0; font-family: 'DM Sans', sans-serif;
-  }
+  #tc-send { background: var(--rust); border: none; border-radius: 2px; color: var(--cream); padding: 0 1rem; cursor: pointer; transition: background 0.2s; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; flex-shrink: 0; font-family: 'DM Sans', sans-serif; }
   #tc-send:hover { background: var(--rust-dark); }
   #tc-send:disabled { opacity: 0.45; cursor: not-allowed; }
-  .tc-disclaimer {
-    font-size: 0.62rem; color: #4a4540; text-align: center;
-    padding: 0.4rem 1rem 0.65rem; line-height: 1.4; flex-shrink: 0;
-    background: var(--charcoal);
-  }
-  @media (max-width: 420px) {
-    #tc-chat-window { width: calc(100vw - 2rem); right: 1rem; bottom: 5rem; }
-    #tc-chat-btn { bottom: 1.25rem; right: 1.25rem; }
-  }
+  .tc-disclaimer { font-size: 0.62rem; color: #4a4540; text-align: center; padding: 0.4rem 1rem 0.65rem; line-height: 1.4; flex-shrink: 0; background: var(--charcoal); }
+  @media (max-width: 420px) { #tc-chat-window { width: calc(100vw - 2rem); right: 1rem; bottom: 5rem; } #tc-chat-btn { bottom: 1.25rem; right: 1.25rem; } }
 </style>
 </head>
 <body>
@@ -734,9 +293,7 @@
     <a href="https://www.linkedin.com/in/thomas-c-3728b721a" target="_blank" rel="noopener" class="nav-social" aria-label="LinkedIn">
       <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
     </a>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="tel:+13177289417" class="nav-cta">Call Now</a>
   </div>
 </nav>
@@ -749,7 +306,6 @@
   <a href="tel:+13177289417" class="nav-cta" onclick="toggleMenu()">Call (317) 728-9417</a>
 </div>
 
-<!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-stripe"></div>
   <div class="hero-left">
@@ -758,7 +314,7 @@
     <p class="hero-sub">I'm a broker, so I work for you. I provide independent guidance across Medicare Advantage, Medicare Supplement, Final Expense, Annuities, and Life Insurance — and I shop every carrier to find what actually fits your life.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Request a Free Review</a>
-      <a href="quiz" class="btn-ghost">Find my plan →</a>
+      <a href="quiz" class="btn-ghost">Find my plan &#8594;</a>
     </div>
   </div>
   <div class="hero-right">
@@ -766,77 +322,27 @@
       <div class="hero-card-title">Coverage I Offer</div>
       <div class="stat-row"><span class="stat-label">Medicare Advantage</span><span class="stat-val accent">Multiple Options</span></div>
       <div class="stat-row"><span class="stat-label">Medicare Supplement</span><span class="stat-val">Plan G &amp; Plan N</span></div>
-      <div class="stat-row"><span class="stat-label">Life</span><span class="stat-val">Term, Whole Life & Universal</span></div>
+      <div class="stat-row"><span class="stat-label">Life</span><span class="stat-val">Term, Whole Life &amp; Universal</span></div>
       <div class="stat-row"><span class="stat-label">Annuities</span><span class="stat-val">Guaranteed Income</span></div>
-      <div class="stat-row"><span class="stat-label">Your Cost for a Review</span><span class="stat-val accent">$0 — Always Free</span></div>
+      <div class="stat-row"><span class="stat-label">Your Cost for a Review</span><span class="stat-val accent">$0 &#8212; Always Free</span></div>
     </div>
   </div>
 </section>
 
-<!-- ── SERVICES ── -->
 <section class="services" id="services">
   <div class="services-header reveal">
     <div class="section-eyebrow">What I Offer</div>
     <h2 class="section-title" style="color:var(--charcoal)">Coverage for Every Stage of Life</h2>
   </div>
   <div class="services-grid reveal">
-    <div class="service-card">
-      <div class="service-num">01</div>
-      <div class="service-name">Medicare Advantage</div>
-      <p class="service-desc">All-in-one Medicare plans from multiple carriers. Many include built-in dental, vision, and hearing. I'll show you what's actually available in your area.</p>
-      <div class="service-hover">
-        <div class="service-hover-label">I need my Medicare Advantage to...</div>
-        <div class="service-hover-text">"I'm looking for $0 premiums, in-network doctors, built-in dental, vision &amp; hearing, OTC &amp; grocery cards, and rides to appointments — all in one plan."</div>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">02</div>
-      <div class="service-name">Medicare Supplement</div>
-      <p class="service-desc">Medigap plans that cover what Original Medicare leaves behind. Plan G and Plan N across multiple states. See any doctor who accepts Medicare.</p>
-      <div class="service-hover">
-        <div class="service-hover-label">I need my Medicare Supplement to...</div>
-        <div class="service-hover-text">"I'm looking to see any doctor who accepts Medicare, avoid surprise bills, have predictable costs, and keep my coverage wherever I travel in the country."</div>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">03</div>
-      <div class="service-name">Final Expense Life</div>
-      <p class="service-desc">Affordable whole life coverage to protect your family from end-of-life costs. No medical exam required. Guaranteed acceptance options available.</p>
-      <div class="service-hover">
-        <div class="service-hover-label">I need my Final Expense coverage to...</div>
-        <div class="service-hover-text">"I want to cover funeral and burial costs, pay off final medical bills, leave 'I love you' money for my family, and not put that burden on the people I love."</div>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">04</div>
-      <div class="service-name">Annuities</div>
-      <p class="service-desc">Fixed and indexed annuities that protect retirement savings from market loss while generating income you can't outlive. Real guarantees, not projections.</p>
-      <div class="service-hover">
-        <div class="service-hover-label">I need my Annuity to...</div>
-        <div class="service-hover-text">"I'm looking for guaranteed income I can't outlive, protection from market loss, tax-deferred growth, and a plan that continues for my spouse if I'm gone first."</div>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">05</div>
-      <div class="service-name">IUL &amp; Life Insurance</div>
-      <p class="service-desc">Indexed Universal Life for business owners and individuals building tax-advantaged wealth alongside protection. Long-term strategy, not short-term thinking.</p>
-      <div class="service-hover">
-        <div class="service-hover-label">I need my Life Insurance to...</div>
-        <div class="service-hover-text">"I want to pay off the mortgage, replace my income if I'm gone, cover my kids or grandkids while rates are low, and build tax-free cash value over time."</div>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">06</div>
-      <div class="service-name">Ancillary Coverage</div>
-      <p class="service-desc">Hospital indemnity, dental, vision, and hearing plans to fill the gaps your primary coverage leaves behind. Small premiums that prevent big surprises.</p>
-      <div class="service-hover">
-        <div class="service-hover-label">I need my Ancillary coverage to...</div>
-        <div class="service-hover-text">"I'm looking for cash in my pocket when I'm hospitalized, dental that actually covers what I need, and vision and hearing that fill the gaps my main plan leaves behind."</div>
-      </div>
-    </div>
+    <div class="service-card"><div class="service-num">01</div><div class="service-name">Medicare Advantage</div><p class="service-desc">All-in-one Medicare plans from multiple carriers. Many include built-in dental, vision, and hearing. I'll show you what's actually available in your area.</p><div class="service-hover"><div class="service-hover-label">I need my Medicare Advantage to...</div><div class="service-hover-text">"I'm looking for $0 premiums, in-network doctors, built-in dental, vision &amp; hearing, OTC &amp; grocery cards, and rides to appointments — all in one plan."</div></div></div>
+    <div class="service-card"><div class="service-num">02</div><div class="service-name">Medicare Supplement</div><p class="service-desc">Medigap plans that cover what Original Medicare leaves behind. Plan G and Plan N across multiple states. See any doctor who accepts Medicare.</p><div class="service-hover"><div class="service-hover-label">I need my Medicare Supplement to...</div><div class="service-hover-text">"I'm looking to see any doctor who accepts Medicare, avoid surprise bills, have predictable costs, and keep my coverage wherever I travel in the country."</div></div></div>
+    <div class="service-card"><div class="service-num">03</div><div class="service-name">Final Expense Life</div><p class="service-desc">Affordable whole life coverage to protect your family from end-of-life costs. No medical exam required. Guaranteed acceptance options available.</p><div class="service-hover"><div class="service-hover-label">I need my Final Expense coverage to...</div><div class="service-hover-text">"I want to cover funeral and burial costs, pay off final medical bills, leave 'I love you' money for my family, and not put that burden on the people I love."</div></div></div>
+    <div class="service-card"><div class="service-num">04</div><div class="service-name">Annuities</div><p class="service-desc">Fixed and indexed annuities that protect retirement savings from market loss while generating income you can't outlive. Real guarantees, not projections.</p><div class="service-hover"><div class="service-hover-label">I need my Annuity to...</div><div class="service-hover-text">"I'm looking for guaranteed income I can't outlive, protection from market loss, tax-deferred growth, and a plan that continues for my spouse if I'm gone first."</div></div></div>
+    <div class="service-card"><div class="service-num">05</div><div class="service-name">IUL &amp; Life Insurance</div><p class="service-desc">Indexed Universal Life for business owners and individuals building tax-advantaged wealth alongside protection. Long-term strategy, not short-term thinking.</p><div class="service-hover"><div class="service-hover-label">I need my Life Insurance to...</div><div class="service-hover-text">"I want to pay off the mortgage, replace my income if I'm gone, cover my kids or grandkids while rates are low, and build tax-free cash value over time."</div></div></div>
+    <div class="service-card"><div class="service-num">06</div><div class="service-name">Ancillary Coverage</div><p class="service-desc">Hospital indemnity, dental, vision, and hearing plans to fill the gaps your primary coverage leaves behind. Small premiums that prevent big surprises.</p><div class="service-hover"><div class="service-hover-label">I need my Ancillary coverage to...</div><div class="service-hover-text">"I'm looking for cash in my pocket when I'm hospitalized, dental that actually covers what I need, and vision and hearing that fill the gaps my main plan leaves behind."</div></div></div>
   </div>
 </section>
-
 
 <!-- ── PLAN FINDER ── -->
 <section class="plan-finder">
@@ -846,33 +352,43 @@
     <p>Answer a few questions and get a personalized recommendation in under 2 minutes.</p>
   </div>
   <div class="plan-finder-grid reveal">
+
     <a href="/quiz" class="finder-card finder-card-medicare">
       <div class="finder-card-glow"></div>
-      <div class="finder-card-icon">&#9726;</div>
+      <div class="finder-card-img">
+        <svg width="96" height="58" viewBox="0 0 96 58" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="58" rx="4" fill="#1a3a6e"/><rect y="14" width="96" height="6" fill="#c0392b"/><rect y="20" width="96" height="28" fill="#f5f5f5"/><rect y="48" width="96" height="10" rx="0" fill="#1a3a6e"/><rect y="44" width="96" height="6" fill="#1a3a6e"/><text x="5" y="11" font-size="7" font-weight="bold" fill="white" font-family="Arial,sans-serif">MEDICARE</text><text x="5" y="32" font-size="5" fill="#333" font-family="Arial,sans-serif">NAME</text><rect x="5" y="34" width="55" height="1" fill="#ccc"/><text x="5" y="43" font-size="5" fill="#333" font-family="Arial,sans-serif">MEDICARE CLAIM NUMBER</text><rect x="5" y="45" width="55" height="1" fill="#ccc"/><text x="5" y="54" font-size="4.5" fill="white" font-family="Arial,sans-serif">HEALTH INSURANCE</text></svg>
+      </div>
       <div class="finder-card-eyebrow">Medicare</div>
       <div class="finder-card-divider"></div>
       <div class="finder-card-title">Medicare Plan Finder</div>
       <div class="finder-card-desc">Advantage or Supplement? Answer 9 questions and get a personalized recommendation that actually fits your life.</div>
       <div class="finder-card-cta">Take the quiz &#8594;</div>
     </a>
+
     <a href="/life" class="finder-card finder-card-life">
       <div class="finder-card-glow"></div>
-      <div class="finder-card-icon">&#9829;</div>
+      <div class="finder-card-img">
+        <svg width="52" height="58" viewBox="0 0 52 58" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 2 L48 10 L48 28 C48 42 36 52 26 56 C16 52 4 42 4 28 L4 10 Z" fill="rgba(240,232,216,0.15)" stroke="rgba(240,232,216,0.5)" stroke-width="1.5"/><path d="M26 40 C26 40 14 31 14 23 C14 18.5 17.5 15 22 15 C23.8 15 25.5 15.8 26 17 C26.5 15.8 28.2 15 30 15 C34.5 15 38 18.5 38 23 C38 31 26 40 26 40Z" fill="#f0e8d8"/></svg>
+      </div>
       <div class="finder-card-eyebrow">Life Insurance</div>
       <div class="finder-card-divider"></div>
       <div class="finder-card-title">Life Insurance Finder</div>
       <div class="finder-card-desc">Final Expense, Term, or IUL? Answer 10 questions and get a recommendation that matches where you are in life.</div>
       <div class="finder-card-cta">Take the quiz &#8594;</div>
     </a>
+
     <a href="/social-security" class="finder-card finder-card-ss">
       <div class="finder-card-glow"></div>
-      <div class="finder-card-icon">&#128200;</div>
+      <div class="finder-card-img">
+        <svg width="96" height="56" viewBox="0 0 96 56" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="96" height="56" rx="4" fill="#e8e0d0"/><rect width="96" height="16" rx="4" fill="#1a3a6e"/><rect y="12" width="96" height="4" fill="#1a3a6e"/><text x="5" y="11" font-size="7" font-weight="bold" fill="white" font-family="Arial,sans-serif">SOCIAL SECURITY</text><text x="5" y="28" font-size="6" fill="#555" font-family="Arial,sans-serif">000 - 00 - 0000</text><rect x="5" y="30" width="60" height="0.75" fill="#aaa"/><text x="5" y="40" font-size="5" fill="#777" font-family="Arial,sans-serif">NAME</text><rect x="5" y="42" width="60" height="0.75" fill="#aaa"/><circle cx="80" cy="36" r="12" fill="none" stroke="#1a3a6e" stroke-width="1.2"/><text x="80" y="40" font-size="10" fill="#1a3a6e" font-family="Arial,sans-serif" text-anchor="middle">&#9733;</text></svg>
+      </div>
       <div class="finder-card-eyebrow">Retirement Planning</div>
       <div class="finder-card-divider"></div>
       <div class="finder-card-title">Social Security Tools</div>
       <div class="finder-card-desc">When should you claim? Will your income trigger an IRMAA surcharge? Free quiz and calculator, no signup needed.</div>
       <div class="finder-card-cta">Explore the tools &#8594;</div>
     </a>
+
   </div>
 </section>
 
@@ -884,7 +400,7 @@
     <p class="why-desc">I'm not tied to any single carrier. That means I'm shopping the market on your behalf — not steering you toward whoever pays the highest commission. My review costs you nothing. Ever.</p>
     <div class="why-points">
       <div class="why-point"><div class="why-point-marker">1</div><div class="why-point-text"><strong>Turning 65?</strong> Your Medicare enrollment window is 7 months — 3 before your birthday, 3 after. Miss it and you pay penalties for life. Let's get this right.</div></div>
-      <div class="why-point"><div class="why-point-marker">2</div><div class="why-point-text"><strong>Already on Medicare?</strong> Annual Enrollment runs Oct 15–Dec 7. I review your plan every year so you're not overpaying or under-covered.</div></div>
+      <div class="why-point"><div class="why-point-marker">2</div><div class="why-point-text"><strong>Already on Medicare?</strong> Annual Enrollment runs Oct 15&#8211;Dec 7. I review your plan every year so you're not overpaying or under-covered.</div></div>
       <div class="why-point"><div class="why-point-marker">3</div><div class="why-point-text"><strong>My review costs you nothing.</strong> Carriers pay me directly — your plan cost is identical whether you work with me or go direct.</div></div>
     </div>
   </div>
@@ -909,44 +425,22 @@
       <div class="optin-form-wrap">
         <div class="optin-title">Request a Free Review</div>
         <div class="optin-sub">Leave your info and I'll reach out within one business day. No spam, no pressure.</div>
-        <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:1.5rem;">Not sure which plan fits you? <a href="quiz" style="color:var(--gold); text-decoration:none; font-weight:600;">Take the free Medicare Plan Finder quiz →</a></p>
-
-        <!-- ══════════════════════════════════════════
-             FORMSPREE FORM — replace YOUR_FORM_ID
-             with your actual ID from formspree.io
-        ══════════════════════════════════════════ -->
-        <form
-          id="contactForm"
-          action="https://formspree.io/f/xjgzyeal"
-          method="POST"
-          onsubmit="handleFormspreeSubmit(event)"
-        >
+        <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:1.5rem;">Not sure which plan fits you? <a href="quiz" style="color:var(--gold); text-decoration:none; font-weight:600;">Take the free Medicare Plan Finder quiz &#8594;</a></p>
+        <form id="contactForm" action="https://formspree.io/f/xjgzyeal" method="POST" onsubmit="handleFormspreeSubmit(event)">
           <input type="hidden" name="_subject" value="New Review Request — CrowhurstInsurance.com">
           <input type="hidden" name="sms_consent" value="Yes — checkbox confirmed">
-          <div class="form-field">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Jane Smith" required>
-          </div>
-          <div class="form-field">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="(123) 555-0100" required>
-          </div>
-          <div class="form-field">
-            <label for="zip">Zip Code</label>
-            <input type="text" id="zip" name="zip" placeholder="12345" maxlength="5" pattern="[0-9]{5}" inputmode="numeric">
-          </div>
+          <div class="form-field"><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="Jane Smith" required></div>
+          <div class="form-field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(123) 555-0100" required></div>
+          <div class="form-field"><label for="zip">Zip Code</label><input type="text" id="zip" name="zip" placeholder="12345" maxlength="5" pattern="[0-9]{5}" inputmode="numeric"></div>
           <div class="sms-consent">
             <input type="checkbox" id="sms-consent" name="sms-consent" required>
-            <label class="sms-consent-label" for="sms-consent">
-              <strong>I consent to receive SMS text messages</strong> from Thomas Crowhurst Insurance regarding insurance plan information, quotes, and appointment reminders. Message frequency varies. Msg &amp; data rates may apply. Reply <strong>STOP</strong> to opt out. Reply <strong>HELP</strong> for help.
-            </label>
+            <label class="sms-consent-label" for="sms-consent"><strong>I consent to receive SMS text messages</strong> from Thomas Crowhurst Insurance regarding insurance plan information, quotes, and appointment reminders. Message frequency varies. Msg &amp; data rates may apply. Reply <strong>STOP</strong> to opt out. Reply <strong>HELP</strong> for help.</label>
           </div>
           <button type="submit" class="form-submit" id="submitBtn">Send My Request</button>
           <p class="form-disclaimer">By submitting, you agree to our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>. A licensed insurance agent may contact you.</p>
         </form>
-
         <div id="form-success" style="display:none; text-align:center; padding:2rem 0;">
-          <div style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--cream); margin-bottom:0.5rem;">Got it — I'll be in touch.</div>
+          <div style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--cream); margin-bottom:0.5rem;">Got it &#8212; I'll be in touch.</div>
           <div style="font-size:0.85rem; color:var(--text-muted);">Expect a call or text within one business day.</div>
         </div>
       </div>
@@ -976,24 +470,9 @@
   <div class="section-eyebrow reveal">Medicare Education</div>
   <h2 class="section-title reveal">Articles &amp; Guides</h2>
   <div class="blog-grid reveal">
-    <a href="/blog/medicare-advantage-vs-supplement" class="blog-card">
-      <div class="blog-tag">Medicare</div>
-      <div class="blog-title">Medicare Advantage vs. Medicare Supplement: Which Is Right for You?</div>
-      <div class="blog-excerpt">When you turn 65 you have a decision to make. Most people make it without really understanding what they are choosing. Here is the short version.</div>
-      <div class="blog-read-more">Read article &#8594;</div>
-    </a>
-    <a href="/blog/life-insurance-safety-net" class="blog-card">
-      <div class="blog-tag">Life Insurance</div>
-      <div class="blog-title">What Happens to Your Family If Something Happens to You?</div>
-      <div class="blog-excerpt">Most people think life insurance is about dying. It is not only about that anymore. Here is what nobody talks about until it is too late.</div>
-      <div class="blog-read-more">Read article &#8594;</div>
-    </a>
-    <a href="/blog" class="blog-card">
-      <div class="blog-tag">Medicare</div>
-      <div class="blog-title">AEP Explained: Why October 15 Matters for Medicare Members</div>
-      <div class="blog-excerpt">Every year between Oct 15 and Dec 7, you can change your Medicare coverage. Here is how to use that window to make sure you are on the right plan.</div>
-      <div class="blog-read-more">Read article &#8594;</div>
-    </a>
+    <a href="/blog/medicare-advantage-vs-supplement" class="blog-card"><div class="blog-tag">Medicare</div><div class="blog-title">Medicare Advantage vs. Medicare Supplement: Which Is Right for You?</div><div class="blog-excerpt">When you turn 65 you have a decision to make. Most people make it without really understanding what they are choosing. Here is the short version.</div><div class="blog-read-more">Read article &#8594;</div></a>
+    <a href="/blog/life-insurance-safety-net" class="blog-card"><div class="blog-tag">Life Insurance</div><div class="blog-title">What Happens to Your Family If Something Happens to You?</div><div class="blog-excerpt">Most people think life insurance is about dying. It is not only about that anymore. Here is what nobody talks about until it is too late.</div><div class="blog-read-more">Read article &#8594;</div></a>
+    <a href="/blog/aep-explained" class="blog-card"><div class="blog-tag">Medicare</div><div class="blog-title">AEP Explained: Why October 15 Matters for Medicare Members</div><div class="blog-excerpt">Every year between Oct 15 and Dec 7, you can change your Medicare coverage. Here is how to use that window to make sure you are on the right plan.</div><div class="blog-read-more">Read article &#8594;</div></a>
   </div>
   <div style="text-align:center;margin-top:2.5rem;"><a href="/blog" style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--rust);text-decoration:none;">View all articles &#8594;</a></div>
 </section>
@@ -1005,69 +484,42 @@
   <a href="#contact" class="btn-dark" style="position:relative;z-index:2;">Request a Free Review</a>
 </section>
 
-<!-- ── COMPLIANCE ── -->
 <div class="compliance-bar">
   <p>Coverage availability varies by carrier and location. We do not offer every carrier in your area. This website is not affiliated with or endorsed by the U.S. government or the federal Medicare program. This is a solicitation of insurance. A licensed insurance agent may contact you. For official Medicare information, visit <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a> or call 1-800-MEDICARE (1-800-633-4227). TTY: 1-877-486-2048.</p>
 </div>
 
-<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-logo">Thomas Crowhurst <em>Insurance</em></div>
   <div class="footer-links">
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="/blog">Blog</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
+    <a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a href="/blog">Blog</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
   </div>
   <div class="footer-socials">
-    <a href="https://www.facebook.com/profile.php?id=61573585264681" target="_blank" rel="noopener" class="footer-social" aria-label="Facebook">
-      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-    </a>
-    <a href="https://www.linkedin.com/in/thomas-c-3728b718a" target="_blank" rel="noopener" class="footer-social" aria-label="LinkedIn">
-      <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-    </a>
+    <a href="https://www.facebook.com/profile.php?id=61573585264681" target="_blank" rel="noopener" class="footer-social" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://www.linkedin.com/in/thomas-c-3728b718a" target="_blank" rel="noopener" class="footer-social" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
   </div>
   <div class="footer-copy">&copy; 2026 Thomas Crowhurst. All rights reserved.</div>
 </footer>
 
-
-<!-- ═══════════════════════════════════════════════════
-     CHAT WIDGET — floating AI assistant
-     Requires: Anthropic API key from console.anthropic.com
-═══════════════════════════════════════════════════ -->
-
-<!-- Chat Toggle Button -->
 <button id="tc-chat-btn" onclick="tcToggle()" aria-label="Ask a question">
   <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:#f0e8d8"><path d="M20 9V7a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 00-2 2v4a2 2 0 002 2h1v1a1 1 0 002 0v-1h6v1a1 1 0 002 0v-1h1a2 2 0 002-2v-4a2 2 0 00-2-2zM9 13a1 1 0 110-2 1 1 0 010 2zm6 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
   <span class="tc-badge">?</span>
 </button>
 
-<!-- Chat Window -->
 <div id="tc-chat-window">
   <div class="tc-header">
     <div class="tc-avatar">TC</div>
-    <div class="tc-header-info">
-      <div class="tc-header-name">Tommy Bot</div>
-      <div class="tc-header-status">AI Assistant — Ask me anything</div>
-    </div>
-    <button class="tc-close" onclick="tcToggle()" aria-label="Close">✕</button>
+    <div class="tc-header-info"><div class="tc-header-name">Tommy Bot</div><div class="tc-header-status">AI Assistant &#8212; Ask me anything</div></div>
+    <button class="tc-close" onclick="tcToggle()" aria-label="Close">&#10005;</button>
   </div>
-
   <div class="tc-messages" id="tc-messages">
-    <div class="tc-msg bot">
-      Hi there! I can answer questions about Medicare, Final Expense life insurance, or anything else Thomas offers — 24/7. What's on your mind?
-    </div>
+    <div class="tc-msg bot">Hi there! I can answer questions about Medicare, Final Expense life insurance, or anything else Thomas offers &#8212; 24/7. What's on your mind?</div>
   </div>
-
   <div class="tc-quick-replies" id="tc-qr-wrap">
     <button class="tc-qr" onclick="tcQuick('How does Medicare Advantage work?')">Medicare Advantage</button>
     <button class="tc-qr" onclick="tcQuick('What is Final Expense insurance?')">Final Expense</button>
     <button class="tc-qr" onclick="tcQuick('When should I enroll in Medicare?')">Enrollment timing</button>
     <button class="tc-qr" onclick="tcQuick('How much does a consultation cost?')">Cost of a review</button>
   </div>
-
   <div class="tc-input-row">
     <textarea id="tc-input" rows="1" placeholder="Type your question..." onkeydown="tcKey(event)"></textarea>
     <button id="tc-send" onclick="tcSend()">Send</button>
@@ -1075,211 +527,63 @@
   <div class="tc-disclaimer">Educational only. Not insurance advice. Coverage varies by location &amp; carrier.</div>
 </div>
 
-
-<!-- ── SCRIPTS ── -->
 <script>
-  // ── Mobile menu ──
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
     document.querySelector('.hamburger').classList.toggle('open');
     document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
   }
-
-  // ── Nav scroll ──
   let ticking = false;
   window.addEventListener('scroll', function() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
-        ticking = false;
-      });
-      ticking = true;
-    }
+    if (!ticking) { window.requestAnimationFrame(function() { document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60); ticking = false; }); ticking = true; }
   });
-
-  // ── Scroll reveal ──
   const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
+    entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
 
-  // ══════════════════════════════════════════
-  // FORMSPREE FORM HANDLER
-  // Sign up free at formspree.io, get your
-  // form ID, replace YOUR_FORM_ID above.
-  // ══════════════════════════════════════════
   async function handleFormspreeSubmit(e) {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
     const form = document.getElementById('contactForm');
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-
+    btn.disabled = true; btn.textContent = 'Sending...';
     try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        form.style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      } else {
-        btn.disabled = false;
-        btn.textContent = 'Send My Request';
-        alert('Something went wrong. Please call Thomas directly at (317) 728-9417.');
-      }
-    } catch (err) {
-      btn.disabled = false;
-      btn.textContent = 'Send My Request';
-      alert('Something went wrong. Please call Thomas directly at (317) 728-9417.');
-    }
+      const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+      if (response.ok) { form.style.display = 'none'; document.getElementById('form-success').style.display = 'block'; }
+      else { btn.disabled = false; btn.textContent = 'Send My Request'; alert('Something went wrong. Please call Thomas directly at (317) 728-9417.'); }
+    } catch (err) { btn.disabled = false; btn.textContent = 'Send My Request'; alert('Something went wrong. Please call Thomas directly at (317) 728-9417.'); }
   }
 
-  // ══════════════════════════════════════════
-  // CLAUDE CHAT WIDGET
-  // Get your API key at console.anthropic.com
-  // Replace YOUR_ANTHROPIC_API_KEY below.
-  // ══════════════════════════════════════════
-  // ── Cloudflare Worker URL (no API key needed here) ──
-  // After deploying cloudflare-worker.js, paste your worker URL below
   const TC_WORKER_URL = 'https://anthropic-proxy.thomas626crowhurst.workers.dev';
-
-  const TC_SYSTEM = `You are a helpful insurance assistant for Thomas Crowhurst Insurance, an independent insurance brokerage based in Northwest Indiana.
-
-ABOUT THOMAS:
-- Independent broker licensed in multiple states (never name or list specific states)
-- Specializes in Medicare Advantage, Medicare Supplement (Plan G & Plan N), Final Expense Life Insurance, Term Life, Annuities, and Ancillary coverage (dental, vision, hospital indemnity)
-- Contracted with 20+ carriers — shops the entire market for each client
-- All consultations are 100% free — carriers pay Thomas directly, never the client
-- Phone: (317) 728-9417 | Email: thomas@crowhurstinsurance.com
-- Tagline: "Insurance the Way It Used to Work"
-- Brand voice: warm, honest, educational, non-pushy — a trusted advisor, not a salesperson
-
-YOUR JOB:
-- Answer Medicare and life insurance questions clearly and helpfully
-- Educate visitors; never pressure them
-- Keep answers concise — 2 to 4 sentences unless the question genuinely needs more
-- When someone has a specific situation or is ready to move forward, warmly encourage them to call Thomas at (317) 728-9417 or fill out the free review form on the page
-- Never quote specific plan prices, premiums, or guarantee specific benefits — always refer to Thomas for that
-- Never list specific states Thomas is licensed in — just say "multiple states"
-
-COMPLIANCE RULES:
-- Always frame responses as general education, not personalized insurance advice
-- Never guarantee approvals, specific rates, or plan-level benefits
-- For specific plan comparisons or enrollment help, always direct to Thomas directly`;
-
-  let tcOpen = false;
-  let tcHistory = [];
-  let tcBusy = false;
-
+  const TC_SYSTEM = `You are a helpful insurance assistant for Thomas Crowhurst Insurance, an independent insurance brokerage based in Northwest Indiana. Independent broker licensed in multiple states (never name or list specific states). Specializes in Medicare Advantage, Medicare Supplement (Plan G & Plan N), Final Expense Life Insurance, Term Life, Annuities, and Ancillary coverage. Contracted with 20+ carriers. All consultations 100% free. Phone: (317) 728-9417. Email: thomas@crowhurstinsurance.com. Keep answers warm, educational, concise (2-4 sentences). Never quote specific prices or guarantee benefits. Direct to Thomas for specific situations.`;
+  let tcOpen = false, tcHistory = [], tcBusy = false;
   function tcToggle() {
     tcOpen = !tcOpen;
     const win = document.getElementById('tc-chat-window');
-    if (tcOpen) {
-      win.style.display = 'flex';
-      requestAnimationFrame(() => win.classList.add('tc-open'));
-      document.getElementById('tc-input').focus();
-      const badge = document.querySelector('.tc-badge'); if (badge) badge.style.display = 'none';
-    } else {
-      win.classList.remove('tc-open');
-      setTimeout(() => { win.style.display = 'none'; }, 280);
-    }
+    if (tcOpen) { win.style.display = 'flex'; requestAnimationFrame(() => win.classList.add('tc-open')); document.getElementById('tc-input').focus(); const badge = document.querySelector('.tc-badge'); if (badge) badge.style.display = 'none'; }
+    else { win.classList.remove('tc-open'); setTimeout(() => { win.style.display = 'none'; }, 280); }
   }
-
-  function tcAddMsg(text, role) {
-    const msgs = document.getElementById('tc-messages');
-    const div = document.createElement('div');
-    div.className = 'tc-msg ' + role;
-    div.textContent = text;
-    msgs.appendChild(div);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-
-  function tcShowTyping() {
-    const msgs = document.getElementById('tc-messages');
-    const el = document.createElement('div');
-    el.className = 'tc-typing'; el.id = 'tc-typing-indicator';
-    el.innerHTML = '<span></span><span></span><span></span>';
-    msgs.appendChild(el);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-
-  function tcHideTyping() {
-    const el = document.getElementById('tc-typing-indicator');
-    if (el) el.remove();
-  }
-
-  function tcHideQR() {
-    const qr = document.getElementById('tc-qr-wrap');
-    if (qr) qr.style.display = 'none';
-  }
-
-  function tcQuick(text) {
-    document.getElementById('tc-input').value = text;
-    tcSend();
-  }
-
-  function tcKey(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); tcSend(); }
-  }
-
+  function tcAddMsg(text, role) { const msgs = document.getElementById('tc-messages'); const div = document.createElement('div'); div.className = 'tc-msg ' + role; div.textContent = text; msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight; }
+  function tcShowTyping() { const msgs = document.getElementById('tc-messages'); const el = document.createElement('div'); el.className = 'tc-typing'; el.id = 'tc-typing-indicator'; el.innerHTML = '<span></span><span></span><span></span>'; msgs.appendChild(el); msgs.scrollTop = msgs.scrollHeight; }
+  function tcHideTyping() { const el = document.getElementById('tc-typing-indicator'); if (el) el.remove(); }
+  function tcHideQR() { const qr = document.getElementById('tc-qr-wrap'); if (qr) qr.style.display = 'none'; }
+  function tcQuick(text) { document.getElementById('tc-input').value = text; tcSend(); }
+  function tcKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); tcSend(); } }
   async function tcSend() {
     if (tcBusy) return;
     const input = document.getElementById('tc-input');
     const text = input.value.trim();
     if (!text) return;
-
-    input.value = '';
-    tcHideQR();
-    tcAddMsg(text, 'user');
-    tcHistory.push({ role: 'user', content: text });
-
-    tcBusy = true;
-    document.getElementById('tc-send').disabled = true;
-    tcShowTyping();
-
+    input.value = ''; tcHideQR(); tcAddMsg(text, 'user'); tcHistory.push({ role: 'user', content: text });
+    tcBusy = true; document.getElementById('tc-send').disabled = true; tcShowTyping();
     try {
-      const res = await fetch(TC_WORKER_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-
-
-
-        },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 350,
-          system: TC_SYSTEM,
-          messages: tcHistory
-        })
-      });
-
+      const res = await fetch(TC_WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 350, system: TC_SYSTEM, messages: tcHistory }) });
       const data = await res.json();
-      const reply = data?.content?.[0]?.text ||
-        "I had trouble with that one. Give Thomas a call at (317) 728-9417 — he'll get you sorted out.";
-
-      tcHideTyping();
-      tcAddMsg(reply, 'bot');
-      tcHistory.push({ role: 'assistant', content: reply });
-
-    } catch (err) {
-      tcHideTyping();
-      tcAddMsg("I'm having trouble connecting right now. Call Thomas directly at (317) 728-9417 and he'll be happy to help.", 'bot');
-    }
-
-    tcBusy = false;
-    document.getElementById('tc-send').disabled = false;
-    document.getElementById('tc-input').focus();
+      const reply = data?.content?.[0]?.text || "I had trouble with that one. Give Thomas a call at (317) 728-9417 — he'll get you sorted out.";
+      tcHideTyping(); tcAddMsg(reply, 'bot'); tcHistory.push({ role: 'assistant', content: reply });
+    } catch (err) { tcHideTyping(); tcAddMsg("I'm having trouble connecting right now. Call Thomas directly at (317) 728-9417 and he'll be happy to help.", 'bot'); }
+    tcBusy = false; document.getElementById('tc-send').disabled = false; document.getElementById('tc-input').focus();
   }
 </script>
-
 </body>
 </html>
