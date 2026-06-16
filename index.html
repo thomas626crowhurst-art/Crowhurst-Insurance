@@ -555,6 +555,8 @@
   }
 
   const TC_WORKER_URL = 'https://anthropic-proxy.thomas626crowhurst.workers.dev';
+  const TC_MODEL = 'claude-sonnet-4-6';
+  const TC_MODEL_FALLBACK = 'claude-haiku-4-5-20251001';
   const TC_SYSTEM = `You are a helpful insurance assistant for Thomas Crowhurst Insurance, an independent insurance brokerage based in Northwest Indiana. Independent broker licensed in multiple states (never name or list specific states). Specializes in Medicare Advantage, Medicare Supplement (Plan G & Plan N), Final Expense Life Insurance, Term Life, Annuities, and Ancillary coverage. Contracted with 20+ carriers. All consultations 100% free. Phone: (317) 728-9417. Email: thomas@crowhurstinsurance.com. Keep answers warm, educational, concise (2-4 sentences). Never quote specific prices or guarantee benefits. Direct to Thomas for specific situations.`;
   let tcOpen = false, tcHistory = [], tcBusy = false;
   function tcToggle() {
@@ -576,11 +578,19 @@
     if (!text) return;
     input.value = ''; tcHideQR(); tcAddMsg(text, 'user'); tcHistory.push({ role: 'user', content: text });
     tcBusy = true; document.getElementById('tc-send').disabled = true; tcShowTyping();
-    try {
-      const res = await fetch(TC_WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 350, system: TC_SYSTEM, messages: tcHistory }) });
+    async function tryModel(model) {
+      const res = await fetch(TC_WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model, max_tokens: 350, system: TC_SYSTEM, messages: tcHistory }) });
       const data = await res.json();
-      const reply = data?.content?.[0]?.text || "I had trouble with that one. Give Thomas a call at (317) 728-9417 — he'll get you sorted out.";
-      tcHideTyping(); tcAddMsg(reply, 'bot'); tcHistory.push({ role: 'assistant', content: reply });
+      if (data?.error?.type === 'invalid_request_error' && data?.error?.message?.includes('model')) throw new Error('model_deprecated');
+      return data?.content?.[0]?.text;
+    }
+    try {
+      let reply;
+      try { reply = await tryModel(TC_MODEL); }
+      catch (e) { if (e.message === 'model_deprecated') { reply = await tryModel(TC_MODEL_FALLBACK); } else { throw e; } }
+      tcHideTyping();
+      tcAddMsg(reply || "I had trouble with that one. Give Thomas a call at (317) 728-9417 — he'll get you sorted out.", 'bot');
+      tcHistory.push({ role: 'assistant', content: reply });
     } catch (err) { tcHideTyping(); tcAddMsg("I'm having trouble connecting right now. Call Thomas directly at (317) 728-9417 and he'll be happy to help.", 'bot'); }
     tcBusy = false; document.getElementById('tc-send').disabled = false; document.getElementById('tc-input').focus();
   }
