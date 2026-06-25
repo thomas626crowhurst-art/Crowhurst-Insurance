@@ -150,6 +150,21 @@
   .cost-header p { font-size: 0.95rem; line-height: 1.75; color: var(--text-light); }
   .cost-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
 
+  /* ── TRAIN (GEMREP) SECTION ── */
+  .train-section { padding: 7rem 4rem; background: var(--charcoal); position: relative; }
+  .train-header { margin-bottom: 3rem; max-width: 600px; }
+  .train-header .section-title { color: var(--cream); margin-bottom: 0.75rem; }
+  .train-header p { font-size: 0.95rem; line-height: 1.75; color: var(--text-light); }
+  .archetype-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; margin-bottom: 2.5rem; }
+  .archetype-card { background: var(--charcoal-mid); border: 1px solid rgba(240,232,216,0.08); border-radius: 3px; padding: 1.5rem 1.1rem; text-align: center; transition: border-color 0.3s, transform 0.2s; }
+  .archetype-card:hover { border-color: rgba(196,82,42,0.35); transform: translateY(-3px); }
+  .archetype-avatar { width: 52px; height: 52px; border-radius: 8px; object-fit: cover; margin: 0 auto 0.9rem; display: block; border: 1px solid rgba(240,232,216,0.1); background: var(--charcoal); }
+  .archetype-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.95rem; color: var(--cream); margin-bottom: 0.4rem; }
+  .archetype-tag { display: inline-block; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); background: rgba(201,148,58,0.12); padding: 0.2rem 0.6rem; border-radius: 20px; margin-bottom: 0.6rem; }
+  .archetype-bio { font-size: 0.78rem; line-height: 1.5; color: var(--text-muted); }
+  .train-cta { text-align: center; }
+  .train-note { display: block; margin-top: 0.9rem; font-size: 0.78rem; color: var(--text-muted); }
+
   /* ── STEPS SECTION ── */
   .steps-section { padding: 7rem 4rem; background: var(--cream); }
   .steps-header { margin-bottom: 3.5rem; max-width: 600px; }
@@ -193,10 +208,11 @@
   @media (max-width: 960px) {
     nav { padding: 1rem 1.5rem; } nav.scrolled { padding: 0.7rem 1.5rem; } .nav-links { display: none; } .hamburger { display: block; }
     .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; min-height: auto; } .hero-right, .hero-stripe { display: none; }
-    .pay-section, .cost-section, .steps-section, .cta-section { padding: 4rem 1.5rem; }
+    .pay-section, .cost-section, .train-section, .steps-section, .cta-section { padding: 4rem 1.5rem; }
     .pay-grid { grid-template-columns: 1fr; }
     .growth-years { grid-template-columns: repeat(2, 1fr); }
     .cost-grid { grid-template-columns: repeat(2, 1fr); }
+    .archetype-grid { grid-template-columns: repeat(2, 1fr); }
     .steps-grid { grid-template-columns: 1fr; }
     .step-card { border-right: none; border-bottom: 1px solid rgba(42,40,37,0.12); }
     .step-card:last-child { border-bottom: none; }
@@ -207,6 +223,7 @@
     .hero h1 { font-size: 2.2rem; }
     .growth-years { grid-template-columns: 1fr 1fr; }
     .cost-grid { grid-template-columns: 1fr; }
+    .archetype-grid { grid-template-columns: 1fr 1fr; }
     .income-card { padding: 1.75rem; }
     .pair-row { gap: 0.6rem; }
   }
@@ -250,6 +267,7 @@
     <div class="jump-pills">
       <a href="#pay" class="jump-pill">What You Make</a>
       <a href="#cost" class="jump-pill">What It Costs</a>
+      <a href="#train" class="jump-pill">Train Free</a>
       <a href="#weeks" class="jump-pill">Your First 3 Weeks</a>
       <a href="#get-started" class="jump-pill">Get Started</a>
     </div>
@@ -361,6 +379,47 @@
     <div class="metric-card"><div class="metric-num">$1,500</div><div class="metric-label">Starting lead budget<br>to get real volume</div></div>
     <div class="metric-card"><div class="metric-num">$300&#8211;500</div><div class="metric-label">E&amp;O insurance<br>per year</div></div>
     <div class="metric-card"><div class="metric-num">$100&#8211;150</div><div class="metric-label">CRM / dialer<br>per month</div></div>
+  </div>
+</section>
+
+<!-- ── TRAIN (GEMREP) ── -->
+<section class="train-section" id="train">
+  <div class="train-header reveal">
+    <div class="section-eyebrow">Powered by GemRep</div>
+    <h2 class="section-title">Train Before You Pitch</h2>
+    <p>Before you spend $1,500 on leads, get the objections out of your system for free. GemRep puts you on the phone with AI prospects who push back like real ones, then scores you instantly so you know exactly what to fix.</p>
+  </div>
+
+  <div class="archetype-grid reveal">
+    <div class="archetype-card">
+      <img class="archetype-avatar" src="https://gemrep.ai/images/bob.png" alt="Burned Bob">
+      <div class="archetype-name">Burned Bob</div>
+      <div class="archetype-tag">Final Expense</div>
+      <div class="archetype-bio">Got taken before. Trust must be earned fast.</div>
+    </div>
+    <div class="archetype-card">
+      <img class="archetype-avatar" src="https://gemrep.ai/images/frank.png" alt="Fearful Frank">
+      <div class="archetype-name">Fearful Frank</div>
+      <div class="archetype-tag">Final Expense</div>
+      <div class="archetype-bio">Worried about leaving his family nothing.</div>
+    </div>
+    <div class="archetype-card">
+      <img class="archetype-avatar" src="https://gemrep.ai/images/janet.png" alt="Confused Janet">
+      <div class="archetype-name">Confused Janet</div>
+      <div class="archetype-tag">Medicare</div>
+      <div class="archetype-bio">Overwhelmed by options. Needs simple answers.</div>
+    </div>
+    <div class="archetype-card">
+      <img class="archetype-avatar" src="https://gemrep.ai/images/earl.png" alt="Professor Earl">
+      <div class="archetype-name">Professor Earl</div>
+      <div class="archetype-tag">Medicare</div>
+      <div class="archetype-bio">Researched everything. Will challenge your facts.</div>
+    </div>
+  </div>
+
+  <div class="train-cta reveal">
+    <a href="https://gemrep.ai/" class="btn-primary">Train Free at GemRep.ai</a>
+    <span class="train-note">14 prospects total &middot; no card required &middot; 3 free sessions</span>
   </div>
 </section>
 
