@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What It Pays. What It Costs.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root{
+  --charcoal:#19160F;
+  --panel:#241F16;
+  --well:#1F1B12;
+  --rust:#B14B2C;
+  --clay:#8A6A45;
+  --gold:#D2A04C;
+  --cream:#F2EBDD;
+  --muted:#9C9182;
+  --line:#3A3326;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  background:var(--charcoal);
+  color:var(--cream);
+  font-family:'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+.wrap{
+  max-width:480px;
+  margin:0 auto;
+  padding:32px 20px 40px;
+}
+
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:11px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:18px;
+}
+.eyebrow span{color:var(--muted);}
+
+h1{
+  font-family:'Fraunces', serif;
+  font-weight:700;
+  font-size:clamp(32px,8.5vw,42px);
+  line-height:1.08;
+  letter-spacing:-0.01em;
+}
+h1 em{
+  font-style:normal;
+  color:var(--gold);
+  background:linear-gradient(180deg, transparent 60%, rgba(210,160,76,0.25) 60%);
+  padding:0 2px;
+}
+
+.subhead{
+  margin-top:14px;
+  font-size:15px;
+  line-height:1.55;
+  color:var(--muted);
+  max-width:400px;
+}
+
+.divider{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:34px 0 16px;
+}
+.divider .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+.divider .rule{flex:1;height:1px;background:var(--line);}
+.divider .label{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ONE repeated card pattern, used for every income & cost panel */
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px 18px;
+  margin-bottom:12px;
+}
+.panel.highlight{border-color:var(--gold);}
+
+.panel-name{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:18px;
+  margin-bottom:2px;
+}
+.panel-sub{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:10.5px;
+  letter-spacing:0.04em;
+  color:var(--muted);
+  margin-bottom:14px;
+}
+
+.pair{
+  display:flex;
+  gap:10px;
+  margin-bottom:4px;
+}
+.pair-col{
+  flex:1;
+  background:var(--well);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px 10px 14px;
+  text-align:center;
+}
+.pair-col.ft{border-color:rgba(210,160,76,0.35);}
+.pair-label{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:9.5px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:8px;
+  line-height:1.4;
+}
+.pair-label b{color:var(--cream); display:block; font-size:11px; margin-top:2px;}
+.pair-value{
+  font-family:'Fraunces', serif;
+  font-weight:700;
+  font-size:21px;
+  color:var(--cream);
+}
+.pair-col.ft .pair-value{color:var(--gold);}
+.pair-unit{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:9.5px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.panel-foot{
+  font-size:12.5px;
+  line-height:1.5;
+  color:var(--muted);
+  margin-top:12px;
+}
+.panel-foot b{color:var(--cream); font-weight:600;}
+
+/* compounding growth chart */
+.growth-block{margin-top:18px;}
+.growth-legend{
+  display:flex;
+  gap:16px;
+  margin-bottom:14px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:0.02em;
+}
+.growth-legend .dot{
+  display:inline-block;
+  width:7px; height:7px;
+  border-radius:50%;
+  margin-right:5px;
+}
+.growth-legend .dot.pt{background:var(--clay);}
+.growth-legend .dot.ft{background:var(--gold);}
+.growth-year{margin-bottom:12px;}
+.growth-year .yr-tag{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:10px;
+  letter-spacing:0.08em;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.growth-bar-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:5px;
+}
+.growth-bar-row .track{
+  flex:1;
+  height:13px;
+  background:var(--well);
+  border:1px solid var(--line);
+  border-radius:4px;
+  overflow:hidden;
+}
+.growth-bar-row .fill{height:100%; border-radius:4px;}
+.growth-bar-row .fill.pt{background:var(--clay);}
+.growth-bar-row .fill.ft{background:var(--gold);}
+.growth-bar-row .amt{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:13px;
+  width:64px;
+  text-align:right;
+  flex-shrink:0;
+}
+
+.hook{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:rgba(210,160,76,0.08);
+  border:1px solid rgba(210,160,76,0.3);
+  border-radius:10px;
+  padding:13px 14px;
+  margin-bottom:14px;
+}
+.hook-num{
+  font-family:'Fraunces', serif;
+  font-weight:700;
+  font-size:26px;
+  color:var(--gold);
+  line-height:1;
+  white-space:nowrap;
+}
+.hook-label{
+  font-size:12px;
+  line-height:1.45;
+  color:var(--cream);
+  opacity:0.92;
+}
+
+.salary-line{
+  margin-top:16px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  font-size:13px;
+  line-height:1.6;
+  color:var(--cream);
+}
+.salary-line b{color:var(--gold); font-weight:700;}
+
+/* simple cost list */
+.costlist{margin-top:4px;}
+.costlist li{
+  list-style:none;
+  display:flex;
+  justify-content:space-between;
+  font-size:12.5px;
+  padding:8px 0;
+  border-top:1px solid var(--line);
+  color:var(--cream);
+}
+.costlist li span{color:var(--muted); font-family:'IBM Plex Mono', monospace; font-size:11px;}
+
+/* STEPS */
+.steps{margin-top:6px;}
+.step{
+  display:flex;
+  gap:16px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line);
+}
+.step:last-child{border-bottom:none;}
+.step-num{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:32px;
+  color:var(--rust);
+  line-height:1;
+  min-width:42px;
+}
+.step-body h3{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:6px;
+}
+.step-body p{
+  font-size:14px;
+  line-height:1.55;
+  color:var(--cream);
+}
+
+/* CTA */
+.cta{
+  margin-top:30px;
+  background:linear-gradient(155deg, var(--clay), var(--charcoal) 75%);
+  border:1px solid var(--gold);
+  border-radius:16px;
+  padding:26px 22px;
+  text-align:center;
+}
+.cta .big{
+  font-family:'Fraunces', serif;
+  font-weight:700;
+  font-size:clamp(22px,6vw,28px);
+  line-height:1.2;
+  margin-bottom:10px;
+}
+.cta .small{
+  font-size:14px;
+  color:var(--cream);
+  opacity:0.85;
+  margin-bottom:18px;
+}
+.cta .action{
+  display:inline-block;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:13px;
+  letter-spacing:0.06em;
+  background:var(--gold);
+  color:var(--charcoal);
+  font-weight:600;
+  padding:12px 22px;
+  border-radius:8px;
+}
+
+footer{
+  text-align:center;
+  margin-top:24px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:9.5px;
+  letter-spacing:0.06em;
+  color:var(--muted);
+  line-height:1.6;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">THOMAS CROWHURST INSURANCE <span>× GEMREP</span></div>
+  <h1>What it pays.<br>What it <em>costs</em>.</h1>
+  <p class="subhead">Two products, two paces, the real numbers on both sides of the ledger.</p>
+
+  <div class="divider"><div class="dot"></div><div class="rule"></div><div class="label">What You Make</div></div>
+
+  <div class="panel highlight">
+    <div class="panel-name">Final Expense Life</div>
+    <div class="panel-sub">PAID NOW · ~$600 AVG COMMISSION PER POLICY</div>
+    <div class="pair">
+      <div class="pair-col pt">
+        <div class="pair-label">Part Time<br><b>1 a week</b></div>
+        <div class="pair-value">$2,600</div>
+        <div class="pair-unit">per month</div>
+      </div>
+      <div class="pair-col ft">
+        <div class="pair-label">Full Time<br><b>5 a week</b></div>
+        <div class="pair-value">$13,000</div>
+        <div class="pair-unit">per month</div>
+      </div>
+    </div>
+    <p class="panel-foot">Paid as an advance, usually within days of approval.</p>
+  </div>
+
+  <div class="panel">
+    <div class="panel-name">Medicare Advantage</div>
+    <div class="panel-sub">$347 PER CLIENT, EVERY YEAR THEY STAY</div>
+
+    <div class="hook">
+      <div class="hook-num">11,000+</div>
+      <div class="hook-label">people turn 65 in the US every single day, and every one of them has to make a Medicare decision.</div>
+    </div>
+
+    <p class="panel-foot" style="margin-top:0; margin-bottom:14px;">New signups, people just turning 65, pay $694 the first year, then $347 every year after. Plan switches pay $347 flat from day one. Either way, $347 is the number that repeats.</p>
+    <div class="pair">
+      <div class="pair-col pt">
+        <div class="pair-label">Part Time<br><b>10 clients/yr</b></div>
+        <div class="pair-value">$3,470</div>
+        <div class="pair-unit">this year</div>
+      </div>
+      <div class="pair-col ft">
+        <div class="pair-label">Full Time<br><b>35 clients/yr</b></div>
+        <div class="pair-value">$12,145</div>
+        <div class="pair-unit">this year</div>
+      </div>
+    </div>
+    <p class="panel-foot">Keep them on the books and that number repeats next year, plus whatever you add on top.</p>
+
+    <div class="growth-block">
+      <div class="growth-legend">
+        <span><i class="dot pt"></i> Part-Time · 10/yr</span>
+        <span><i class="dot ft"></i> Full-Time · 35/yr</span>
+      </div>
+
+      <div class="growth-year">
+        <div class="yr-tag">YEAR 1</div>
+        <div class="growth-bar-row"><div class="track"><div class="fill pt" style="width:7%;"></div></div><div class="amt">$3,470</div></div>
+        <div class="growth-bar-row"><div class="track"><div class="fill ft" style="width:25%;"></div></div><div class="amt">$12,145</div></div>
+      </div>
+      <div class="growth-year">
+        <div class="yr-tag">YEAR 2</div>
+        <div class="growth-bar-row"><div class="track"><div class="fill pt" style="width:14%;"></div></div><div class="amt">$6,940</div></div>
+        <div class="growth-bar-row"><div class="track"><div class="fill ft" style="width:50%;"></div></div><div class="amt">$24,290</div></div>
+      </div>
+      <div class="growth-year">
+        <div class="yr-tag">YEAR 3</div>
+        <div class="growth-bar-row"><div class="track"><div class="fill pt" style="width:21%;"></div></div><div class="amt">$10,410</div></div>
+        <div class="growth-bar-row"><div class="track"><div class="fill ft" style="width:75%;"></div></div><div class="amt">$36,435</div></div>
+      </div>
+      <div class="growth-year">
+        <div class="yr-tag">YEAR 4</div>
+        <div class="growth-bar-row"><div class="track"><div class="fill pt" style="width:29%;"></div></div><div class="amt">$13,880</div></div>
+        <div class="growth-bar-row"><div class="track"><div class="fill ft" style="width:100%;"></div></div><div class="amt">$48,580</div></div>
+      </div>
+      <p class="panel-foot">Same $347 every time, just more clients renewing each year. Nobody pays you to stop.</p>
+    </div>
+
+    <div class="salary-line">The longer you do this, the less it looks like commission and the more it looks like a salary. By year 4 full-time, <b>$48,580</b> a year renews whether you write a single new policy or not.</div>
+  </div>
+
+  <div class="divider"><div class="dot"></div><div class="rule"></div><div class="label">What It Costs</div></div>
+
+  <div class="panel">
+    <div class="panel-name">Lead Spend</div>
+    <div class="panel-sub">WHAT TO BUDGET TO GET ROLLING</div>
+    <div class="pair">
+      <div class="pair-col pt">
+        <div class="pair-label">Per Lead<br><b>typical range</b></div>
+        <div class="pair-value">$18–39</div>
+      </div>
+      <div class="pair-col ft">
+        <div class="pair-label">Starting Budget<br><b>to get volume</b></div>
+        <div class="pair-value">$1,500</div>
+      </div>
+    </div>
+    <p class="panel-foot">$1,500 gets you enough leads in the pipeline to actually work a system, not just dabble. Price per lead matters less than having enough of them.</p>
+    <ul class="costlist">
+      <li>E&amp;O insurance <span>~$300–500/yr</span></li>
+      <li>License renewals <span>varies by state</span></li>
+      <li>CRM / dialer <span>~$100–150/mo</span></li>
+    </ul>
+  </div>
+
+  <div class="divider"><div class="dot"></div><div class="rule"></div><div class="label">Your First 3 Weeks</div></div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h3>Week One · Study</h3>
+        <p>Get the script. Read it, mark it up, know the 8 phases cold before you ever pick up the phone.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h3>Week Two · Drill</h3>
+        <p>Daily reps on GemRep. Voice roleplay against real objections until the pushback stops rattling you.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h3>Week Three · Go Live</h3>
+        <p>Real leads, real calls. First appointment, first close, first commission advance hits your account.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div class="big">Know the gross. Know the cost. Then go close.</div>
+    <p class="small" style="margin-bottom:0;">Every deal you close creates a tailwind, referrals, renewals, confidence, that makes the next one easier. The book builds itself once it's rolling.</p>
+  </div>
+
+  <footer>Thomas Crowhurst Insurance<br>2026 CMS Fair Market Value (Medicare Advantage) · industry lead-cost &amp; commission benchmarks (Final Expense)</footer>
+</div>
+</body>
+</html>
