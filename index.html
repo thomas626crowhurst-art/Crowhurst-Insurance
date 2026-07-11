@@ -154,7 +154,7 @@
   .about-bio { font-size: 0.95rem; line-height: 1.85; color: var(--text-light); margin-bottom: 1rem; }
   .blog { padding: 7rem 4rem; background: var(--charcoal-mid); }
   .blog .section-title { color: var(--cream); margin-bottom: 3rem; }
-  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(240,232,216,0.06); border: 1.5px solid rgba(240,232,216,0.06); }
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5px; background: rgba(240,232,216,0.06); border: 1.5px solid rgba(240,232,216,0.06); }
   .blog-card { background: var(--charcoal-mid); padding: 2.5rem; transition: background 0.25s; text-decoration: none; display: block; }
   .blog-card:hover { background: var(--charcoal); }
   .blog-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
@@ -192,7 +192,7 @@
     .service-card:nth-child(2n) { border-right: none; } .service-card:nth-child(3n) { border-right: 1px solid rgba(42,40,37,0.12); }
     .why, .contact-inner, .about-inner { grid-template-columns: 1fr; } .why, .contact, .about, .blog { padding: 4rem 1.5rem; }
     .about-inner { gap: 2.5rem; } .about-photo-wrap { max-width: 280px; } .about-photo-wrap::after { display: none; }
-    .blog-grid { grid-template-columns: 1fr; } .cta-section { padding: 4rem 1.5rem; }
+    .cta-section { padding: 4rem 1.5rem; }
     footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; } .footer-links { flex-wrap: wrap; justify-content: center; }
     .compliance-bar { padding: 1.5rem; } .contact-inner { gap: 3rem; } .why { gap: 3rem; }
   }
@@ -470,6 +470,7 @@
   <div class="section-eyebrow reveal">Medicare Education</div>
   <h2 class="section-title reveal">Articles &amp; Guides</h2>
   <div class="blog-grid reveal">
+    <a href="/blog/fixed-indemnity-explained" class="blog-card"><div class="blog-tag">Ancillary Coverage</div><div class="blog-title">The "Cash-Back" Health Plan Nobody Explains Right</div><div class="blog-excerpt">You've probably seen a plan that pays YOU money every time you go to the doctor. Here is what it actually does, what it doesn't, and how it fits next to real insurance.</div><div class="blog-read-more">Read article &#8594;</div></a>
     <a href="/blog/medicare-advantage-vs-supplement" class="blog-card"><div class="blog-tag">Medicare</div><div class="blog-title">Medicare Advantage vs. Medicare Supplement: Which Is Right for You?</div><div class="blog-excerpt">When you turn 65 you have a decision to make. Most people make it without really understanding what they are choosing. Here is the short version.</div><div class="blog-read-more">Read article &#8594;</div></a>
     <a href="/blog/life-insurance-safety-net" class="blog-card"><div class="blog-tag">Life Insurance</div><div class="blog-title">What Happens to Your Family If Something Happens to You?</div><div class="blog-excerpt">Most people think life insurance is about dying. It is not only about that anymore. Here is what nobody talks about until it is too late.</div><div class="blog-read-more">Read article &#8594;</div></a>
     <a href="/blog/aep-explained" class="blog-card"><div class="blog-tag">Medicare</div><div class="blog-title">AEP Explained: Why October 15 Matters for Medicare Members</div><div class="blog-excerpt">Every year between Oct 15 and Dec 7, you can change your Medicare coverage. Here is how to use that window to make sure you are on the right plan.</div><div class="blog-read-more">Read article &#8594;</div></a>
