@@ -127,6 +127,11 @@
   .contact-detail a { color: var(--rust); text-decoration: none; font-weight: 600; }
   .contact-detail a:hover { text-decoration: underline; }
   .contact-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rust); flex-shrink: 0; }
+  .contact-steps { display: flex; flex-direction: column; gap: 1.4rem; margin-top: 2.25rem; padding-top: 2rem; border-top: 1px solid rgba(42,40,37,0.12); }
+  .contact-step { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--rust); color: var(--cream); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Playfair Display', serif; font-size: 0.78rem; font-weight: 700; margin-top: 1px; }
+  .contact-step-text { font-size: 0.88rem; line-height: 1.65; color: #555; }
+  .contact-step-text strong { color: var(--charcoal); }
   .optin-form-wrap { background: var(--charcoal); border-radius: 3px; padding: 2.5rem; position: relative; overflow: hidden; }
   .optin-form-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold)); }
   .optin-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--cream); margin-bottom: 0.5rem; }
@@ -421,6 +426,11 @@
       <p class="contact-desc">No scripts. No pressure. Just a straight conversation about where you are and what makes sense for your situation. Most calls take 15 minutes.</p>
       <div class="contact-detail"><div class="contact-dot"></div><span>Call or text: <a href="tel:+13177289417">(317) 728-9417</a></span></div>
       <div class="contact-detail"><div class="contact-dot"></div><span>Email: <a href="mailto:thomas@crowhurstinsurance.com">thomas@crowhurstinsurance.com</a></span></div>
+      <div class="contact-steps">
+        <div class="contact-step"><div class="contact-step-num">1</div><div class="contact-step-text"><strong>We talk.</strong> 15 minutes, no pitch deck — just questions about where you're at.</div></div>
+        <div class="contact-step"><div class="contact-step-num">2</div><div class="contact-step-text"><strong>I compare carriers.</strong> I run your situation across the options that actually fit, not just one.</div></div>
+        <div class="contact-step"><div class="contact-step-num">3</div><div class="contact-step-text"><strong>You decide.</strong> No deadline, no pressure. It's your call, always.</div></div>
+      </div>
     </div>
     <div class="reveal">
       <div class="optin-form-wrap">
