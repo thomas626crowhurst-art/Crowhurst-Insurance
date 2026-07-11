@@ -77,10 +77,10 @@
   .hero-card { background: var(--charcoal-mid); border: 1px solid rgba(240,232,216,0.08); border-radius: 3px; padding: 2.5rem; width: 100%; max-width: 360px; position: relative; }
   .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold)); }
   .hero-card-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); margin-bottom: 1.5rem; font-weight: 700; }
-  .stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.9rem 0; border-bottom: 1px solid rgba(240,232,216,0.06); }
+  .stat-row { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid rgba(240,232,216,0.06); }
   .stat-row:last-child { border-bottom: none; }
-  .stat-label { font-size: 0.78rem; color: var(--text-muted); }
-  .stat-val { font-size: 0.88rem; color: var(--cream); font-weight: 500; }
+  .stat-label { font-size: 0.78rem; color: var(--text-light); }
+  .stat-val { font-size: 0.88rem; color: var(--cream); font-weight: 500; text-align: right; white-space: nowrap; }
   .stat-val.accent { color: var(--gold); }
   .section-eyebrow { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin-bottom: 1rem; }
   .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; line-height: 1.1; }
@@ -127,10 +127,10 @@
   .contact-detail a { color: var(--rust); text-decoration: none; font-weight: 600; }
   .contact-detail a:hover { text-decoration: underline; }
   .contact-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rust); flex-shrink: 0; }
-  .contact-steps { display: flex; flex-direction: column; gap: 1.4rem; margin-top: 2.25rem; padding-top: 2rem; border-top: 1px solid rgba(42,40,37,0.12); }
+  .contact-steps { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.25rem; padding-top: 2rem; border-top: 1px solid rgba(42,40,37,0.12); }
   .contact-step { display: flex; gap: 1rem; align-items: flex-start; }
-  .contact-step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--rust); color: var(--cream); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Playfair Display', serif; font-size: 0.78rem; font-weight: 700; margin-top: 1px; }
-  .contact-step-text { font-size: 0.88rem; line-height: 1.65; color: #555; }
+  .contact-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--rust); color: var(--cream); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 700; margin-top: 1px; }
+  .contact-step-text { font-size: 0.95rem; line-height: 1.7; color: #555; }
   .contact-step-text strong { color: var(--charcoal); }
   .optin-form-wrap { background: var(--charcoal); border-radius: 3px; padding: 2.5rem; position: relative; overflow: hidden; }
   .optin-form-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold)); }
@@ -325,7 +325,7 @@
   <div class="hero-right">
     <div class="hero-card">
       <div class="hero-card-title">Coverage I Offer</div>
-      <div class="stat-row"><span class="stat-label">Affordable Choice</span><span class="stat-val accent">No-Deductible Cash Plan</span></div>
+      <div class="stat-row"><span class="stat-label">Affordable Choice</span><span class="stat-val accent">No Deductible</span></div>
       <div class="stat-row"><span class="stat-label">Medicare Advantage</span><span class="stat-val">Multiple Options</span></div>
       <div class="stat-row"><span class="stat-label">Medicare Supplement</span><span class="stat-val">Plan G &amp; Plan N</span></div>
       <div class="stat-row"><span class="stat-label">Life &amp; Final Expense</span><span class="stat-val">Term, Whole &amp; More</span></div>
