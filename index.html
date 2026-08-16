@@ -239,6 +239,25 @@
   @media (max-width: 960px) { .plan-finder-grid { grid-template-columns: 1fr; } }
   @media (max-width: 600px) { .plan-finder { padding: 3.5rem 1.5rem; } }
 
+  /* ── HERO CARRIER STRIP ── */
+  .hero-carriers { margin-bottom: 2.25rem; opacity: 0; animation: fadeUp 0.6s 0.25s ease forwards; }
+  .hero-carriers-label { display: block; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 0.75rem; }
+  .hero-carriers-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .carrier-chip { font-size: 0.74rem; padding: 0.4rem 0.85rem; background: rgba(240,232,216,0.05); border: 1px solid rgba(240,232,216,0.12); border-radius: 20px; color: var(--text-light); white-space: nowrap; }
+  .carrier-chip-more { background: rgba(196,82,42,0.12); border-color: rgba(196,82,42,0.4); color: var(--gold); text-decoration: none; font-weight: 700; transition: background 0.2s, border-color 0.2s; }
+  .carrier-chip-more:hover { background: rgba(196,82,42,0.22); border-color: rgba(196,82,42,0.6); }
+
+  /* ── CARRIERS SECTION ── */
+  .carriers { padding: 7rem 4rem; background: var(--cream); }
+  .carriers-header { max-width: 640px; margin-bottom: 3rem; }
+  .carriers-header .section-title { margin-bottom: 1rem; }
+  .carriers-header p { font-size: 0.92rem; line-height: 1.75; color: #555; }
+  .carriers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 0.9rem; }
+  .carrier-badge { background: var(--charcoal); border: 1px solid rgba(240,232,216,0.08); border-radius: 3px; padding: 1.1rem 1.25rem; font-size: 0.88rem; font-weight: 600; color: var(--cream); text-align: center; transition: border-color 0.25s, transform 0.2s; }
+  .carrier-badge:hover { border-color: rgba(196,82,42,0.5); transform: translateY(-2px); }
+  .carriers-footnote { margin-top: 2rem; font-size: 0.76rem; color: var(--text-muted); }
+  @media (max-width: 600px) { .carriers { padding: 4rem 1.5rem; } .carriers-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
+
   /* ── CHAT WIDGET ── */
   #tc-chat-btn { position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 999; width: 58px; height: 58px; border-radius: 50%; background: var(--rust); border: none; cursor: pointer; box-shadow: 0 4px 24px rgba(196,82,42,0.5); display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s; animation: btn-pulse 2.5s infinite; }
   @keyframes btn-pulse { 0%,100% { box-shadow: 0 4px 24px rgba(196,82,42,0.5); } 50% { box-shadow: 0 4px 32px rgba(196,82,42,0.85), 0 0 0 8px rgba(196,82,42,0.15); } }
@@ -287,6 +306,7 @@
   <a href="#" class="nav-logo">Thomas Crowhurst <em>Insurance</em></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
+    <li><a href="#carriers">Carriers</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="/blog">Blog</a></li>
@@ -305,6 +325,7 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#carriers" onclick="toggleMenu()">Carriers</a>
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
   <a href="/blog" onclick="toggleMenu()">Blog</a>
@@ -317,6 +338,18 @@
     <div class="hero-eyebrow">Insurance the Way It Used to Work</div>
     <h1>Insurance Made <em>Simple.</em><br>Coverage That Fits.</h1>
     <p class="hero-sub">I'm a broker, so I work for you. I provide independent guidance across Medicare Advantage, Medicare Supplement, Final Expense, Annuities, and Life Insurance — and I shop every carrier to find what actually fits your life.</p>
+    <div class="hero-carriers">
+      <span class="hero-carriers-label">Contracted With 20+ Top-Rated Carriers</span>
+      <div class="hero-carriers-chips">
+        <span class="carrier-chip">Mutual of Omaha</span>
+        <span class="carrier-chip">UnitedHealthcare</span>
+        <span class="carrier-chip">Aetna</span>
+        <span class="carrier-chip">Humana</span>
+        <span class="carrier-chip">Anthem</span>
+        <span class="carrier-chip">Transamerica</span>
+        <a href="#carriers" class="carrier-chip carrier-chip-more">+15 More &#8594;</a>
+      </div>
+    </div>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Request a Free Review</a>
       <a href="quiz" class="btn-ghost">Find my plan &#8594;</a>
@@ -414,7 +447,42 @@
     <div class="metric-card"><div class="metric-num">$0</div><div class="metric-label">Cost for a consultation<br>Always free, no obligation</div></div>
     <div class="metric-card"><div class="metric-num">20+</div><div class="metric-label">Carrier partnerships<br>Real options, not one pitch</div></div>
     <div class="metric-card"><div class="metric-num">100%</div><div class="metric-label">Independent broker<br>No quotas, no bias</div></div>
+    <a href="#carriers" style="font-size:0.8rem; color:var(--gold); text-decoration:none; font-weight:600;">See the full carrier list &#8594;</a>
   </div>
+</section>
+
+<!-- ── CARRIERS ── -->
+<section class="carriers" id="carriers">
+  <div class="carriers-header reveal">
+    <div class="section-eyebrow">Carrier Partnerships</div>
+    <h2 class="section-title" style="color:var(--charcoal)">The Carriers I'm Contracted With</h2>
+    <p>Because I'm independent, I'm not limited to one company's products. Here's who I currently shop on your behalf — the right fit depends on your situation, not which carrier I represent.</p>
+  </div>
+  <div class="carriers-grid reveal">
+    <div class="carrier-badge">Mutual of Omaha</div>
+    <div class="carrier-badge">Corebridge</div>
+    <div class="carrier-badge">CICA</div>
+    <div class="carrier-badge">Assurity</div>
+    <div class="carrier-badge">Manhattan Life</div>
+    <div class="carrier-badge">United Healthcare</div>
+    <div class="carrier-badge">Medico Wellabe</div>
+    <div class="carrier-badge">Devoted</div>
+    <div class="carrier-badge">Ethos - TruStage</div>
+    <div class="carrier-badge">American Amicable</div>
+    <div class="carrier-badge">Transamerica</div>
+    <div class="carrier-badge">Aetna</div>
+    <div class="carrier-badge">Humana</div>
+    <div class="carrier-badge">Anthem</div>
+    <div class="carrier-badge">United American</div>
+    <div class="carrier-badge">Physicians Mutual</div>
+    <div class="carrier-badge">Foresters</div>
+    <div class="carrier-badge">Molina</div>
+    <div class="carrier-badge">Zing Health</div>
+    <div class="carrier-badge">WellCare</div>
+    <div class="carrier-badge">SBLI</div>
+    <div class="carrier-badge">Aetna Accendo</div>
+  </div>
+  <p class="carriers-footnote reveal">Carrier availability varies by product and location — not every carrier listed offers coverage in every area.</p>
 </section>
 
 <!-- ── CONTACT ── -->
@@ -503,7 +571,7 @@
 <footer>
   <div class="footer-logo">Thomas Crowhurst <em>Insurance</em></div>
   <div class="footer-links">
-    <a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a href="/blog">Blog</a><a href="privacy">Privacy</a><a href="terms.html">Terms</a>
+    <a href="#services">Services</a><a href="#carriers">Carriers</a><a href="#about">About</a><a href="#contact">Contact</a><a href="/blog">Blog</a><a href="privacy">Privacy</a><a href="terms.html">Terms</a>
   </div>
   <div class="footer-socials">
     <a href="https://www.facebook.com/profile.php?id=61573585264681" target="_blank" rel="noopener" class="footer-social" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
