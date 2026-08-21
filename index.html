@@ -239,13 +239,15 @@
   @media (max-width: 960px) { .plan-finder-grid { grid-template-columns: 1fr; } }
   @media (max-width: 600px) { .plan-finder { padding: 3.5rem 1.5rem; } }
 
-  /* ── HERO CARRIER STRIP ── */
+  /* ── HERO CARRIER MARQUEE ── */
   .hero-carriers { margin-bottom: 2.25rem; opacity: 0; animation: fadeUp 0.6s 0.25s ease forwards; }
-  .hero-carriers-label { display: block; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 0.75rem; }
-  .hero-carriers-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .carrier-chip { font-size: 0.74rem; padding: 0.4rem 0.85rem; background: rgba(240,232,216,0.05); border: 1px solid rgba(240,232,216,0.12); border-radius: 20px; color: var(--text-light); white-space: nowrap; }
-  .carrier-chip-more { background: rgba(196,82,42,0.12); border-color: rgba(196,82,42,0.4); color: var(--gold); text-decoration: none; font-weight: 700; transition: background 0.2s, border-color 0.2s; }
-  .carrier-chip-more:hover { background: rgba(196,82,42,0.22); border-color: rgba(196,82,42,0.6); }
+  .hero-carriers-label { display: block; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 0.85rem; }
+  .carrier-marquee { position: relative; width: 100%; max-width: 560px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); }
+  .carrier-marquee-track { display: flex; width: max-content; gap: 0.6rem; animation: marquee-scroll 34s linear infinite; }
+  .carrier-marquee:hover .carrier-marquee-track { animation-play-state: paused; }
+  @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .carrier-chip { font-size: 0.74rem; padding: 0.4rem 0.85rem; background: rgba(240,232,216,0.05); border: 1px solid rgba(240,232,216,0.12); border-radius: 20px; color: var(--text-light); white-space: nowrap; flex-shrink: 0; }
+  @media (prefers-reduced-motion: reduce) { .carrier-marquee-track { animation: none; } .carrier-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; } }
 
   /* ── CARRIERS SECTION ── */
   .carriers { padding: 7rem 4rem; background: var(--cream); }
@@ -349,15 +351,32 @@
     <h1>Insurance Made <em>Simple.</em><br>Coverage That Fits.</h1>
     <p class="hero-sub">I'm a broker, so I work for you. I provide independent guidance across Medicare Advantage, Medicare Supplement, Final Expense, Annuities, and Life Insurance — and I shop every carrier to find what actually fits your life.</p>
     <div class="hero-carriers">
-      <span class="hero-carriers-label">Contracted With 20+ Top-Rated Carriers</span>
-      <div class="hero-carriers-chips">
-        <span class="carrier-chip">Mutual of Omaha</span>
-        <span class="carrier-chip">UnitedHealthcare</span>
-        <span class="carrier-chip">Aetna</span>
-        <span class="carrier-chip">Humana</span>
-        <span class="carrier-chip">Anthem</span>
-        <span class="carrier-chip">Transamerica</span>
-        <a href="#carriers" class="carrier-chip carrier-chip-more">+15 More &#8594;</a>
+      <span class="hero-carriers-label">Contracted With 22 Carriers &mdash; Shopping Every One On Your Behalf</span>
+      <div class="carrier-marquee">
+        <div class="carrier-marquee-track" id="marqueeTrack">
+          <span class="carrier-chip">Mutual of Omaha</span>
+          <span class="carrier-chip">Corebridge</span>
+          <span class="carrier-chip">CICA</span>
+          <span class="carrier-chip">Assurity</span>
+          <span class="carrier-chip">Manhattan Life</span>
+          <span class="carrier-chip">United Healthcare</span>
+          <span class="carrier-chip">Medico Wellabe</span>
+          <span class="carrier-chip">Devoted</span>
+          <span class="carrier-chip">Ethos - TruStage</span>
+          <span class="carrier-chip">American Amicable</span>
+          <span class="carrier-chip">Transamerica</span>
+          <span class="carrier-chip">Aetna</span>
+          <span class="carrier-chip">Humana</span>
+          <span class="carrier-chip">Anthem</span>
+          <span class="carrier-chip">United American</span>
+          <span class="carrier-chip">Physicians Mutual</span>
+          <span class="carrier-chip">Foresters</span>
+          <span class="carrier-chip">Molina</span>
+          <span class="carrier-chip">Zing Health</span>
+          <span class="carrier-chip">WellCare</span>
+          <span class="carrier-chip">SBLI</span>
+          <span class="carrier-chip">Aetna Accendo</span>
+        </div>
       </div>
     </div>
     <div class="hero-actions">
@@ -455,7 +474,7 @@
   </div>
   <div class="why-right reveal">
     <div class="metric-card"><div class="metric-num">$0</div><div class="metric-label">Cost for a consultation<br>Always free, no obligation</div></div>
-    <div class="metric-card"><div class="metric-num">20+</div><div class="metric-label">Carrier partnerships<br>Real options, not one pitch</div></div>
+    <div class="metric-card"><div class="metric-num">22</div><div class="metric-label">Carrier partnerships<br>Real options, not one pitch</div></div>
     <div class="metric-card"><div class="metric-num">100%</div><div class="metric-label">Independent broker<br>No quotas, no bias</div></div>
     <a href="#carriers" style="font-size:0.8rem; color:var(--gold); text-decoration:none; font-weight:600;">See the full carrier list &#8594;</a>
   </div>
@@ -632,6 +651,12 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
 
+  // duplicate the carrier marquee track once so the loop is seamless
+  (function initMarquee() {
+    const track = document.getElementById('marqueeTrack');
+    if (track) { track.innerHTML += track.innerHTML; }
+  })();
+
   async function handleFormspreeSubmit(e) {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
@@ -647,7 +672,7 @@
   const TC_WORKER_URL = 'https://anthropic-proxy.thomas626crowhurst.workers.dev';
   const TC_MODEL = 'claude-sonnet-4-6';
   const TC_MODEL_FALLBACK = 'claude-haiku-4-5-20251001';
-  const TC_SYSTEM = `You are a helpful insurance assistant for Thomas Crowhurst Insurance, an independent insurance brokerage based in Northwest Indiana. Independent broker licensed in multiple states (never name or list specific states). Specializes in Medicare Advantage, Medicare Supplement (Plan G & Plan N), Final Expense Life Insurance, Term Life, Annuities, and Ancillary coverage. Contracted with 20+ carriers. All consultations 100% free. Phone: (317) 728-9417. Email: thomas@crowhurstinsurance.com. Keep answers warm, educational, concise (2-4 sentences). Never quote specific prices or guarantee benefits. Direct to Thomas for specific situations.`;
+  const TC_SYSTEM = `You are a helpful insurance assistant for Thomas Crowhurst Insurance, an independent insurance brokerage based in Northwest Indiana. Independent broker licensed in multiple states (never name or list specific states). Specializes in Medicare Advantage, Medicare Supplement (Plan G & Plan N), Final Expense Life Insurance, Term Life, Annuities, and Ancillary coverage. Contracted with 22 carriers. All consultations 100% free. Phone: (317) 728-9417. Email: thomas@crowhurstinsurance.com. Keep answers warm, educational, concise (2-4 sentences). Never quote specific prices or guarantee benefits. Direct to Thomas for specific situations.`;
   let tcOpen = false, tcHistory = [], tcBusy = false;
   function tcToggle() {
     tcOpen = !tcOpen;
