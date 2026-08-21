@@ -168,6 +168,15 @@
   .blog-read-more { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); }
   .cta-section { padding: 6rem 4rem; background: var(--rust); text-align: center; position: relative; overflow: hidden; }
   .cta-section::before { content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%); border-radius: 50%; }
+  .cta-light { position: absolute; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.12) 45%, transparent 72%); pointer-events: none; z-index: 1; animation: cta-light-travel 10s ease-in-out infinite; }
+  @keyframes cta-light-travel {
+    0%   { top: -130px; left: -130px; }
+    25%  { top: -130px; left: calc(100% - 130px); }
+    50%  { top: calc(100% - 130px); left: calc(100% - 130px); }
+    75%  { top: calc(100% - 130px); left: -130px; }
+    100% { top: -130px; left: -130px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .cta-light { animation: none; top: -130px; left: -130px; } }
   .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 900; color: var(--cream); margin-bottom: 1rem; position: relative; }
   .cta-section p { font-size: 1rem; color: rgba(240,232,216,0.75); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7; position: relative; }
   .btn-dark { background: var(--cream); color: var(--charcoal); padding: 1rem 2.5rem; border-radius: 2px; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.2s; border: 2px solid var(--cream); position: relative; z-index: 2; }
@@ -246,7 +255,10 @@
   .carrier-marquee-track { display: flex; width: max-content; gap: 0.6rem; animation: marquee-scroll 34s linear infinite; }
   .carrier-marquee:hover .carrier-marquee-track { animation-play-state: paused; }
   @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .carrier-chip { font-size: 0.74rem; padding: 0.4rem 0.85rem; background: rgba(240,232,216,0.05); border: 1px solid rgba(240,232,216,0.12); border-radius: 20px; color: var(--text-light); white-space: nowrap; flex-shrink: 0; }
+  .carrier-chip { font-size: 0.74rem; padding: 0.4rem 0.85rem; background: rgba(240,232,216,0.05); border: 1px solid rgba(240,232,216,0.12); border-radius: 20px; color: var(--text-light); white-space: nowrap; flex-shrink: 0; transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s; cursor: default; }
+  .carrier-chip[data-category~="medicare"]:hover { background: rgba(196,82,42,0.22); border-color: var(--rust); color: var(--cream); box-shadow: 0 0 16px rgba(196,82,42,0.55); transform: translateY(-2px); }
+  .carrier-chip[data-category~="life"]:not([data-category~="medicare"]):hover { background: rgba(61,122,110,0.22); border-color: var(--teal); color: var(--cream); box-shadow: 0 0 16px rgba(61,122,110,0.55); transform: translateY(-2px); }
+  .carrier-chip[data-category="health"]:hover { background: rgba(201,148,58,0.22); border-color: var(--gold); color: var(--cream); box-shadow: 0 0 16px rgba(201,148,58,0.55); transform: translateY(-2px); }
   @media (prefers-reduced-motion: reduce) { .carrier-marquee-track { animation: none; } .carrier-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; } }
 
   /* ── CARRIERS SECTION ── */
@@ -255,18 +267,39 @@
   .carriers-header .section-title { margin-bottom: 1rem; }
   .carriers-header p { font-size: 0.92rem; line-height: 1.75; color: #555; }
   .carriers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; }
+  .carriers-legend { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.75rem; }
+  .carriers-legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.76rem; color: #555; font-weight: 600; }
+  .carriers-legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
   .carrier-badge { background: var(--charcoal); border: 1px solid rgba(240,232,216,0.08); border-radius: 3px; padding: 1.5rem 1.25rem 1.2rem; text-align: center; position: relative; overflow: hidden; cursor: default; transition: border-color 0.3s, transform 0.25s ease, box-shadow 0.35s ease; }
-  .carrier-badge::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--rust); opacity: 0.85; transition: opacity 0.3s; }
-  .carrier-badge:nth-child(4n+2)::before { background: var(--teal); }
-  .carrier-badge:nth-child(4n+3)::before { background: var(--olive); }
-  .carrier-badge:nth-child(4n)::before { background: var(--gold); }
-  .carrier-badge-name { font-size: 0.92rem; font-weight: 700; color: var(--cream); margin-bottom: 0.4rem; letter-spacing: 0.01em; }
-  .carrier-badge-fact { font-size: 0.71rem; line-height: 1.5; color: var(--text-muted); }
-  .carrier-badge:hover { transform: translateY(-4px); border-color: rgba(196,82,42,0.55); box-shadow: 0 0 0 1px rgba(196,82,42,0.25), 0 12px 30px -6px rgba(196,82,42,0.45); }
-  .carrier-badge:nth-child(4n+2):hover { border-color: rgba(61,122,110,0.55); box-shadow: 0 0 0 1px rgba(61,122,110,0.25), 0 12px 30px -6px rgba(61,122,110,0.45); }
-  .carrier-badge:nth-child(4n+3):hover { border-color: rgba(122,140,69,0.55); box-shadow: 0 0 0 1px rgba(122,140,69,0.25), 0 12px 30px -6px rgba(122,140,69,0.45); }
-  .carrier-badge:nth-child(4n):hover { border-color: rgba(201,148,58,0.55); box-shadow: 0 0 0 1px rgba(201,148,58,0.25), 0 12px 30px -6px rgba(201,148,58,0.45); }
-  .carrier-badge:hover .carrier-badge-name { color: var(--gold); }
+  .carrier-badge::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; opacity: 0.9; transition: opacity 0.3s, box-shadow 0.3s; }
+  .carrier-badge::after { content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
+  .carrier-badge-category { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; padding: 0.15rem 0.55rem; border-radius: 10px; }
+  .carrier-badge-name { font-size: 0.92rem; font-weight: 700; color: var(--cream); margin-bottom: 0.4rem; letter-spacing: 0.01em; position: relative; z-index: 1; }
+  .carrier-badge-fact { font-size: 0.71rem; line-height: 1.5; color: var(--text-muted); position: relative; z-index: 1; }
+  .carrier-badge[data-category="medicare"]::before { background: var(--rust); }
+  .carrier-badge[data-category="life"]::before { background: var(--teal); }
+  .carrier-badge[data-category="health"]::before { background: var(--gold); }
+  .carrier-badge[data-category~="medicare"][data-category~="health"]:not([data-category~="life"])::before,
+  .carrier-badge[data-category~="medicare"][data-category~="life"]:not([data-category~="health"])::before { background: linear-gradient(90deg, var(--rust) 50%, var(--gold) 50%); }
+  .carrier-badge[data-category~="life"][data-category~="health"]:not([data-category~="medicare"])::before { background: linear-gradient(90deg, var(--teal) 50%, var(--gold) 50%); }
+  .carrier-badge[data-category~="medicare"][data-category~="life"][data-category~="health"]::before { background: linear-gradient(90deg, var(--rust) 33%, var(--teal) 33% 66%, var(--gold) 66%); }
+  .carrier-badge[data-category~="medicare"]::after { background: radial-gradient(circle at 50% 0%, rgba(196,82,42,0.16) 0%, transparent 70%); }
+  .carrier-badge[data-category~="medicare"] .carrier-badge-category.cat-medicare { background: rgba(196,82,42,0.18); color: #e8825e; }
+  .carrier-badge[data-category~="medicare"]:hover { transform: translateY(-4px); border-color: rgba(196,82,42,0.6); box-shadow: 0 0 0 1px rgba(196,82,42,0.3), 0 16px 34px -6px rgba(196,82,42,0.5); }
+  .carrier-badge[data-category~="medicare"]:hover::before { box-shadow: 0 0 12px 1px rgba(196,82,42,0.9); }
+  .carrier-badge[data-category~="medicare"]:hover .carrier-badge-name { color: #e8825e; }
+  .carrier-badge[data-category~="life"]:not([data-category~="medicare"])::after { background: radial-gradient(circle at 50% 0%, rgba(61,122,110,0.18) 0%, transparent 70%); }
+  .carrier-badge .carrier-badge-category.cat-life { background: rgba(61,122,110,0.2); color: #5fb0a1; }
+  .carrier-badge[data-category~="life"]:not([data-category~="medicare"]):hover { transform: translateY(-4px); border-color: rgba(61,122,110,0.6); box-shadow: 0 0 0 1px rgba(61,122,110,0.3), 0 16px 34px -6px rgba(61,122,110,0.5); }
+  .carrier-badge[data-category~="life"]:not([data-category~="medicare"]):hover::before { box-shadow: 0 0 12px 1px rgba(61,122,110,0.9); }
+  .carrier-badge[data-category~="life"]:not([data-category~="medicare"]):hover .carrier-badge-name { color: #5fb0a1; }
+  .carrier-badge[data-category="health"]::after { background: radial-gradient(circle at 50% 0%, rgba(201,148,58,0.18) 0%, transparent 70%); }
+  .carrier-badge .carrier-badge-category.cat-health { background: rgba(201,148,58,0.2); color: var(--gold); }
+  .carrier-badge[data-category="health"]:hover { transform: translateY(-4px); border-color: rgba(201,148,58,0.6); box-shadow: 0 0 0 1px rgba(201,148,58,0.3), 0 16px 34px -6px rgba(201,148,58,0.5); }
+  .carrier-badge[data-category="health"]:hover::before { box-shadow: 0 0 12px 1px rgba(201,148,58,0.9); }
+  .carrier-badge[data-category="health"]:hover .carrier-badge-name { color: var(--gold); }
+  .carrier-badge:hover::after { opacity: 1; }
+  .carrier-badge-categories { display: flex; flex-wrap: wrap; gap: 0.3rem; justify-content: center; margin-bottom: 0.6rem; }
   .carriers-footnote { margin-top: 2rem; font-size: 0.76rem; color: var(--text-muted); }
   @media (max-width: 600px) { .carriers { padding: 4rem 1.5rem; } .carriers-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
 
@@ -354,28 +387,28 @@
       <span class="hero-carriers-label">Contracted With 22 Carriers &mdash; Shopping Every One On Your Behalf</span>
       <div class="carrier-marquee">
         <div class="carrier-marquee-track" id="marqueeTrack">
-          <span class="carrier-chip">Mutual of Omaha</span>
-          <span class="carrier-chip">Corebridge</span>
-          <span class="carrier-chip">CICA</span>
-          <span class="carrier-chip">Assurity</span>
-          <span class="carrier-chip">Manhattan Life</span>
-          <span class="carrier-chip">United Healthcare</span>
-          <span class="carrier-chip">Medico Wellabe</span>
-          <span class="carrier-chip">Devoted</span>
-          <span class="carrier-chip">Ethos - TruStage</span>
-          <span class="carrier-chip">American Amicable</span>
-          <span class="carrier-chip">Transamerica</span>
-          <span class="carrier-chip">Aetna</span>
-          <span class="carrier-chip">Humana</span>
-          <span class="carrier-chip">Anthem</span>
-          <span class="carrier-chip">United American</span>
-          <span class="carrier-chip">Physicians Mutual</span>
-          <span class="carrier-chip">Foresters</span>
-          <span class="carrier-chip">Molina</span>
-          <span class="carrier-chip">Zing Health</span>
-          <span class="carrier-chip">WellCare</span>
-          <span class="carrier-chip">SBLI</span>
-          <span class="carrier-chip">Aetna Accendo</span>
+          <span class="carrier-chip" data-category="life health">Mutual of Omaha</span>
+          <span class="carrier-chip" data-category="life">Corebridge</span>
+          <span class="carrier-chip" data-category="life">CICA</span>
+          <span class="carrier-chip" data-category="life health">Assurity</span>
+          <span class="carrier-chip" data-category="life">Manhattan Life</span>
+          <span class="carrier-chip" data-category="medicare">United Healthcare</span>
+          <span class="carrier-chip" data-category="health">Medico Wellabe</span>
+          <span class="carrier-chip" data-category="medicare">Devoted</span>
+          <span class="carrier-chip" data-category="life">Ethos - TruStage</span>
+          <span class="carrier-chip" data-category="life">American Amicable</span>
+          <span class="carrier-chip" data-category="life">Transamerica</span>
+          <span class="carrier-chip" data-category="medicare health">Aetna</span>
+          <span class="carrier-chip" data-category="medicare">Humana</span>
+          <span class="carrier-chip" data-category="medicare">Anthem</span>
+          <span class="carrier-chip" data-category="medicare">United American</span>
+          <span class="carrier-chip" data-category="health medicare life">Physicians Mutual</span>
+          <span class="carrier-chip" data-category="life">Foresters</span>
+          <span class="carrier-chip" data-category="medicare">Molina</span>
+          <span class="carrier-chip" data-category="medicare">Zing Health</span>
+          <span class="carrier-chip" data-category="medicare">WellCare</span>
+          <span class="carrier-chip" data-category="life">SBLI</span>
+          <span class="carrier-chip" data-category="medicare">Aetna Accendo</span>
         </div>
       </div>
     </div>
@@ -487,29 +520,34 @@
     <h2 class="section-title" style="color:var(--charcoal)">The Carriers I'm Contracted With</h2>
     <p>Because I'm independent, I'm not limited to one company's products. Here's who I currently shop on your behalf — the right fit depends on your situation, not which carrier I represent.</p>
   </div>
+  <div class="carriers-legend reveal">
+    <div class="carriers-legend-item"><span class="carriers-legend-dot" style="background:var(--rust)"></span>Medicare</div>
+    <div class="carriers-legend-item"><span class="carriers-legend-dot" style="background:var(--teal)"></span>Life Insurance</div>
+    <div class="carriers-legend-item"><span class="carriers-legend-dot" style="background:var(--gold)"></span>Health</div>
+  </div>
   <div class="carriers-grid reveal">
-    <div class="carrier-badge"><div class="carrier-badge-name">Mutual of Omaha</div><div class="carrier-badge-fact">Est. 1909 · Omaha, NE</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Corebridge</div><div class="carrier-badge-fact">Roots to 1926 · Independent since 2022</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">CICA</div><div class="carrier-badge-fact">Living-benefit life insurer</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Assurity</div><div class="carrier-badge-fact">Roots to 1890 · Lincoln, NE</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Manhattan Life</div><div class="carrier-badge-fact">Est. 1850 · One of the oldest US insurers</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">United Healthcare</div><div class="carrier-badge-fact">Est. 1977 · Minnetonka, MN</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Medico Wellabe</div><div class="carrier-badge-fact">Roots to 1929 · Des Moines, IA</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Devoted</div><div class="carrier-badge-fact">Founded 2017 · Built for seniors</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Ethos - TruStage</div><div class="carrier-badge-fact">Ethos: 2016 · TruStage: 1935</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">American Amicable</div><div class="carrier-badge-fact">Est. 1910 · Waco, TX</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Transamerica</div><div class="carrier-badge-fact">Roots to 1904 · San Francisco</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Aetna</div><div class="carrier-badge-fact">Est. 1853 · Hartford, CT</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Humana</div><div class="carrier-badge-fact">Est. 1961 · Louisville, KY</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Anthem</div><div class="carrier-badge-fact">Roots to 1944 · Blue Cross Blue Shield</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">United American</div><div class="carrier-badge-fact">Est. 1947 · Dallas, TX</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Physicians Mutual</div><div class="carrier-badge-fact">Est. 1902 · Omaha, NE</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Foresters</div><div class="carrier-badge-fact">Est. 1874 · Fraternal benefit society</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Molina</div><div class="carrier-badge-fact">Est. 1980 · Started with one clinic</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Zing Health</div><div class="carrier-badge-fact">Founded 2019 · Community-focused</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">WellCare</div><div class="carrier-badge-fact">Est. 1985 · Tampa, FL</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">SBLI</div><div class="carrier-badge-fact">Est. 1907 · Founded by Louis Brandeis</div></div>
-    <div class="carrier-badge"><div class="carrier-badge-name">Aetna Accendo</div><div class="carrier-badge-fact">Launched 2020 · Aetna/CVS affiliate</div></div>
+    <div class="carrier-badge" data-category="life health"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-life">Life Insurance</span><span class="carrier-badge-category cat-health">Health</span></div><div class="carrier-badge-name">Mutual of Omaha</div><div class="carrier-badge-fact">Est. 1909 · Omaha, NE</div></div>
+    <div class="carrier-badge" data-category="life"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-life">Life Insurance</span></div><div class="carrier-badge-name">Corebridge</div><div class="carrier-badge-fact">Roots to 1926 · Independent since 2022</div></div>
+    <div class="carrier-badge" data-category="life"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-life">Life Insurance</span></div><div class="carrier-badge-name">CICA</div><div class="carrier-badge-fact">Living-benefit life insurer</div></div>
+    <div class="carrier-badge" data-category="life health"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-life">Life Insurance</span><span class="carrier-badge-category cat-health">Health</span></div><div class="carrier-badge-name">Assurity</div><div class="carrier-badge-fact">Roots to 1890 · Lincoln, NE</div></div>
+    <div class="carrier-badge" data-category="life"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-life">Life Insurance</span></div><div class="carrier-badge-name">Manhattan Life</div><div class="carrier-badge-fact">Est. 1850 · One of the oldest US insurers</div></div>
+    <div class="carrier-badge" data-category="medicare"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-medicare">Medicare</span></div><div class="carrier-badge-name">United Healthcare</div><div class="carrier-badge-fact">Est. 1977 · Minnetonka, MN</div></div>
+    <div class="carrier-badge" data-category="health"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-health">Health</span></div><div class="carrier-badge-name">Medico Wellabe</div><div class="carrier-badge-fact">Roots to 1929 · Des Moines, IA</div></div>
+    <div class="carrier-badge" data-category="medicare"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-medicare">Medicare</span></div><div class="carrier-badge-name">Devoted</div><div class="carrier-badge-fact">Founded 2017 · Built for seniors</div></div>
+    <div class="carrier-badge" data-category="life"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-life">Life Insurance</span></div><div class="carrier-badge-name">Ethos - TruStage</div><div class="carrier-badge-fact">Ethos: 2016 · TruStage: 1935</div></div>
+    <div class="carrier-badge" data-category="life"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-life">Life Insurance</span></div><div class="carrier-badge-name">American Amicable</div><div class="carrier-badge-fact">Est. 1910 · Waco, TX</div></div>
+    <div class="carrier-badge" data-category="life"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-life">Life Insurance</span></div><div class="carrier-badge-name">Transamerica</div><div class="carrier-badge-fact">Roots to 1904 · San Francisco</div></div>
+    <div class="carrier-badge" data-category="medicare health"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-medicare">Medicare</span><span class="carrier-badge-category cat-health">Health</span></div><div class="carrier-badge-name">Aetna</div><div class="carrier-badge-fact">Est. 1853 · Hartford, CT</div></div>
+    <div class="carrier-badge" data-category="medicare"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-medicare">Medicare</span></div><div class="carrier-badge-name">Humana</div><div class="carrier-badge-fact">Est. 1961 · Louisville, KY</div></div>
+    <div class="carrier-badge" data-category="medicare"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-medicare">Medicare</span></div><div class="carrier-badge-name">Anthem</div><div class="carrier-badge-fact">Roots to 1944 · Blue Cross Blue Shield</div></div>
+    <div class="carrier-badge" data-category="medicare"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-medicare">Medicare</span></div><div class="carrier-badge-name">United American</div><div class="carrier-badge-fact">Est. 1947 · Dallas, TX</div></div>
+    <div class="carrier-badge" data-category="health medicare life"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-health">Health</span><span class="carrier-badge-category cat-medicare">Medicare</span><span class="carrier-badge-category cat-life">Life Insurance</span></div><div class="carrier-badge-name">Physicians Mutual</div><div class="carrier-badge-fact">Est. 1902 · Omaha, NE</div></div>
+    <div class="carrier-badge" data-category="life"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-life">Life Insurance</span></div><div class="carrier-badge-name">Foresters</div><div class="carrier-badge-fact">Est. 1874 · Fraternal benefit society</div></div>
+    <div class="carrier-badge" data-category="medicare"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-medicare">Medicare</span></div><div class="carrier-badge-name">Molina</div><div class="carrier-badge-fact">Est. 1980 · Started with one clinic</div></div>
+    <div class="carrier-badge" data-category="medicare"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-medicare">Medicare</span></div><div class="carrier-badge-name">Zing Health</div><div class="carrier-badge-fact">Founded 2019 · Community-focused</div></div>
+    <div class="carrier-badge" data-category="medicare"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-medicare">Medicare</span></div><div class="carrier-badge-name">WellCare</div><div class="carrier-badge-fact">Est. 1985 · Tampa, FL</div></div>
+    <div class="carrier-badge" data-category="life"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-life">Life Insurance</span></div><div class="carrier-badge-name">SBLI</div><div class="carrier-badge-fact">Est. 1907 · Founded by Louis Brandeis</div></div>
+    <div class="carrier-badge" data-category="medicare"><div class="carrier-badge-categories"><span class="carrier-badge-category cat-medicare">Medicare</span></div><div class="carrier-badge-name">Aetna Accendo</div><div class="carrier-badge-fact">Launched 2020 · Aetna/CVS affiliate</div></div>
   </div>
   <p class="carriers-footnote reveal">Carrier availability varies by product and location — not every carrier listed offers coverage in every area.</p>
 </section>
@@ -588,6 +626,7 @@
 
 <!-- ── CTA ── -->
 <section class="cta-section">
+  <div class="cta-light"></div>
   <h2>Turning 65 Soon? Let's Talk.</h2>
   <p>Your Medicare enrollment window has real deadlines. A free 15-minute call gives you a clear picture of what's available — no obligation, no pressure.</p>
   <a href="#contact" class="btn-dark" style="position:relative;z-index:2;">Request a Free Review</a>
