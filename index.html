@@ -353,6 +353,27 @@
   #tc-send:disabled { opacity: 0.45; cursor: not-allowed; }
   .tc-disclaimer { font-size: 0.62rem; color: #4a4540; text-align: center; padding: 0.4rem 1rem 0.65rem; line-height: 1.4; flex-shrink: 0; background: var(--charcoal); }
   @media (max-width: 420px) { #tc-chat-window { width: calc(100vw - 2rem); right: 1rem; bottom: 5rem; } #tc-chat-btn { bottom: 1.25rem; right: 1.25rem; } }
+
+  /* ── PLAN FINDER MODAL ── */
+  #plan-modal-overlay { position: fixed; inset: 0; background: rgba(20,18,16,0.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; transition: opacity 0.25s ease; }
+  #plan-modal-overlay.pm-open { display: flex; opacity: 1; }
+  .pm-box { background: var(--charcoal-mid); border: 1px solid rgba(240,232,216,0.1); border-radius: 4px; max-width: 560px; width: 100%; padding: 2.75rem 2.5rem; position: relative; transform: translateY(14px); transition: transform 0.28s ease; text-align: center; }
+  #plan-modal-overlay.pm-open .pm-box { transform: translateY(0); }
+  .pm-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--rust), var(--teal), var(--olive), var(--gold)); border-radius: 4px 4px 0 0; }
+  .pm-close { position: absolute; top: 1rem; right: 1.1rem; background: none; border: none; color: var(--text-muted); font-size: 1.3rem; cursor: pointer; line-height: 1; padding: 0.25rem; transition: color 0.2s; }
+  .pm-close:hover { color: var(--cream); }
+  .pm-eyebrow { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin-bottom: 0.9rem; }
+  .pm-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: var(--cream); margin-bottom: 0.6rem; line-height: 1.25; }
+  .pm-sub { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .pm-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .pm-option { background: rgba(240,232,216,0.03); border: 1px solid rgba(240,232,216,0.12); border-radius: 3px; padding: 1.75rem 1.25rem; cursor: pointer; transition: border-color 0.25s, transform 0.2s, background 0.25s; font-family: inherit; color: var(--cream); }
+  .pm-option:hover { transform: translateY(-3px); }
+  .pm-option-life:hover { border-color: var(--teal); background: rgba(61,122,110,0.1); }
+  .pm-option-health:hover { border-color: var(--rust); background: rgba(196,82,42,0.1); }
+  .pm-option-icon { font-size: 1.8rem; margin-bottom: 0.75rem; display: block; }
+  .pm-option-label { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem; }
+  .pm-option-desc { font-size: 0.76rem; color: var(--text-muted); line-height: 1.4; }
+  @media (max-width: 480px) { .pm-options { grid-template-columns: 1fr; } .pm-box { padding: 2.25rem 1.5rem; } }
 </style>
 </head>
 <body>
@@ -424,7 +445,7 @@
     </div>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Request a Free Review</a>
-      <a href="quiz" class="btn-ghost">Find my plan &#8594;</a>
+      <a href="#" class="btn-ghost" onclick="openPlanModal(event)">Find my plan &#8594;</a>
     </div>
   </div>
   <div class="hero-right">
@@ -585,6 +606,8 @@
         <form id="contactForm" action="https://formspree.io/f/xjgzyeal" method="POST" onsubmit="handleFormspreeSubmit(event)">
           <input type="hidden" name="_subject" value="New Review Request — CrowhurstInsurance.com">
           <input type="hidden" name="sms_consent" value="Yes — checkbox confirmed">
+          <input type="hidden" name="interested_in" id="interestedInField" value="">
+          <div class="form-field" id="interestBanner" style="display:none; background:rgba(201,148,58,0.12); border:1px solid rgba(201,148,58,0.3); border-radius:2px; padding:0.6rem 0.9rem; font-size:0.8rem; color:var(--gold); font-weight:600;"></div>
           <div class="form-field"><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="Jane Smith" required></div>
           <div class="form-field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(123) 555-0100" required></div>
           <div class="form-field"><label for="zip">Zip Code</label><input type="text" id="zip" name="zip" placeholder="12345" maxlength="5" pattern="[0-9]{5}" inputmode="numeric"></div>
@@ -685,6 +708,27 @@
   <div class="tc-disclaimer">Educational only. Not insurance advice. Coverage varies by location &amp; carrier.</div>
 </div>
 
+<div id="plan-modal-overlay" onclick="closePlanModalOnOverlay(event)">
+  <div class="pm-box">
+    <button class="pm-close" onclick="closePlanModal()" aria-label="Close">&#10005;</button>
+    <div class="pm-eyebrow">Quick Question</div>
+    <div class="pm-title">What are you looking for help with?</div>
+    <div class="pm-sub">Pick one and I'll point you in the right direction.</div>
+    <div class="pm-options">
+      <button class="pm-option pm-option-life" onclick="choosePlanPath('Life Insurance')">
+        <span class="pm-option-icon">&#128100;</span>
+        <div class="pm-option-label">Life Insurance</div>
+        <div class="pm-option-desc">Term, Whole Life, IUL &amp; Final Expense</div>
+      </button>
+      <button class="pm-option pm-option-health" onclick="choosePlanPath('Medicare / Health')">
+        <span class="pm-option-icon">&#10084;&#65039;</span>
+        <div class="pm-option-label">Medicare / Health</div>
+        <div class="pm-option-desc">Advantage, Supplement &amp; Ancillary</div>
+      </button>
+    </div>
+  </div>
+</div>
+
 <script>
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
@@ -699,6 +743,26 @@
     entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+  // ── Plan Finder Modal ──
+  function openPlanModal(e) {
+    e.preventDefault();
+    document.getElementById('plan-modal-overlay').classList.add('pm-open');
+  }
+  function closePlanModal() {
+    document.getElementById('plan-modal-overlay').classList.remove('pm-open');
+  }
+  function closePlanModalOnOverlay(e) {
+    if (e.target.id === 'plan-modal-overlay') closePlanModal();
+  }
+  function choosePlanPath(choice) {
+    closePlanModal();
+    document.getElementById('interestedInField').value = choice;
+    const banner = document.getElementById('interestBanner');
+    banner.style.display = 'block';
+    banner.textContent = "You told us: " + choice + " - we will follow up with that in mind.";
+    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+  }
 
   // duplicate the carrier marquee track once so the loop is seamless
   (function initMarquee() {
