@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Medicare Plan Finder | Thomas Crowhurst Insurance</title>
-<meta name="description" content="Medicare Advantage or Medicare Supplement? Answer 9 questions and get a personalized recommendation. Free, no pressure.">
+<meta name="description" content="Medicare Advantage or Medicare Supplement? Answer a few quick questions and get a personalized recommendation. Free, no pressure.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='4' fill='%232a2825'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='bold' fill='%23c9943a' text-anchor='middle'%3ETC%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,7 @@
   .quiz-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:900;line-height:1.1;color:var(--cream);margin-bottom:1rem;position:relative;}
   .quiz-hero h1 em{font-style:italic;color:var(--gold);}
   .quiz-hero p{font-size:0.95rem;color:var(--text-light);max-width:520px;margin:0 auto;line-height:1.7;position:relative;}
+  .quiz-note{font-size:0.8rem;color:var(--text-muted);max-width:540px;margin:1rem auto 0;line-height:1.65;position:relative;}
   .progress-wrap{max-width:680px;margin:2rem auto 0;padding:0 1.5rem;}
   .progress-bar-bg{height:4px;background:var(--charcoal-light);border-radius:2px;overflow:hidden;}
   .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--rust),var(--gold));border-radius:2px;transition:width 0.4s ease;width:0%;}
@@ -49,6 +50,8 @@
   .option.selected .option-marker::after{content:'✓';font-size:0.65rem;color:white;font-weight:700;}
   .option-label{font-size:0.9rem;color:var(--cream);font-weight:500;line-height:1.4;}
   .option-desc{font-size:0.78rem;color:var(--text-muted);margin-top:0.2rem;line-height:1.5;}
+  .branch-note{margin-top:1.25rem;padding:1rem 1.25rem;background:rgba(201,148,58,0.08);border:1px solid rgba(201,148,58,0.25);border-left:3px solid var(--gold);border-radius:2px;font-size:0.85rem;line-height:1.65;color:var(--text-light);}
+  .branch-note a{color:var(--gold);}
   .question-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;}
   .btn-back{background:none;border:1px solid rgba(240,232,216,0.15);color:var(--text-muted);padding:0.7rem 1.5rem;border-radius:2px;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
   .btn-back:hover{color:var(--cream);border-color:rgba(240,232,216,0.3);}
@@ -83,6 +86,7 @@
   .result-reason:last-child{margin-bottom:0;}
   .result-reason::before{content:'→';color:var(--rust);font-weight:700;flex-shrink:0;margin-top:1px;}
   .result-disclaimer{font-size:0.75rem;color:var(--text-muted);line-height:1.6;padding:1rem;background:rgba(240,232,216,0.03);border:1px solid rgba(240,232,216,0.06);border-radius:2px;margin-bottom:2rem;}
+  .cost-note{font-size:0.75rem;color:var(--text-muted);line-height:1.6;margin-top:0.85rem;padding-top:0.85rem;border-top:1px solid rgba(240,232,216,0.08);}
   .result-cta{background:var(--rust);border-radius:2px;padding:2rem;text-align:center;position:relative;overflow:hidden;}
   .result-cta::before{content:'';position:absolute;top:-80px;right:-80px;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,0.06) 0%,transparent 60%);border-radius:50%;}
   .result-cta h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--cream);margin-bottom:0.5rem;position:relative;}
@@ -111,7 +115,8 @@
 <div class="quiz-hero">
   <div class="quiz-eyebrow">Free Medicare Plan Finder</div>
   <h1>Medicare Advantage or<br><em>Medicare Supplement?</em></h1>
-  <p>Answer 9 quick questions. Get a personalized recommendation — no obligation, no sales pitch.</p>
+  <p>Answer a few quick questions. Get a personalized recommendation — no obligation, no sales pitch.</p>
+  <p class="quiz-note">Quick primer: it really comes down to two real paths — Original Medicare (Parts A &amp; B) plus a Medicare Supplement plan, or Medicare Advantage. Medicare Supplement is never a stand-alone option — it always works alongside Original Medicare, not instead of it. This quiz helps you see which path fits you better.</p>
   <div class="progress-wrap">
     <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
     <div class="progress-label" id="progressLabel">Question 1 of 9</div>
@@ -133,15 +138,29 @@
     <div class="question-nav"><div></div><button class="btn-next" onclick="nextQuestion()" disabled id="next-1">Next →</button></div>
   </div>
 
+  <!-- Q1b: conditional follow-up, shown only when someone says they're already on Medicare -->
+  <div class="question-card" data-q="1b">
+    <div class="question-num">Additional Question</div>
+    <div class="question-text">Do you currently have Medicare Part A and Part B?</div>
+    <div class="question-sub">This helps us know exactly where you stand before we get into plan fit.</div>
+    <div class="options">
+      <div class="option" data-value="both" data-score-ma="0" data-score-ms="0" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Yes — I have both Part A and Part B</div></div></div>
+      <div class="option" data-value="partA" data-score-ma="0" data-score-ms="0" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">I only have Part A so far</div><div class="option-desc">Common if you just retired or are about to lose employer coverage</div></div></div>
+      <div class="option" data-value="unsure" data-score-ma="0" data-score-ms="0" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Not sure</div></div></div>
+    </div>
+    <div class="branch-note" id="branch-note-1b" style="display:none;"></div>
+    <div class="question-nav"><button class="btn-back" onclick="prevQuestion()">← Back</button><button class="btn-next" onclick="nextQuestion()" disabled id="next-1b">Next →</button></div>
+  </div>
+
   <!-- Q2 -->
   <div class="question-card" data-q="2">
     <div class="question-num">Question 2 of 9</div>
     <div class="question-text">How would you describe your overall health?</div>
     <div class="question-sub">Be honest — this is just for your recommendation, not an application.</div>
     <div class="options">
-      <div class="option" data-score-ma="2" data-score-ms="0" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Generally healthy</div><div class="option-desc">I rarely see doctors and take few or no medications</div></div></div>
-      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Moderate</div><div class="option-desc">I have a few conditions and see doctors a couple times a year</div></div></div>
-      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">I use healthcare regularly</div><div class="option-desc">Ongoing conditions, specialists, or frequent visits</div></div></div>
+      <div class="option" data-value="healthy" data-score-ma="2" data-score-ms="0" data-reason-ma="You're in good health, so a lower-premium plan fits your situation well" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Generally healthy</div><div class="option-desc">I rarely see doctors and take few or no medications</div></div></div>
+      <div class="option" data-value="moderate" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Moderate</div><div class="option-desc">I have a few conditions and see doctors a couple times a year</div></div></div>
+      <div class="option" data-value="regular" data-score-ma="0" data-score-ms="3" data-reason-ms="You use healthcare regularly, so predictable costs without network restrictions protect you" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">I use healthcare regularly</div><div class="option-desc">Ongoing conditions, specialists, or frequent visits</div></div></div>
     </div>
     <div class="question-nav"><button class="btn-back" onclick="prevQuestion()">← Back</button><button class="btn-next" onclick="nextQuestion()" disabled id="next-2">Next →</button></div>
   </div>
@@ -152,9 +171,9 @@
     <div class="question-text">Do you have a family history of serious illness?</div>
     <div class="question-sub">Heart disease, cancer, diabetes, stroke — conditions that can mean higher healthcare use down the road.</div>
     <div class="options">
-      <div class="option" data-score-ma="1" data-score-ms="0" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">No significant family history</div></div></div>
-      <div class="option" data-score-ma="0" data-score-ms="2" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Yes — one or more close relatives</div><div class="option-desc">Heart disease, cancer, diabetes, or similar</div></div></div>
-      <div class="option" data-score-ma="0" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Not sure / I would rather not say</div></div></div>
+      <div class="option" data-value="no_history" data-score-ma="1" data-score-ms="0" data-reason-ma="No significant family history of major illness lines up with lower expected healthcare needs" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">No significant family history</div></div></div>
+      <div class="option" data-value="history_yes" data-score-ma="0" data-score-ms="2" data-reason-ms="A family history of serious illness makes predictable coverage especially valuable" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Yes — one or more close relatives</div><div class="option-desc">Heart disease, cancer, diabetes, or similar</div></div></div>
+      <div class="option" data-value="unsure" data-score-ma="0" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Not sure / I would rather not say</div></div></div>
     </div>
     <div class="question-nav"><button class="btn-back" onclick="prevQuestion()">← Back</button><button class="btn-next" onclick="nextQuestion()" disabled id="next-3">Next →</button></div>
   </div>
@@ -165,9 +184,9 @@
     <div class="question-text">Do you have doctors you want to keep seeing?</div>
     <div class="question-sub">Medicare Advantage plans use networks — your current doctors may or may not be included.</div>
     <div class="options">
-      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Yes — keeping my doctors is very important</div><div class="option-desc">I have specialists or a primary care doctor I trust</div></div></div>
-      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Somewhat — I have a preference but I am flexible</div></div></div>
-      <div class="option" data-score-ma="2" data-score-ms="0" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Not really — I am open to whoever is in network</div></div></div>
+      <div class="option" data-value="keep_important" data-score-ma="0" data-score-ms="3" data-reason-ms="Keeping your current doctors matters to you, and Supplement plans have no network restrictions" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Yes — keeping my doctors is very important</div><div class="option-desc">I have specialists or a primary care doctor I trust</div></div></div>
+      <div class="option" data-value="flexible" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Somewhat — I have a preference but I am flexible</div></div></div>
+      <div class="option" data-value="open_network" data-score-ma="2" data-score-ms="0" data-reason-ma="You're open to whichever doctors are in-network, which fits an Advantage plan well" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Not really — I am open to whoever is in network</div></div></div>
     </div>
     <div class="question-nav"><button class="btn-back" onclick="prevQuestion()">← Back</button><button class="btn-next" onclick="nextQuestion()" disabled id="next-4">Next →</button></div>
   </div>
@@ -178,9 +197,9 @@
     <div class="question-text">Do you travel or spend time in multiple states?</div>
     <div class="question-sub">Medicare Advantage plans are typically local. Medicare Supplement works anywhere Medicare is accepted nationwide.</div>
     <div class="options">
-      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Yes — I travel frequently or snowbird</div><div class="option-desc">I spend significant time outside my home state</div></div></div>
-      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Occasionally — a trip here and there</div></div></div>
-      <div class="option" data-score-ma="2" data-score-ms="0" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">No — I stay close to home</div></div></div>
+      <div class="option" data-value="travels_often" data-score-ma="0" data-score-ms="3" data-reason-ms="You travel frequently, and Supplement coverage travels with you nationwide" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Yes — I travel frequently or snowbird</div><div class="option-desc">I spend significant time outside my home state</div></div></div>
+      <div class="option" data-value="occasional_travel" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Occasionally — a trip here and there</div></div></div>
+      <div class="option" data-value="stays_home" data-score-ma="2" data-score-ms="0" data-reason-ma="You mostly stay close to home, so a local network works fine for you" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">No — I stay close to home</div></div></div>
     </div>
     <div class="question-nav"><button class="btn-back" onclick="prevQuestion()">← Back</button><button class="btn-next" onclick="nextQuestion()" disabled id="next-5">Next →</button></div>
   </div>
@@ -190,9 +209,9 @@
     <div class="question-num">Question 6 of 9</div>
     <div class="question-text">What matters most to you in a health plan?</div>
     <div class="options">
-      <div class="option" data-score-ma="3" data-score-ms="0" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Lowest possible monthly premium</div><div class="option-desc">I want to keep my monthly costs as low as I can</div></div></div>
-      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Predictable costs no matter what happens</div><div class="option-desc">I do not want surprise bills if I get sick</div></div></div>
-      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">A balance of both</div></div></div>
+      <div class="option" data-value="lowest_premium" data-score-ma="3" data-score-ms="0" data-reason-ma="Keeping your monthly premium as low as possible is your top priority" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Lowest possible monthly premium</div><div class="option-desc">I want to keep my monthly costs as low as I can</div></div></div>
+      <div class="option" data-value="predictable_costs" data-score-ma="0" data-score-ms="3" data-reason-ms="Predictable costs, no matter what happens, matter most to you" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Predictable costs no matter what happens</div><div class="option-desc">I do not want surprise bills if I get sick</div></div></div>
+      <div class="option" data-value="balance" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">A balance of both</div></div></div>
     </div>
     <div class="question-nav"><button class="btn-back" onclick="prevQuestion()">← Back</button><button class="btn-next" onclick="nextQuestion()" disabled id="next-6">Next →</button></div>
   </div>
@@ -203,9 +222,9 @@
     <div class="question-text">Are dental, vision, and hearing benefits important to you?</div>
     <div class="question-sub">Medicare Advantage often includes these. Medicare Supplement typically does not.</div>
     <div class="options">
-      <div class="option" data-score-ma="2" data-score-ms="0" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Yes — very important</div><div class="option-desc">I want dental, vision, and hearing all in one plan</div></div></div>
-      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Somewhat — nice to have but not a dealbreaker</div></div></div>
-      <div class="option" data-score-ma="0" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Not really — I will handle those separately</div></div></div>
+      <div class="option" data-value="dvh_important" data-score-ma="2" data-score-ms="0" data-reason-ma="Bundled dental, vision, and hearing coverage is important to you" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Yes — very important</div><div class="option-desc">I want dental, vision, and hearing all in one plan</div></div></div>
+      <div class="option" data-value="dvh_somewhat" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Somewhat — nice to have but not a dealbreaker</div></div></div>
+      <div class="option" data-value="dvh_not_important" data-score-ma="0" data-score-ms="1" data-reason-ms="You're comfortable handling dental, vision, and hearing separately" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Not really — I will handle those separately</div></div></div>
     </div>
     <div class="question-nav"><button class="btn-back" onclick="prevQuestion()">← Back</button><button class="btn-next" onclick="nextQuestion()" disabled id="next-7">Next →</button></div>
   </div>
@@ -216,9 +235,9 @@
     <div class="question-text">How do you feel about referrals and prior authorizations?</div>
     <div class="question-sub">Some Medicare Advantage plans require referrals to see specialists and prior approval for certain procedures.</div>
     <div class="options">
-      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">I do not want to deal with that at all</div><div class="option-desc">I want to see any doctor, anytime, without hoops</div></div></div>
-      <div class="option" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">I can handle some — as long as it is not excessive</div></div></div>
-      <div class="option" data-score-ma="2" data-score-ms="0" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Does not bother me — I am used to managed care</div></div></div>
+      <div class="option" data-value="no_hoops" data-score-ma="0" data-score-ms="3" data-reason-ms="You don't want to deal with referrals or prior authorizations at all" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">I do not want to deal with that at all</div><div class="option-desc">I want to see any doctor, anytime, without hoops</div></div></div>
+      <div class="option" data-value="some_ok" data-score-ma="1" data-score-ms="1" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">I can handle some — as long as it is not excessive</div></div></div>
+      <div class="option" data-value="used_to_managed_care" data-score-ma="2" data-score-ms="0" data-reason-ma="Referrals and prior authorizations don't bother you, which fits managed care well" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Does not bother me — I am used to managed care</div></div></div>
     </div>
     <div class="question-nav"><button class="btn-back" onclick="prevQuestion()">← Back</button><button class="btn-next" onclick="nextQuestion()" disabled id="next-8">Next →</button></div>
   </div>
@@ -228,9 +247,9 @@
     <div class="question-num">Question 9 of 9</div>
     <div class="question-text">What best describes your current financial situation?</div>
     <div class="options">
-      <div class="option" data-score-ma="3" data-score-ms="0" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Fixed income — every dollar counts</div><div class="option-desc">I need to keep monthly costs as low as possible</div></div></div>
-      <div class="option" data-score-ma="1" data-score-ms="2" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Comfortable — I can handle a reasonable premium</div><div class="option-desc">I would pay more monthly to avoid large unexpected bills</div></div></div>
-      <div class="option" data-score-ma="0" data-score-ms="3" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">I prioritize peace of mind over monthly cost</div><div class="option-desc">Predictability matters more than the premium amount</div></div></div>
+      <div class="option" data-value="fixed_income" data-score-ma="3" data-score-ms="0" data-reason-ma="You're on a fixed income, so the lowest possible monthly cost matters most" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Fixed income — every dollar counts</div><div class="option-desc">I need to keep monthly costs as low as possible</div></div></div>
+      <div class="option" data-value="comfortable" data-score-ma="1" data-score-ms="2" data-reason-ms="You'd rather pay a bit more monthly to avoid a large unexpected bill" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">Comfortable — I can handle a reasonable premium</div><div class="option-desc">I would pay more monthly to avoid large unexpected bills</div></div></div>
+      <div class="option" data-value="peace_of_mind" data-score-ma="0" data-score-ms="3" data-reason-ms="You prioritize peace of mind over the size of the monthly premium" onclick="selectOption(this)"><div class="option-marker"></div><div><div class="option-label">I prioritize peace of mind over monthly cost</div><div class="option-desc">Predictability matters more than the premium amount</div></div></div>
     </div>
     <div class="question-nav"><button class="btn-back" onclick="prevQuestion()">← Back</button><button class="btn-next" onclick="showLeadCapture()" disabled id="next-9">See My Recommendation →</button></div>
   </div>
@@ -252,21 +271,28 @@
       <div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;">In the meantime, here is your recommendation.</div>
       <button onclick="showFinalResult()" class="btn-next" style="margin:0 auto;display:block;">View My Results →</button>
     </div>
+    <div id="lead-error" style="display:none;text-align:center;padding:1.5rem 0;">
+      <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);margin-bottom:0.5rem;">That didn't go through</div>
+      <div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.6;">No worries — you can try again, or see your recommendation now and call Thomas directly at (317) 728-9417.</div>
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+        <button type="button" onclick="retrySubmit()" class="btn-back">Try Again</button>
+        <button type="button" onclick="showFinalResult()" class="btn-next">View My Results Anyway →</button>
+      </div>
+    </div>
   </div>
 
   <!-- RESULTS -->
   <div class="result-card" id="result-ma">
     <div class="result-badge">Your Result</div>
-    <div class="result-title">You may be a good fit for<br><em>Medicare Advantage</em></div>
-    <div class="result-summary">Based on your answers, Medicare Advantage aligns well with your situation. You are relatively healthy, value low monthly costs, and prefer having dental, vision, and hearing bundled into one plan.</div>
+    <div class="result-title">Medicare Advantage<br>would be a strong choice for you</div>
+    <div class="result-summary">Here's why: your answers show you value keeping monthly costs low and like having dental, vision, and hearing bundled into one plan. Medicare Advantage bundles Part A, Part B, and often Part D into a single plan through a private insurer. The one real alternative is Original Medicare paired with a Medicare Supplement plan — a different path that trades that bundled convenience for open access to any doctor nationwide.</div>
     <div class="result-reasons">
       <div class="result-reasons-title">Why this fits you</div>
-      <div class="result-reason">$0 or low monthly premium keeps your costs down</div>
-      <div class="result-reason">Built-in dental, vision, and hearing in many plans</div>
-      <div class="result-reason">OTC and grocery benefit cards on select plans</div>
-      <div class="result-reason">All-in-one coverage — one plan, one card</div>
+      <div id="reasons-ma"></div>
     </div>
-    <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. Medicare Advantage plans vary significantly by carrier, location, and your specific health situation. The best way to know for sure is to speak with Thomas directly.</div>
+    <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. Medicare Advantage plans vary significantly by carrier, location, and your specific health situation. The best way to know for sure is to speak with Thomas directly.
+      <div class="cost-note">Keep in mind: you still need Medicare Part A and Part B to join a Medicare Advantage plan, so the standard Part B premium still applies. That premium is currently projected at $209.50/month for 2027, based on the Medicare Trustees Report — CMS confirms the official 2027 amount each November, so treat this as an estimate for now.</div>
+    </div>
     <div class="result-cta">
       <h3>Let Thomas Find the Right Plan for You</h3>
       <p>He will compare every Medicare Advantage plan available in your area — at no cost to you.</p>
@@ -277,16 +303,15 @@
 
   <div class="result-card" id="result-ms">
     <div class="result-badge">Your Result</div>
-    <div class="result-title">You may be a good fit for<br><em>Medicare Supplement</em></div>
-    <div class="result-summary">Based on your answers, Medicare Supplement aligns well with your situation. You value freedom, predictability, and the ability to see any doctor who accepts Medicare — without networks, referrals, or surprise bills.</div>
+    <div class="result-title">Original Medicare + <em>Medicare Supplement</em><br>would be a strong choice for you</div>
+    <div class="result-summary">Here's why: your answers show you value freedom, predictability, and the ability to see any doctor who accepts Medicare, without networks or referrals. One clarification worth knowing — Medicare Supplement is never a stand-alone option. It's an add-on that works alongside Original Medicare Part A and Part B to help cover the gaps they leave behind. Medicare Advantage is the one real alternative: a different path that bundles everything into a single plan through a private insurer instead.</div>
     <div class="result-reasons">
       <div class="result-reasons-title">Why this fits you</div>
-      <div class="result-reason">See any doctor in the country who accepts Medicare — no networks</div>
-      <div class="result-reason">Predictable costs — no surprise bills if you get sick</div>
-      <div class="result-reason">No referrals required to see specialists</div>
-      <div class="result-reason">Coverage travels with you anywhere in the US</div>
+      <div id="reasons-ms"></div>
     </div>
-    <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. Medicare Supplement plans vary by carrier, age, and health history. In most states, waiting too long to enroll can affect your eligibility.</div>
+    <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. Medicare Supplement plans vary by carrier, age, and health history. In most states, waiting too long to enroll can affect your eligibility.
+      <div class="cost-note">Keep in mind: this path requires Original Medicare Part A and Part B, so the standard Part B premium applies on top of your Supplement premium. Part B is currently projected at $209.50/month for 2027, based on the Medicare Trustees Report — CMS confirms the official 2027 amount each November, so treat this as an estimate for now.</div>
+    </div>
     <div class="result-cta">
       <h3>Let Thomas Find the Right Plan for You</h3>
       <p>He will compare Medicare Supplement plans across multiple carriers — at no cost to you.</p>
@@ -298,7 +323,15 @@
   <div class="result-card" id="result-toss">
     <div class="result-badge">Your Result</div>
     <div class="result-title">It is close — and that is<br><em>exactly why you need Thomas</em></div>
-    <div class="result-summary">Your answers suggest you are right in the middle. Both Medicare Advantage and Medicare Supplement have real merit for your situation — and the right choice depends on details that a quiz cannot fully capture.</div>
+    <div class="result-summary">Your answers suggest you are right in the middle. Both real paths — Original Medicare plus a Supplement plan, and Medicare Advantage — have merit for your situation, and the right choice depends on details a quiz cannot fully capture.</div>
+    <div class="result-reasons" style="margin-bottom:1.25rem;">
+      <div class="result-reasons-title">What leaned toward Medicare Advantage</div>
+      <div id="reasons-toss-ma"></div>
+    </div>
+    <div class="result-reasons" style="margin-bottom:1.25rem;">
+      <div class="result-reasons-title">What leaned toward Medicare Supplement</div>
+      <div id="reasons-toss-ms"></div>
+    </div>
     <div class="result-reasons">
       <div class="result-reasons-title">What to talk through with Thomas</div>
       <div class="result-reason">Which doctors you want to keep — and whether they are in local networks</div>
@@ -306,7 +339,9 @@
       <div class="result-reason">Your actual out-of-pocket risk tolerance</div>
       <div class="result-reason">What plans are actually available in your zip code</div>
     </div>
-    <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. The best way to make the right call is a free 15-minute conversation with Thomas.</div>
+    <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. The best way to make the right call is a free 15-minute conversation with Thomas.
+      <div class="cost-note">Keep in mind: no matter which path you choose, Medicare Part B has a monthly premium — currently projected at $209.50/month for 2027, based on the Medicare Trustees Report. CMS confirms the official 2027 amount each November, so treat this as an estimate for now.</div>
+    </div>
     <div class="result-cta">
       <h3>Let Thomas Figure This Out With You</h3>
       <p>A free 15-minute call gives you a clear answer — no obligation, no pressure.</p>
@@ -322,66 +357,164 @@
 </div>
 
 <script>
-const TOTAL = 9;
-let current = 1;
+const BASE_TOTAL = 9;
+let currentQ = '1';
+let historyStack = [];
+let extraStep = false;
 let scores = { ma: 0, ms: 0 };
 let pendingResult = '';
+
+function activeStepCount(){
+  return BASE_TOTAL + (extraStep ? 1 : 0);
+}
+
+function stepIndexOf(key){
+  if(key === '1') return 1;
+  if(key === '1b') return 2;
+  return parseInt(key) + (extraStep ? 1 : 0);
+}
 
 function selectOption(el){
   const card = el.closest('.question-card');
   card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
-  const q = card.dataset.q;
-  document.getElementById('next-' + q).disabled = false;
+  const key = card.dataset.q;
+  document.getElementById('next-' + key).disabled = false;
+  if(key === '1b'){
+    updateBranchNote(el.dataset.value);
+  }
+}
+
+function updateBranchNote(value){
+  const note = document.getElementById('branch-note-1b');
+  if(value === 'partA'){
+    note.style.display = 'block';
+    note.innerHTML = "Since you're retiring and losing your employer coverage, you'll want to enroll in Part B soon to avoid a gap. You can sign up directly through Social Security, either online at <a href=\"https://www.ssa.gov\" target=\"_blank\" rel=\"noopener\">ssa.gov</a> or at your local office.";
+  } else if(value === 'unsure'){
+    note.style.display = 'block';
+    note.innerHTML = "No problem — the easiest way to check is to look at your red, white, and blue Medicare card, or call Social Security at 1-800-772-1213.";
+  } else {
+    note.style.display = 'none';
+    note.innerHTML = '';
+  }
+}
+
+function goToCard(key){
+  document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+  const card = document.querySelector(`.question-card[data-q="${key}"]`);
+  if(card){
+    card.classList.add('active');
+    const idx = stepIndexOf(key);
+    const total = activeStepCount();
+    const label = card.querySelector('.question-num');
+    if(label) label.textContent = `Question ${idx} of ${total}`;
+  }
+  currentQ = key;
+  updateProgress();
 }
 
 function nextQuestion(){
-  const card = document.querySelector(`.question-card[data-q="${current}"]`);
+  const card = document.querySelector(`.question-card[data-q="${currentQ}"]`);
   const selected = card.querySelector('.option.selected');
   if(selected){
     scores.ma += parseInt(selected.dataset.scoreMa || 0);
     scores.ms += parseInt(selected.dataset.scoreMs || 0);
   }
-  card.classList.remove('active');
-  current++;
-  updateProgress();
-  const next = document.querySelector(`.question-card[data-q="${current}"]`);
-  if(next) next.classList.add('active');
+
+  let next;
+  if(currentQ === '1'){
+    extraStep = !!(selected && selected.dataset.value === 'already');
+    next = extraStep ? '1b' : '2';
+  } else if(currentQ === '1b'){
+    next = '2';
+  } else {
+    next = String(parseInt(currentQ) + 1);
+  }
+
+  historyStack.push(currentQ);
+  goToCard(next);
 }
 
 function prevQuestion(){
-  const card = document.querySelector(`.question-card[data-q="${current}"]`);
-  card.classList.remove('active');
-  const prev = document.querySelector(`.question-card[data-q="${current - 1}"]`);
-  const prevSelected = prev ? prev.querySelector('.option.selected') : null;
-  if(prevSelected){
-    scores.ma -= parseInt(prevSelected.dataset.scoreMa || 0);
-    scores.ms -= parseInt(prevSelected.dataset.scoreMs || 0);
+  const card = document.querySelector(`.question-card[data-q="${currentQ}"]`);
+  const selected = card.querySelector('.option.selected');
+  if(selected){
+    scores.ma -= parseInt(selected.dataset.scoreMa || 0);
+    scores.ms -= parseInt(selected.dataset.scoreMs || 0);
   }
-  current--;
-  updateProgress();
-  const prevCard = document.querySelector(`.question-card[data-q="${current}"]`);
-  if(prevCard) prevCard.classList.add('active');
+  const prevKey = historyStack.pop() || '1';
+  goToCard(prevKey);
 }
 
 function updateProgress(){
-  const pct = ((current - 1) / TOTAL) * 100;
+  const total = activeStepCount();
+  const idx = stepIndexOf(currentQ);
+  const pct = ((idx - 1) / total) * 100;
   document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressLabel').textContent = `Question ${current} of ${TOTAL}`;
+  document.getElementById('progressLabel').textContent = `Question ${idx} of ${total}`;
+}
+
+function collectAnswers(){
+  const answers = {};
+  document.querySelectorAll('.question-card[data-q]').forEach(card => {
+    const key = card.dataset.q;
+    const sel = card.querySelector('.option.selected');
+    if(sel && sel.dataset.value) answers[key] = sel.dataset.value;
+  });
+  return answers;
+}
+
+// Simple branching rules, checked in order, top to bottom.
+// The first rule that matches wins and skips the score comparison entirely.
+// To change what decides an outcome, edit or reorder the rules below —
+// each one just checks the answer value(s) from specific questions.
+// If nothing matches, we fall back to comparing the overall MA/MS score.
+function branchResult(answers){
+  // Hates referrals/prior authorizations AND wants to keep current doctors
+  // -> Supplement is clearly the right fit, regardless of anything else
+  if(answers['8'] === 'no_hoops' && answers['4'] === 'keep_important'){
+    return 'result-ms';
+  }
+  // On a fixed income AND wants the lowest possible premium
+  // -> Advantage is clearly the right fit
+  if(answers['9'] === 'fixed_income' && answers['6'] === 'lowest_premium'){
+    return 'result-ma';
+  }
+  // Travels frequently or snowbirds
+  // -> Advantage networks are local, so Supplement wins almost by itself
+  if(answers['5'] === 'travels_often'){
+    return 'result-ms';
+  }
+  // Uses healthcare regularly AND has a family history of serious illness
+  // -> predictable coverage matters more than premium here
+  if(answers['2'] === 'regular' && answers['3'] === 'history_yes'){
+    return 'result-ms';
+  }
+  // Healthy, wants dental/vision/hearing bundled, and isn't chasing pure
+  // peace of mind -> Advantage's bundled extras are the natural fit
+  if(answers['2'] === 'healthy' && answers['7'] === 'dvh_important' && answers['9'] !== 'peace_of_mind'){
+    return 'result-ma';
+  }
+  return null; // nothing clear-cut — let the overall score decide
 }
 
 function showLeadCapture(){
-  const card = document.querySelector(`.question-card[data-q="${current}"]`);
+  const card = document.querySelector(`.question-card[data-q="${currentQ}"]`);
   const selected = card.querySelector('.option.selected');
   if(selected){
     scores.ma += parseInt(selected.dataset.scoreMa || 0);
     scores.ms += parseInt(selected.dataset.scoreMs || 0);
   }
 
-  const diff = Math.abs(scores.ma - scores.ms);
-  if(diff <= 2){ pendingResult = 'result-toss'; }
-  else if(scores.ma > scores.ms){ pendingResult = 'result-ma'; }
-  else { pendingResult = 'result-ms'; }
+  const branch = branchResult(collectAnswers());
+  if(branch){
+    pendingResult = branch;
+  } else {
+    const diff = Math.abs(scores.ma - scores.ms);
+    if(diff <= 2){ pendingResult = 'result-toss'; }
+    else if(scores.ma > scores.ms){ pendingResult = 'result-ma'; }
+    else { pendingResult = 'result-ms'; }
+  }
 
   card.classList.remove('active');
   document.getElementById('progressFill').style.width = '95%';
@@ -428,35 +561,105 @@ async function submitLead(e){
       document.getElementById('leadForm').style.display = 'none';
       document.getElementById('lead-success').style.display = 'block';
     } else {
-      btn.disabled = false;
-      btn.textContent = 'Get My Recommendation →';
-      alert('Something went wrong. Please call Thomas at (317) 728-9417.');
+      document.getElementById('leadForm').style.display = 'none';
+      document.getElementById('lead-error').style.display = 'block';
     }
   } catch(err){
-    btn.disabled = false;
-    btn.textContent = 'Get My Recommendation →';
-    alert('Something went wrong. Please call Thomas at (317) 728-9417.');
+    document.getElementById('leadForm').style.display = 'none';
+    document.getElementById('lead-error').style.display = 'block';
   }
+}
+
+function retrySubmit(){
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = false;
+  btn.textContent = 'Get My Recommendation →';
+  document.getElementById('lead-error').style.display = 'none';
+  document.getElementById('leadForm').style.display = 'block';
+}
+
+const FALLBACK_REASONS = {
+  ma: [
+    "$0 or low monthly premium keeps your costs down",
+    "Built-in dental, vision, and hearing in many plans",
+    "OTC and grocery benefit cards on select plans",
+    "All-in-one coverage — one plan, one card"
+  ],
+  ms: [
+    "See any doctor in the country who accepts Medicare — no networks",
+    "Predictable costs — no surprise bills if you get sick",
+    "No referrals required to see specialists",
+    "Coverage travels with you anywhere in the US"
+  ]
+};
+
+function collectReasons(side){
+  const reasons = [];
+  document.querySelectorAll('.question-card[data-q]').forEach(card => {
+    const key = card.dataset.q;
+    if(key === '1' || key === '1b') return;
+    const sel = card.querySelector('.option.selected');
+    if(!sel) return;
+    const attr = side === 'ma' ? 'reasonMa' : 'reasonMs';
+    if(sel.dataset[attr]) reasons.push(sel.dataset[attr]);
+  });
+  return reasons;
+}
+
+function renderReasons(containerId, side, max, useFallback){
+  const list = collectReasons(side);
+  if(useFallback){
+    FALLBACK_REASONS[side].forEach(r => {
+      if(list.length < max && !list.includes(r)) list.push(r);
+    });
+  }
+  const final = list.slice(0, max);
+  const container = document.getElementById(containerId);
+  const wrapper = container.closest('.result-reasons');
+  if(final.length === 0){
+    if(wrapper) wrapper.style.display = 'none';
+    container.innerHTML = '';
+    return;
+  }
+  if(wrapper) wrapper.style.display = '';
+  container.innerHTML = final.map(r => `<div class="result-reason">${r}</div>`).join('');
 }
 
 function showFinalResult(){
   document.getElementById('lead-capture').classList.remove('active');
   document.getElementById('progressFill').style.width = '100%';
   document.getElementById('progressLabel').textContent = 'Complete';
+
+  if(pendingResult === 'result-ma'){
+    renderReasons('reasons-ma', 'ma', 4, true);
+  } else if(pendingResult === 'result-ms'){
+    renderReasons('reasons-ms', 'ms', 4, true);
+  } else if(pendingResult === 'result-toss'){
+    renderReasons('reasons-toss-ma', 'ma', 3, false);
+    renderReasons('reasons-toss-ms', 'ms', 3, false);
+  }
+
   document.getElementById(pendingResult).classList.add('active');
   document.querySelector('.quiz-container').scrollIntoView({behavior:'smooth'});
 }
 
 function retake(){
-  scores = {ma:0,ms:0};
-  current = 1;
+  scores = { ma: 0, ms: 0 };
+  currentQ = '1';
+  historyStack = [];
+  extraStep = false;
   pendingResult = '';
-  document.querySelectorAll('.question-card').forEach(c=>{c.classList.remove('active');c.querySelectorAll('.option').forEach(o=>o.classList.remove('selected'));});
-  document.querySelectorAll('.result-card').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.question-card').forEach(c => {
+    c.classList.remove('active');
+    c.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  });
+  const note = document.getElementById('branch-note-1b');
+  if(note){ note.style.display = 'none'; note.innerHTML = ''; }
+  document.querySelectorAll('.result-card').forEach(c => c.classList.remove('active'));
   document.getElementById('lead-capture').classList.remove('active');
   document.getElementById('leadForm').style.display = 'block';
   document.getElementById('lead-success').style.display = 'none';
-  document.querySelectorAll('.btn-next').forEach(b=>b.disabled=true);
+  document.querySelectorAll('.btn-next').forEach(b => b.disabled = true);
   document.querySelector('.question-card[data-q="1"]').classList.add('active');
   updateProgress();
   document.querySelector('.quiz-container').scrollIntoView({behavior:'smooth'});
