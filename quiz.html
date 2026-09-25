@@ -104,6 +104,22 @@
   .btn-cta-secondary:hover{border-color:var(--cream);}
   .btn-retake{display:block;text-align:center;margin-top:1.5rem;font-size:0.78rem;color:var(--text-muted);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'DM Sans',sans-serif;transition:color 0.2s;}
   .btn-retake:hover{color:var(--cream);}
+  .carrier-sidebar{display:none;}
+  .carrier-sidebar.visible{display:block;}
+  .carrier-sidebar-inner{background:var(--charcoal-mid);border:1px solid rgba(240,232,216,0.08);border-radius:3px;padding:1.5rem;max-width:680px;margin:0 auto 2rem;}
+  .carrier-sidebar-title{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:1rem;text-align:center;}
+  .carrier-badges{display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;}
+  .carrier-badge{background:rgba(201,148,58,0.1);border:1px solid rgba(201,148,58,0.35);border-radius:20px;padding:0.5rem 1.1rem;font-size:0.82rem;font-weight:600;color:var(--cream);animation:carrierGlow 3s ease-in-out infinite;}
+  @keyframes carrierGlow{0%,100%{box-shadow:0 0 4px rgba(201,148,58,0.2);}50%{box-shadow:0 0 14px rgba(201,148,58,0.55);}}
+  .carrier-badge:nth-child(2n){animation-delay:0.6s;}
+  .carrier-badge:nth-child(3n){animation-delay:1.2s;}
+  .carrier-sidebar-note{font-size:0.7rem;color:var(--text-muted);text-align:center;margin-top:1rem;line-height:1.5;}
+  @media(min-width:1100px){
+    .carrier-sidebar.visible{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);width:190px;z-index:10;}
+    .carrier-sidebar-inner{max-width:190px;margin:0;padding:1.25rem;}
+    .carrier-badges{flex-direction:column;}
+    .carrier-badge{text-align:center;}
+  }
   .compliance-bar{background:var(--charcoal-light);padding:1.25rem 4rem;border-top:1px solid rgba(240,232,216,0.06);margin-top:2rem;}
   .compliance-bar p{font-size:0.7rem;line-height:1.7;color:var(--text-muted);text-align:center;max-width:860px;margin:0 auto;}
   .compliance-bar a{color:rgba(201,148,58,0.7);text-decoration:none;}
@@ -358,6 +374,20 @@
     <button class="btn-retake">← Start over</button>
   </div>
 
+</div>
+
+<div class="carrier-sidebar" id="carrierSidebar">
+  <div class="carrier-sidebar-inner">
+    <div class="carrier-sidebar-title">Carriers We Work With</div>
+    <div class="carrier-badges">
+      <div class="carrier-badge">Mutual of Omaha</div>
+      <div class="carrier-badge">UnitedHealthcare</div>
+      <div class="carrier-badge">Aetna</div>
+      <div class="carrier-badge">Humana</div>
+      <div class="carrier-badge">Cigna</div>
+    </div>
+    <div class="carrier-sidebar-note">We don't offer every plan available in your area. Contact Medicare.gov or 1-800-MEDICARE for a full list of options.</div>
+  </div>
 </div>
 
 <div class="compliance-bar">
@@ -659,6 +689,8 @@ function showFinalResult(){
   }
 
   document.getElementById(pendingResult).classList.add('active');
+  const sidebar = document.getElementById('carrierSidebar');
+  if(sidebar) sidebar.classList.add('visible');
   document.querySelector('.quiz-container').scrollIntoView({behavior:'smooth'});
 }
 
@@ -674,6 +706,8 @@ function retake(){
   });
   const note = document.getElementById('branch-note-1b');
   if(note){ note.style.display = 'none'; note.innerHTML = ''; }
+  const sidebar = document.getElementById('carrierSidebar');
+  if(sidebar) sidebar.classList.remove('visible');
   document.querySelectorAll('.result-card').forEach(c => c.classList.remove('active'));
   document.getElementById('lead-capture').classList.remove('active');
   document.getElementById('leadForm').style.display = 'block';
