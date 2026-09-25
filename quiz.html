@@ -104,14 +104,14 @@
   .btn-cta-secondary:hover{border-color:var(--cream);}
   .btn-retake{display:block;text-align:center;margin-top:1.5rem;font-size:0.78rem;color:var(--text-muted);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'DM Sans',sans-serif;transition:color 0.2s;}
   .btn-retake:hover{color:var(--cream);}
-  .carrier-panel{background:var(--charcoal);border-radius:2px;padding:1.25rem;margin-bottom:1.5rem;border:1px solid rgba(240,232,216,0.06);}
-  .carrier-panel-title{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:1rem;text-align:center;}
-  .carrier-badges{display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;}
-  .carrier-badge{background:rgba(201,148,58,0.1);border:1px solid rgba(201,148,58,0.35);border-radius:20px;padding:0.5rem 1.1rem;font-size:0.82rem;font-weight:600;color:var(--cream);animation:carrierGlow 3s ease-in-out infinite;}
-  @keyframes carrierGlow{0%,100%{box-shadow:0 0 4px rgba(201,148,58,0.2);}50%{box-shadow:0 0 14px rgba(201,148,58,0.55);}}
+  .carrier-panel{background:var(--charcoal);border-radius:3px;padding:1.5rem;margin-bottom:1.75rem;border:1px solid rgba(201,148,58,0.2);}
+  .carrier-panel-title{font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:1.1rem;text-align:center;}
+  .carrier-badges{display:flex;flex-wrap:wrap;gap:0.85rem;justify-content:center;}
+  .carrier-badge{background:rgba(201,148,58,0.12);border:1px solid rgba(201,148,58,0.4);border-radius:20px;padding:0.65rem 1.4rem;font-size:0.9rem;font-weight:700;color:var(--cream);animation:carrierGlow 3s ease-in-out infinite;}
+  @keyframes carrierGlow{0%,100%{box-shadow:0 0 5px rgba(201,148,58,0.25);}50%{box-shadow:0 0 18px rgba(201,148,58,0.75);}}
   .carrier-badge:nth-child(2n){animation-delay:0.6s;}
   .carrier-badge:nth-child(3n){animation-delay:1.2s;}
-  .carrier-panel-note{font-size:0.7rem;color:var(--text-muted);text-align:center;margin-top:1rem;line-height:1.5;}
+  .carrier-panel-note{font-size:0.72rem;color:var(--text-muted);text-align:center;margin-top:1.1rem;line-height:1.5;}
   .compliance-bar{background:var(--charcoal-light);padding:1.25rem 4rem;border-top:1px solid rgba(240,232,216,0.06);margin-top:2rem;}
   .compliance-bar p{font-size:0.7rem;line-height:1.7;color:var(--text-muted);text-align:center;max-width:860px;margin:0 auto;}
   .compliance-bar a{color:rgba(201,148,58,0.7);text-decoration:none;}
@@ -301,11 +301,6 @@
   <div class="result-card" id="result-ma">
     <div class="result-badge">Your Result</div>
     <div class="result-title">Medicare Advantage<br>would be a strong choice for you</div>
-    <div class="result-summary">Here's why: your answers show you value keeping monthly costs low, and you're comfortable with the copay structure Medicare Advantage plans use for things like hospital stays. Medicare Advantage bundles Part A, Part B, and often Part D into a single plan through a private insurer. The one real alternative is Original Medicare paired with a Medicare Supplement plan — a different path that trades that bundled convenience for open access to any doctor nationwide and no daily hospital copays.</div>
-    <div class="result-reasons">
-      <div class="result-reasons-title">Why this fits you</div>
-      <div id="reasons-ma"></div>
-    </div>
     <div class="carrier-panel">
       <div class="carrier-panel-title">Carriers We Work With</div>
       <div class="carrier-badges">
@@ -316,6 +311,11 @@
         <div class="carrier-badge">Cigna</div>
       </div>
       <div class="carrier-panel-note">We don't offer every plan available in your area. Contact Medicare.gov or 1-800-MEDICARE for a full list of options.</div>
+    </div>
+    <div class="result-summary">Here's why: your answers show you value keeping monthly costs low, and you're comfortable with the copay structure Medicare Advantage plans use for things like hospital stays. Medicare Advantage bundles Part A, Part B, and often Part D into a single plan through a private insurer. The one real alternative is Original Medicare paired with a Medicare Supplement plan — a different path that trades that bundled convenience for open access to any doctor nationwide and no daily hospital copays.</div>
+    <div class="result-reasons">
+      <div class="result-reasons-title">Why this fits you</div>
+      <div id="reasons-ma"></div>
     </div>
     <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. Medicare Advantage plans vary significantly by carrier, location, and your specific health situation. The best way to know for sure is to speak with Thomas directly.
       <div class="cost-note">Keep in mind: you still need Medicare Part A and Part B to join a Medicare Advantage plan, so the standard Part B premium still applies. That premium is currently projected at $209.50/month for 2027, based on the Medicare Trustees Report — CMS confirms the official 2027 amount each November, so treat this as an estimate for now.</div>
@@ -332,11 +332,6 @@
   <div class="result-card" id="result-ms">
     <div class="result-badge">Your Result</div>
     <div class="result-title">Original Medicare + <em>Medicare Supplement</em><br>would be a strong choice for you</div>
-    <div class="result-summary">Here's why: your answers show you value freedom, predictability, and the ability to see any doctor who accepts Medicare, without networks or referrals. One clarification worth knowing — Medicare Supplement is never a stand-alone option. It's an add-on that works alongside Original Medicare Part A and Part B to help cover the gaps they leave behind. Medicare Advantage is the one real alternative: a different path that bundles everything into a single plan through a private insurer instead.</div>
-    <div class="result-reasons">
-      <div class="result-reasons-title">Why this fits you</div>
-      <div id="reasons-ms"></div>
-    </div>
     <div class="carrier-panel">
       <div class="carrier-panel-title">Carriers We Work With</div>
       <div class="carrier-badges">
@@ -347,6 +342,11 @@
         <div class="carrier-badge">Cigna</div>
       </div>
       <div class="carrier-panel-note">We don't offer every plan available in your area. Contact Medicare.gov or 1-800-MEDICARE for a full list of options.</div>
+    </div>
+    <div class="result-summary">Here's why: your answers show you value freedom, predictability, and the ability to see any doctor who accepts Medicare, without networks or referrals. One clarification worth knowing — Medicare Supplement is never a stand-alone option. It's an add-on that works alongside Original Medicare Part A and Part B to help cover the gaps they leave behind. Medicare Advantage is the one real alternative: a different path that bundles everything into a single plan through a private insurer instead.</div>
+    <div class="result-reasons">
+      <div class="result-reasons-title">Why this fits you</div>
+      <div id="reasons-ms"></div>
     </div>
     <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. Medicare Supplement plans vary by carrier, age, and health history. In most states, waiting too long to enroll can affect your eligibility.
       <div class="cost-note">Keep in mind: this path requires Original Medicare Part A and Part B, so the standard Part B premium applies on top of your Supplement premium. Part B is currently projected at $209.50/month for 2027, based on the Medicare Trustees Report — CMS confirms the official 2027 amount each November, so treat this as an estimate for now.</div>
@@ -363,6 +363,17 @@
   <div class="result-card" id="result-toss">
     <div class="result-badge">Your Result</div>
     <div class="result-title">It is close — and that is<br><em>exactly why you need Thomas</em></div>
+    <div class="carrier-panel">
+      <div class="carrier-panel-title">Carriers We Work With</div>
+      <div class="carrier-badges">
+        <div class="carrier-badge">Mutual of Omaha</div>
+        <div class="carrier-badge">UnitedHealthcare</div>
+        <div class="carrier-badge">Aetna</div>
+        <div class="carrier-badge">Humana</div>
+        <div class="carrier-badge">Cigna</div>
+      </div>
+      <div class="carrier-panel-note">We don't offer every plan available in your area. Contact Medicare.gov or 1-800-MEDICARE for a full list of options.</div>
+    </div>
     <div class="result-summary">Your answers suggest you are right in the middle. Both real paths — Original Medicare plus a Supplement plan, and Medicare Advantage — have merit for your situation, and the right choice depends on details a quiz cannot fully capture.</div>
     <div class="result-reasons" style="margin-bottom:1.25rem;">
       <div class="result-reasons-title">What leaned toward Medicare Advantage</div>
@@ -378,17 +389,6 @@
       <div class="result-reason">Your prescription drug situation and how plans handle Part D</div>
       <div class="result-reason">Your actual out-of-pocket risk tolerance</div>
       <div class="result-reason">What plans are actually available in your zip code</div>
-    </div>
-    <div class="carrier-panel">
-      <div class="carrier-panel-title">Carriers We Work With</div>
-      <div class="carrier-badges">
-        <div class="carrier-badge">Mutual of Omaha</div>
-        <div class="carrier-badge">UnitedHealthcare</div>
-        <div class="carrier-badge">Aetna</div>
-        <div class="carrier-badge">Humana</div>
-        <div class="carrier-badge">Cigna</div>
-      </div>
-      <div class="carrier-panel-note">We don't offer every plan available in your area. Contact Medicare.gov or 1-800-MEDICARE for a full list of options.</div>
     </div>
     <div class="result-disclaimer">This is a general recommendation based on your answers — not a quote or guarantee of coverage. The best way to make the right call is a free 15-minute conversation with Thomas.
       <div class="cost-note">Keep in mind: no matter which path you choose, Medicare Part B has a monthly premium — currently projected at $209.50/month for 2027, based on the Medicare Trustees Report. CMS confirms the official 2027 amount each November, so treat this as an estimate for now.</div>
