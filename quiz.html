@@ -225,12 +225,12 @@
   <!-- Q7 -->
   <div class="question-card" data-q="7">
     <div class="question-num">Question 7 of 9</div>
-    <div class="question-text">Are dental, vision, and hearing benefits important to you?</div>
-    <div class="question-sub">Medicare Advantage often includes these. Medicare Supplement typically does not.</div>
+    <div class="question-text">How do you feel about potential hospital stay costs?</div>
+    <div class="question-sub">Medicare Advantage plans often charge a daily copay for hospital stays. Some people pair Advantage with a separate hospital indemnity plan to help cover that cost.</div>
     <div class="options">
-      <div class="option" data-value="dvh_important" data-score-ma="2" data-score-ms="0" data-reason-ma="Bundled dental, vision, and hearing coverage is important to you"><div class="option-marker"></div><div><div class="option-label">Yes — very important</div><div class="option-desc">I want dental, vision, and hearing all in one plan</div></div></div>
-      <div class="option" data-value="dvh_somewhat" data-score-ma="1" data-score-ms="1"><div class="option-marker"></div><div><div class="option-label">Somewhat — nice to have but not a dealbreaker</div></div></div>
-      <div class="option" data-value="dvh_not_important" data-score-ma="0" data-score-ms="1" data-reason-ms="You're comfortable handling dental, vision, and hearing separately"><div class="option-marker"></div><div><div class="option-label">Not really — I will handle those separately</div></div></div>
+      <div class="option" data-value="avoid_hospital_copays" data-score-ma="0" data-score-ms="3" data-reason-ms="You'd rather avoid hospital day copays altogether, which points toward Supplement"><div class="option-marker"></div><div><div class="option-label">I want to avoid hospital copays entirely</div><div class="option-desc">Supplement plans typically don't charge per-day hospital copays</div></div></div>
+      <div class="option" data-value="open_to_indemnity" data-score-ma="2" data-score-ms="0" data-reason-ma="You're open to pairing a hospital indemnity plan alongside Advantage to help cover copays"><div class="option-marker"></div><div><div class="option-label">I'm comfortable adding a hospital indemnity plan</div><div class="option-desc">A separate policy that pays cash for each day you're hospitalized</div></div></div>
+      <div class="option" data-value="hospital_unsure" data-score-ma="1" data-score-ms="1"><div class="option-marker"></div><div><div class="option-label">I haven't thought about hospital stay costs</div></div></div>
     </div>
     <div class="question-nav"><button class="btn-back">← Back</button><button class="btn-next" disabled id="next-7">Next →</button></div>
   </div>
@@ -293,7 +293,7 @@
   <div class="result-card" id="result-ma">
     <div class="result-badge">Your Result</div>
     <div class="result-title">Medicare Advantage<br>would be a strong choice for you</div>
-    <div class="result-summary">Here's why: your answers show you value keeping monthly costs low and like having dental, vision, and hearing bundled into one plan. Medicare Advantage bundles Part A, Part B, and often Part D into a single plan through a private insurer. The one real alternative is Original Medicare paired with a Medicare Supplement plan — a different path that trades that bundled convenience for open access to any doctor nationwide.</div>
+    <div class="result-summary">Here's why: your answers show you value keeping monthly costs low, and you're comfortable with the copay structure Medicare Advantage plans use for things like hospital stays. Medicare Advantage bundles Part A, Part B, and often Part D into a single plan through a private insurer. The one real alternative is Original Medicare paired with a Medicare Supplement plan — a different path that trades that bundled convenience for open access to any doctor nationwide and no daily hospital copays.</div>
     <div class="result-reasons">
       <div class="result-reasons-title">Why this fits you</div>
       <div id="reasons-ma"></div>
@@ -498,9 +498,9 @@ function branchResult(answers){
   if(answers['2'] === 'regular' && answers['3'] === 'history_yes'){
     return 'result-ms';
   }
-  // Healthy, wants dental/vision/hearing bundled, and isn't chasing pure
-  // peace of mind -> Advantage's bundled extras are the natural fit
-  if(answers['2'] === 'healthy' && answers['7'] === 'dvh_important' && answers['9'] !== 'peace_of_mind'){
+  // Healthy, open to adding a hospital indemnity plan, and isn't chasing pure
+  // peace of mind -> Advantage plus indemnity coverage is the natural fit
+  if(answers['2'] === 'healthy' && answers['7'] === 'open_to_indemnity' && answers['9'] !== 'peace_of_mind'){
     return 'result-ma';
   }
   return null; // nothing clear-cut — let the overall score decide
