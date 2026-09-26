@@ -229,21 +229,21 @@
     <li><a href="/#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="tel:+13177289417" class="nav-cta">Call Now</a>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="/#services" onclick="toggleMenu()">Services</a>
-  <a href="/blog" onclick="toggleMenu()">Blog</a>
-  <a href="/#about" onclick="toggleMenu()">About</a>
-  <a href="/#contact" onclick="toggleMenu()">Contact</a>
-  <a href="tel:+13177289417" class="nav-cta" onclick="toggleMenu()">Call (317) 728-9417</a>
+  <a href="/#services">Services</a>
+  <a href="/blog">Blog</a>
+  <a href="/#about">About</a>
+  <a href="/#contact">Contact</a>
+  <a href="tel:+13177289417" class="nav-cta">Call (317) 728-9417</a>
 </div>
 
 <div class="hero">
   <div class="hero-eyebrow">Retirement Planning Tools</div>
-  <h1>Social Security and<br>Medicare &#8212; <em>Done Right.</em></h1>
+  <h1>Social Security and<br>Medicare. <em>Done Right.</em></h1>
   <p class="hero-sub">The two biggest financial decisions you make before retirement. Use our free tools to understand your options before it is too late to change them.</p>
   <div class="hero-tools">
     <a href="#ss-quiz" class="hero-tool-btn">
@@ -276,96 +276,96 @@
       <div class="quiz-q-num">Question 1 of 8</div>
       <div class="quiz-q-text">How old are you right now?</div>
       <div class="quiz-options">
-        <div class="qopt" data-score-early="2" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Under 55</div><div class="qopt-desc">You have time, but planning now matters</div></div></div>
-        <div class="qopt" data-score-early="1" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">55 to 61</div><div class="qopt-desc">Getting closer, time to think seriously about your strategy</div></div></div>
-        <div class="qopt" data-score-early="1" data-score-wait="2" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">62 to 66</div><div class="qopt-desc">In or near your claiming window</div></div></div>
-        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">67 or older</div><div class="qopt-desc">Still working or already delayed, let us think through the next move</div></div></div>
+        <div class="qopt" data-score-early="2" data-score-wait="0"><div class="qopt-marker"></div><div><div class="qopt-label">Under 55</div><div class="qopt-desc">You have time, but planning now matters</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="1"><div class="qopt-marker"></div><div><div class="qopt-label">55 to 61</div><div class="qopt-desc">Getting closer, time to think seriously about your strategy</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="2"><div class="qopt-marker"></div><div><div class="qopt-label">62 to 66</div><div class="qopt-desc">In or near your claiming window</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="3"><div class="qopt-marker"></div><div><div class="qopt-label">67 or older</div><div class="qopt-desc">Still working or already delayed. Let us think through the next move</div></div></div>
       </div>
-      <div class="quiz-nav"><div></div><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-1">Next &#8594;</button></div>
+      <div class="quiz-nav"><div></div><button class="btn-qnext" disabled id="ssnext-1">Next &#8594;</button></div>
     </div>
     <div class="quiz-card" data-ssq="2">
       <div class="quiz-q-num">Question 2 of 8</div>
       <div class="quiz-q-text">How would you describe your health?</div>
       <div class="quiz-q-sub">Longevity is the biggest factor in when to claim. Be honest, this stays between you and the calculator.</div>
       <div class="quiz-options">
-        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Excellent, I expect to live well into my 80s or beyond</div></div></div>
-        <div class="qopt" data-score-early="1" data-score-wait="2" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Good, average health for my age</div></div></div>
-        <div class="qopt" data-score-early="2" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Fair, some health concerns</div></div></div>
-        <div class="qopt" data-score-early="3" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Poor, I have serious health conditions</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="3"><div class="qopt-marker"></div><div><div class="qopt-label">Excellent, I expect to live well into my 80s or beyond</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="2"><div class="qopt-marker"></div><div><div class="qopt-label">Good, average health for my age</div></div></div>
+        <div class="qopt" data-score-early="2" data-score-wait="1"><div class="qopt-marker"></div><div><div class="qopt-label">Fair, some health concerns</div></div></div>
+        <div class="qopt" data-score-early="3" data-score-wait="0"><div class="qopt-marker"></div><div><div class="qopt-label">Poor, I have serious health conditions</div></div></div>
       </div>
-      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">&#8592; Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-2">Next &#8594;</button></div>
+      <div class="quiz-nav"><button class="btn-qback">&#8592; Back</button><button class="btn-qnext" disabled id="ssnext-2">Next &#8594;</button></div>
     </div>
     <div class="quiz-card" data-ssq="3">
       <div class="quiz-q-num">Question 3 of 8</div>
       <div class="quiz-q-text">Are you married?</div>
       <div class="quiz-q-sub">Spousal and survivor benefits can significantly change the optimal claiming strategy.</div>
       <div class="quiz-options">
-        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, and my spouse will rely on my benefit</div><div class="qopt-desc">The higher earner delaying often maximizes lifetime household income</div></div></div>
-        <div class="qopt" data-score-early="1" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, but we both have our own strong benefits</div></div></div>
-        <div class="qopt" data-score-early="1" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Divorced or widowed</div><div class="qopt-desc">You may have options based on an ex or deceased spouse record</div></div></div>
-        <div class="qopt" data-score-early="2" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Single, no spousal benefit considerations</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="3"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, and my spouse will rely on my benefit</div><div class="qopt-desc">The higher earner delaying often maximizes lifetime household income</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="1"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, but we both have our own strong benefits</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="1"><div class="qopt-marker"></div><div><div class="qopt-label">Divorced or widowed</div><div class="qopt-desc">You may have options based on an ex or deceased spouse record</div></div></div>
+        <div class="qopt" data-score-early="2" data-score-wait="0"><div class="qopt-marker"></div><div><div class="qopt-label">Single, no spousal benefit considerations</div></div></div>
       </div>
-      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">&#8592; Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-3">Next &#8594;</button></div>
+      <div class="quiz-nav"><button class="btn-qback">&#8592; Back</button><button class="btn-qnext" disabled id="ssnext-3">Next &#8594;</button></div>
     </div>
     <div class="quiz-card" data-ssq="4">
       <div class="quiz-q-num">Question 4 of 8</div>
       <div class="quiz-q-text">Are you still working or planning to work after 62?</div>
       <div class="quiz-q-sub">If you claim before full retirement age while working, Social Security reduces your benefit based on earnings. This matters a lot.</div>
       <div class="quiz-options">
-        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, I plan to keep working past 62</div><div class="qopt-desc">Claiming early while working can reduce or eliminate your benefit temporarily</div></div></div>
-        <div class="qopt" data-score-early="1" data-score-wait="2" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Part time or winding down</div></div></div>
-        <div class="qopt" data-score-early="2" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">No, I will be fully retired by 62</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="3"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, I plan to keep working past 62</div><div class="qopt-desc">Claiming early while working can reduce or eliminate your benefit temporarily</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="2"><div class="qopt-marker"></div><div><div class="qopt-label">Part time or winding down</div></div></div>
+        <div class="qopt" data-score-early="2" data-score-wait="1"><div class="qopt-marker"></div><div><div class="qopt-label">No, I will be fully retired by 62</div></div></div>
       </div>
-      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">&#8592; Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-4">Next &#8594;</button></div>
+      <div class="quiz-nav"><button class="btn-qback">&#8592; Back</button><button class="btn-qnext" disabled id="ssnext-4">Next &#8594;</button></div>
     </div>
     <div class="quiz-card" data-ssq="5">
       <div class="quiz-q-num">Question 5 of 8</div>
       <div class="quiz-q-text">Do you have other retirement income sources?</div>
-      <div class="quiz-q-sub">Pension, 401k, IRA, rental income, the more other income you have, the less urgency there is to claim Social Security early.</div>
+      <div class="quiz-q-sub">Pension, 401k, IRA, rental income. The more other income you have, the less urgency there is to claim Social Security early.</div>
       <div class="quiz-options">
-        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, I have significant other retirement income</div><div class="qopt-desc">I can afford to wait and let my SS benefit grow</div></div></div>
-        <div class="qopt" data-score-early="1" data-score-wait="2" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Some, but Social Security is still important</div></div></div>
-        <div class="qopt" data-score-early="3" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">No, Social Security will be my main income</div><div class="qopt-desc">I need to start collecting as soon as I can</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="3"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, I have significant other retirement income</div><div class="qopt-desc">I can afford to wait and let my SS benefit grow</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="2"><div class="qopt-marker"></div><div><div class="qopt-label">Some, but Social Security is still important</div></div></div>
+        <div class="qopt" data-score-early="3" data-score-wait="0"><div class="qopt-marker"></div><div><div class="qopt-label">No, Social Security will be my main income</div><div class="qopt-desc">I need to start collecting as soon as I can</div></div></div>
       </div>
-      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">&#8592; Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-5">Next &#8594;</button></div>
+      <div class="quiz-nav"><button class="btn-qback">&#8592; Back</button><button class="btn-qnext" disabled id="ssnext-5">Next &#8594;</button></div>
     </div>
     <div class="quiz-card" data-ssq="6">
       <div class="quiz-q-num">Question 6 of 8</div>
       <div class="quiz-q-text">Do you have a sense of your family longevity?</div>
       <div class="quiz-q-sub">Parents and grandparents who lived into their late 80s or 90s suggest you may live longer too.</div>
       <div class="quiz-options">
-        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, long-lived family, 85 or older is common</div></div></div>
-        <div class="qopt" data-score-early="1" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Average, mid-70s to early 80s</div></div></div>
-        <div class="qopt" data-score-early="3" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Shorter than average, family history of early death</div></div></div>
-        <div class="qopt" data-score-early="1" data-score-wait="1" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Not sure</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="3"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, long-lived family, 85 or older is common</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="1"><div class="qopt-marker"></div><div><div class="qopt-label">Average, mid-70s to early 80s</div></div></div>
+        <div class="qopt" data-score-early="3" data-score-wait="0"><div class="qopt-marker"></div><div><div class="qopt-label">Shorter than average, family history of early death</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="1"><div class="qopt-marker"></div><div><div class="qopt-label">Not sure</div></div></div>
       </div>
-      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">&#8592; Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-6">Next &#8594;</button></div>
+      <div class="quiz-nav"><button class="btn-qback">&#8592; Back</button><button class="btn-qnext" disabled id="ssnext-6">Next &#8594;</button></div>
     </div>
     <div class="quiz-card" data-ssq="7">
       <div class="quiz-q-num">Question 7 of 8</div>
       <div class="quiz-q-text">How do you feel about waiting for a larger monthly check?</div>
       <div class="quiz-options">
-        <div class="qopt" data-score-early="0" data-score-wait="3" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">I am comfortable waiting, bigger monthly income matters to me</div><div class="qopt-desc">Every year past 62 increases my benefit up to 8 percent per year</div></div></div>
-        <div class="qopt" data-score-early="1" data-score-wait="2" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">I would wait if the math clearly favors it</div></div></div>
-        <div class="qopt" data-score-early="3" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">I want my money now, a bird in hand</div><div class="qopt-desc">I would rather have the income now even if smaller</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="3"><div class="qopt-marker"></div><div><div class="qopt-label">I am comfortable waiting, bigger monthly income matters to me</div><div class="qopt-desc">Every year past 62 increases my benefit up to 8 percent per year</div></div></div>
+        <div class="qopt" data-score-early="1" data-score-wait="2"><div class="qopt-marker"></div><div><div class="qopt-label">I would wait if the math clearly favors it</div></div></div>
+        <div class="qopt" data-score-early="3" data-score-wait="0"><div class="qopt-marker"></div><div><div class="qopt-label">I want my money now, a bird in hand</div><div class="qopt-desc">I would rather have the income now even if smaller</div></div></div>
       </div>
-      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">&#8592; Back</button><button class="btn-qnext" onclick="ssNext()" disabled id="ssnext-7">Next &#8594;</button></div>
+      <div class="quiz-nav"><button class="btn-qback">&#8592; Back</button><button class="btn-qnext" disabled id="ssnext-7">Next &#8594;</button></div>
     </div>
     <div class="quiz-card" data-ssq="8">
       <div class="quiz-q-num">Question 8 of 8</div>
       <div class="quiz-q-text">Have you thought about how Social Security timing affects your Medicare enrollment?</div>
       <div class="quiz-q-sub">These two decisions are closely connected. Your Medicare start date and premium can depend on when and how you claim Social Security.</div>
       <div class="quiz-options">
-        <div class="qopt" data-score-early="0" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, I understand the connection</div></div></div>
-        <div class="qopt" data-score-early="0" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">No, I had no idea they were connected</div><div class="qopt-desc">This is exactly why this conversation matters</div></div></div>
-        <div class="qopt" data-score-early="0" data-score-wait="0" onclick="ssSelect(this)"><div class="qopt-marker"></div><div><div class="qopt-label">Somewhat, I want to understand more</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="0"><div class="qopt-marker"></div><div><div class="qopt-label">Yes, I understand the connection</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="0"><div class="qopt-marker"></div><div><div class="qopt-label">No, I had no idea they were connected</div><div class="qopt-desc">This is exactly why this conversation matters</div></div></div>
+        <div class="qopt" data-score-early="0" data-score-wait="0"><div class="qopt-marker"></div><div><div class="qopt-label">Somewhat, I want to understand more</div></div></div>
       </div>
-      <div class="quiz-nav"><button class="btn-qback" onclick="ssPrev()">&#8592; Back</button><button class="btn-qnext" onclick="ssShowLead()" disabled id="ssnext-8">See My Recommendation &#8594;</button></div>
+      <div class="quiz-nav"><button class="btn-qback">&#8592; Back</button><button class="btn-qnext" disabled id="ssnext-8">See My Recommendation &#8594;</button></div>
     </div>
     <div class="lead-card" id="ss-lead">
-      <div class="lead-title">Almost there, where should I send your results?</div>
+      <div class="lead-title">Almost there. Where should I send your results?</div>
       <div class="lead-sub">Thomas will review your answers and follow up with personalized guidance on Social Security timing and how it connects to your Medicare enrollment. Free, no pressure.</div>
-      <form id="ssLeadForm" onsubmit="ssSubmitLead(event)">
+      <form id="ssLeadForm">
         <div class="lead-field"><label>Full Name</label><input type="text" id="ss-name" placeholder="Jane Smith" required></div>
         <div class="lead-field"><label>Phone Number</label><input type="tel" id="ss-phone" placeholder="(219) 555-0100" required></div>
         <div class="lead-field"><label>Email Address</label><input type="email" id="ss-email" placeholder="jane@email.com" required></div>
@@ -374,9 +374,17 @@
         <p class="lead-disclaimer">By submitting you agree to our <a href="/privacy">Privacy Policy</a>. A licensed insurance agent may contact you.</p>
       </form>
       <div id="ss-lead-success" style="display:none;text-align:center;padding:2rem 0;">
-        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--cream);margin-bottom:0.5rem;">Got it, Thomas will be in touch.</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--cream);margin-bottom:0.5rem;">Got it. Thomas will be in touch.</div>
         <div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;">Here is your recommendation.</div>
-        <button onclick="ssShowResult()" class="btn-qnext" style="margin:0 auto;display:block;">View My Results &#8594;</button>
+        <button class="btn-qnext" id="ssViewResultsBtn" style="margin:0 auto;display:block;">View My Results &#8594;</button>
+      </div>
+      <div id="ss-lead-error" style="display:none;text-align:center;padding:1.5rem 0;">
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);margin-bottom:0.5rem;">That did not go through</div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.6;">No worries. You can try again, or see your recommendation now and call Thomas directly at (317) 728-9417.</div>
+        <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+          <button type="button" class="btn-qback" id="ssTryAgainBtn">Try Again</button>
+          <button type="button" class="btn-qnext" id="ssViewResultsAnywayBtn">View My Results Anyway &#8594;</button>
+        </div>
       </div>
     </div>
     <div class="quiz-result" id="ss-result-wait">
@@ -395,7 +403,7 @@
         <p>Social Security timing connects directly to your Medicare enrollment and retirement income plan. A free conversation with Thomas gives you the full picture.</p>
         <div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a><a href="/#contact" class="btn-outline-cream">Request a Free Review</a></div>
       </div>
-      <button class="btn-retake" onclick="ssRetake()">&#8592; Start over</button>
+      <button class="btn-retake" id="ssRetakeBtn1">&#8592; Start over</button>
     </div>
     <div class="quiz-result" id="ss-result-early">
       <div class="result-badge">Your Result</div>
@@ -413,7 +421,7 @@
         <p>Your Medicare enrollment timing is connected to when you claim Social Security. A free conversation with Thomas makes sure these decisions work together.</p>
         <div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a><a href="/#contact" class="btn-outline-cream">Request a Free Review</a></div>
       </div>
-      <button class="btn-retake" onclick="ssRetake()">&#8592; Start over</button>
+      <button class="btn-retake" id="ssRetakeBtn2">&#8592; Start over</button>
     </div>
     <div class="quiz-result" id="ss-result-spouse">
       <div class="result-badge">Your Result</div>
@@ -431,7 +439,7 @@
         <p>Spousal Social Security strategy is one of the most complex and highest-stakes decisions in retirement planning. Thomas can help you think it through at no cost.</p>
         <div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a><a href="/#contact" class="btn-outline-cream">Request a Free Review</a></div>
       </div>
-      <button class="btn-retake" onclick="ssRetake()">&#8592; Start over</button>
+      <button class="btn-retake" id="ssRetakeBtn3">&#8592; Start over</button>
     </div>
   </div>
 </section>
@@ -440,10 +448,10 @@
 
 <section class="irmaa-section" id="irmaa">
   <div class="section-wrap">
-    <div class="section-eyebrow">Free Calculator &#8212; 2026 Data</div>
+    <div class="section-eyebrow">Free Calculator, 2027 Projections</div>
     <div class="section-title">Will Your Income Raise Your<br>Medicare <em>Premium?</em></div>
     <p style="font-size:0.95rem;color:var(--text-light);line-height:1.75;margin-bottom:1rem;max-width:620px;"><strong style="color:var(--cream);">IRMAA (Income Related Monthly Adjustment Amount)</strong> is a fancy government way of saying you make too much money, so we are going to charge you more for Medicare.</p>
-    <p style="font-size:0.95rem;color:var(--text-light);line-height:1.75;margin-bottom:2.5rem;max-width:620px;">It gets added to your Medicare Part B and Part D premiums if your income is above certain thresholds. Enter your income and find out exactly what you will pay in 2026.</p>
+    <p style="font-size:0.95rem;color:var(--text-light);line-height:1.75;margin-bottom:2.5rem;max-width:620px;">It gets added to your Medicare Part B and Part D premiums if your income is above certain thresholds. Enter your income and see an estimate of what you would pay in 2027.</p>
     <div class="irmaa-card">
       <div class="irmaa-inputs">
         <div class="irmaa-field">
@@ -455,12 +463,12 @@
           </select>
         </div>
         <div class="irmaa-field">
-          <label>2024 MAGI (Modified Adjusted Gross Income)</label>
+          <label>2025 MAGI (Modified Adjusted Gross Income)</label>
           <input type="number" id="irmaaMagi" placeholder="e.g. 150000" min="0" step="1000">
-          <div class="field-hint">Your 2024 tax return MAGI is used to set 2026 Medicare premiums. Find it on line 11 of your Form 1040 plus line 2a (tax-exempt interest).</div>
+          <div class="field-hint">Your 2025 tax return MAGI is used to set 2027 Medicare premiums. Find it on line 11 of your Form 1040 plus line 2a (tax-exempt interest).</div>
         </div>
       </div>
-      <button class="btn-calc" onclick="calcIrmaa()">Calculate My Premium &#8594;</button>
+      <button class="btn-calc" id="irmaaCalcBtn">Calculate My Premium &#8594;</button>
       <div class="irmaa-result" id="irmaaResult"></div>
     </div>
   </div>
@@ -492,7 +500,7 @@
 
     <div style="margin-top:2.5rem;background:var(--charcoal);border:1px solid rgba(201,148,58,0.25);border-radius:3px;padding:2rem 2.5rem;position:relative;overflow:hidden;">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),rgba(201,148,58,0.3));"></div>
-      <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;">Real Example &mdash; Mistake #1</div>
+      <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;">Real Example, Mistake #1</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;">
         <div>
           <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;">The Situation</div>
@@ -515,7 +523,7 @@
       <div class="story-headline">Janice and Charles did everything right.<br><em>Except this one thing.</em></div>
       <div class="story-body">
         <p>Janice and Charles had been planning their retirement for years. Charles was 63. Janice was 61. They had built up a solid traditional IRA and a healthy 401(k). Their financial advisor suggested converting some of that money to a Roth IRA before retirement, so they would have tax-free income later. It made sense on paper. So over two years, they converted a combined $180,000.</p>
-        <p>What nobody told them was that those conversions would show up as ordinary income on their tax returns. Two years later, when Charles enrolled in Medicare at 65, the Social Security Administration looked at his 2024 return and saw household income well above $218,000. The standard Part B premium for 2026 was $202.90 per month. Charles got a letter saying he would be paying $405.80 instead, and that a Part D surcharge would be added on top of that. Between the two of them, they were paying an extra $4,800 a year in Medicare premiums for two years because of a tax move made at age 63.</p>
+        <p>What nobody told them was that those conversions would show up as ordinary income on their tax returns. Two years later, when Charles enrolled in Medicare at 65, the Social Security Administration looked at his tax return from two years earlier and saw household income well above the top IRMAA threshold. Charles got a letter saying his Part B premium would be far higher than the standard rate, and that a Part D surcharge would be added on top of that. Between the two of them, they paid thousands of extra dollars a year in Medicare premiums for two years because of a tax move made at age 63.</p>
         <p>They were not doing anything wrong. Roth conversions are a legitimate strategy. But the timing created a two-year premium spike neither of them saw coming. By the time the letter arrived, there was nothing to appeal because their income really had been that high.</p>
       </div>
       <div class="story-callout">
@@ -531,7 +539,7 @@
 <section style="background:var(--rust);padding:5rem 4rem;text-align:center;position:relative;overflow:hidden;">
   <div style="position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,0.06) 0%,transparent 60%);border-radius:50%;pointer-events:none;"></div>
   <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--cream);margin-bottom:1rem;position:relative;">These Decisions Are Connected.<br>Let Thomas Help You Get Them Right.</h2>
-  <p style="font-size:1rem;color:rgba(240,232,216,0.8);max-width:520px;margin:0 auto 2.5rem;line-height:1.7;position:relative;">Social Security timing, Medicare enrollment, IRMAA planning, a 15-minute call covers all of it. Free, no pressure.</p>
+  <p style="font-size:1rem;color:rgba(240,232,216,0.8);max-width:520px;margin:0 auto 2.5rem;line-height:1.7;position:relative;">Social Security timing, Medicare enrollment, IRMAA planning. A 15-minute call covers all of it. Free, no pressure.</p>
   <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;">
     <a href="tel:+13177289417" style="background:var(--cream);color:var(--charcoal);padding:1rem 2.5rem;border-radius:2px;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:2px solid var(--cream);transition:all 0.2s;">Call (317) 728-9417</a>
     <a href="/#contact" style="background:transparent;color:var(--cream);padding:1rem 2.5rem;border-radius:2px;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:2px solid rgba(240,232,216,0.5);transition:all 0.2s;">Request a Free Review</a>
@@ -539,7 +547,7 @@
 </section>
 
 <div class="compliance-bar">
-  <p>This page provides general educational information only and does not constitute financial, legal, or insurance advice. Social Security and Medicare rules are complex and individual situations vary. Always consult with a qualified professional before making claiming or enrollment decisions. Thomas Crowhurst Insurance is an independent broker, not affiliated with the Social Security Administration or Medicare. For official Social Security information visit <a href="https://www.ssa.gov" target="_blank" rel="noopener">ssa.gov</a>. For official Medicare information visit <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a>. Janice and Charles is a composite example for illustrative purposes only and does not represent any specific individual or situation.</p>
+  <p>This page provides general educational information only and does not constitute financial, legal, or insurance advice. Social Security and Medicare rules are complex and individual situations vary. Always consult with a qualified professional before making claiming or enrollment decisions. Thomas Crowhurst Insurance is an independent broker, not affiliated with the Social Security Administration or Medicare. For official Social Security information visit <a href="https://www.ssa.gov" target="_blank" rel="noopener">ssa.gov</a>. For official Medicare information visit <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a>. Janice and Charles is a composite example for illustrative purposes only and does not represent any specific individual or situation. The 2027 IRMAA figures on this page are projections based on the 2026 Medicare Trustees Report and are not yet confirmed by CMS. Official 2027 amounts are announced each November.</p>
 </div>
 
 <footer>
@@ -554,7 +562,7 @@
   <div class="footer-copy">&copy; 2026 Thomas Crowhurst. All rights reserved.</div>
 </footer>
 
-<button id="tc-chat-btn" onclick="tcToggle()" aria-label="Ask a question">
+<button id="tc-chat-btn" aria-label="Ask a question">
   <svg viewBox="0 0 24 24"><path d="M20 9V7a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 00-2 2v4a2 2 0 002 2h1v1a1 1 0 002 0v-1h6v1a1 1 0 002 0v-1h1a2 2 0 002-2v-4a2 2 0 00-2-2zM9 13a1 1 0 110-2 1 1 0 010 2zm6 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
   <span class="tc-badge">?</span>
 </button>
@@ -565,80 +573,148 @@
       <div class="tc-header-name">Tommy Bot</div>
       <div class="tc-header-status">AI Assistant, ask me anything</div>
     </div>
-    <button class="tc-close" onclick="tcToggle()" aria-label="Close">&#10005;</button>
+    <button class="tc-close" aria-label="Close" id="tcCloseBtn">&#10005;</button>
   </div>
   <div class="tc-messages" id="tc-messages">
     <div class="tc-msg bot">Have a question about Social Security timing, IRMAA, or how these connect to your Medicare enrollment? I am here to help.</div>
   </div>
   <div class="tc-quick-replies" id="tc-qr-wrap">
-    <button class="tc-qr" onclick="tcQuick('When should I claim Social Security?')">When to claim SS</button>
-    <button class="tc-qr" onclick="tcQuick('What is IRMAA and how does it affect my Medicare premium?')">What is IRMAA</button>
-    <button class="tc-qr" onclick="tcQuick('How does Social Security affect my Medicare enrollment?')">SS and Medicare</button>
-    <button class="tc-qr" onclick="tcQuick('What is the spousal benefit strategy for Social Security?')">Spousal benefits</button>
+    <button class="tc-qr" data-q="When should I claim Social Security?">When to claim SS</button>
+    <button class="tc-qr" data-q="What is IRMAA and how does it affect my Medicare premium?">What is IRMAA</button>
+    <button class="tc-qr" data-q="How does Social Security affect my Medicare enrollment?">SS and Medicare</button>
+    <button class="tc-qr" data-q="What is the spousal benefit strategy for Social Security?">Spousal benefits</button>
   </div>
   <div class="tc-input-row">
-    <textarea id="tc-input" rows="1" placeholder="Type your question..." onkeydown="tcKey(event)"></textarea>
-    <button id="tc-send" onclick="tcSend()">Send</button>
+    <textarea id="tc-input" rows="1" placeholder="Type your question..."></textarea>
+    <button id="tc-send">Send</button>
   </div>
   <div class="tc-disclaimer">Educational only. Not financial or insurance advice.</div>
 </div>
 
 <script>
+document.querySelector('.hamburger').addEventListener('click', toggleMenu);
+document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', () => { if(document.getElementById('mobileMenu').classList.contains('open')) toggleMenu(); }));
+
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');document.querySelector('.hamburger').classList.toggle('open');document.body.style.overflow=document.getElementById('mobileMenu').classList.contains('open')?'hidden':'';}
+
 let ssQ=1;const SS_TOTAL=8;let ssScores={early:0,wait:0,spouse:0};let ssPendingResult='';
+
 function ssSelect(el){const card=el.closest('.quiz-card');card.querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');const q=card.dataset.ssq;document.getElementById('ssnext-'+q).disabled=false;}
 function ssUpdateProgress(){const pct=((ssQ-1)/SS_TOTAL)*100;document.getElementById('ssFill').style.width=pct+'%';document.getElementById('ssLabel').textContent='Question '+ssQ+' of '+SS_TOTAL;}
 function ssNext(){const card=document.querySelector('.quiz-card[data-ssq="'+ssQ+'"]');const sel=card.querySelector('.qopt.selected');if(sel){ssScores.early+=parseInt(sel.dataset.scoreEarly||0);ssScores.wait+=parseInt(sel.dataset.scoreWait||0);if(ssQ===3&&sel.dataset.scoreWait==='3')ssScores.spouse+=3;}card.classList.remove('active');ssQ++;ssUpdateProgress();const next=document.querySelector('.quiz-card[data-ssq="'+ssQ+'"]');if(next)next.classList.add('active');}
 function ssPrev(){const card=document.querySelector('.quiz-card[data-ssq="'+ssQ+'"]');card.classList.remove('active');const prev=document.querySelector('.quiz-card[data-ssq="'+(ssQ-1)+'"]');const prevSel=prev?prev.querySelector('.qopt.selected'):null;if(prevSel){ssScores.early-=parseInt(prevSel.dataset.scoreEarly||0);ssScores.wait-=parseInt(prevSel.dataset.scoreWait||0);}ssQ--;ssUpdateProgress();const prevCard=document.querySelector('.quiz-card[data-ssq="'+ssQ+'"]');if(prevCard)prevCard.classList.add('active');}
 function ssShowLead(){const card=document.querySelector('.quiz-card[data-ssq="'+ssQ+'"]');const sel=card.querySelector('.qopt.selected');if(sel){ssScores.early+=parseInt(sel.dataset.scoreEarly||0);ssScores.wait+=parseInt(sel.dataset.scoreWait||0);}if(ssScores.spouse>=3){ssPendingResult='ss-result-spouse';}else if(ssScores.wait>ssScores.early){ssPendingResult='ss-result-wait';}else{ssPendingResult='ss-result-early';}card.classList.remove('active');document.getElementById('ssFill').style.width='95%';document.getElementById('ssLabel').textContent='Almost done...';document.getElementById('ss-lead').classList.add('active');document.getElementById('ss-lead').scrollIntoView({behavior:'smooth'});}
-async function ssSubmitLead(e){e.preventDefault();const btn=document.getElementById('ssSubmitBtn');btn.disabled=true;btn.textContent='Sending...';const name=document.getElementById('ss-name').value;const phone=document.getElementById('ss-phone').value;const email=document.getElementById('ss-email').value;const zip=document.getElementById('ss-zip').value;const result=ssPendingResult.replace('ss-result-','').replace('-',' ').toUpperCase();const fd=new FormData();fd.append('_subject','New Social Security Quiz Lead -- '+name);fd.append('Name',name);fd.append('Phone',phone);fd.append('Email',email);fd.append('Zip',zip);fd.append('Quiz Result','SS Claim Strategy: '+result);fd.append('Source','Social Security Quiz -- crowhurstinsurance.com/social-security');document.querySelectorAll('.quiz-card[data-ssq]').forEach(c=>{const sel=c.querySelector('.qopt.selected');if(sel)fd.append('Q'+c.dataset.ssq,sel.querySelector('.qopt-label').textContent);});try{const res=await fetch('https://formspree.io/f/xjgzyeal',{method:'POST',body:fd,headers:{'Accept':'application/json'}});if(res.ok){document.getElementById('ssLeadForm').style.display='none';document.getElementById('ss-lead-success').style.display='block';}else{btn.disabled=false;btn.textContent='Get My Recommendation \u2192';alert('Something went wrong. Call Thomas at (317) 728-9417.');}}catch(err){btn.disabled=false;btn.textContent='Get My Recommendation \u2192';alert('Something went wrong. Call Thomas at (317) 728-9417.');}}
+
+async function ssSubmitLead(e){
+  e.preventDefault();
+  const btn=document.getElementById('ssSubmitBtn');
+  btn.disabled=true;btn.textContent='Sending...';
+  const name=document.getElementById('ss-name').value;
+  const phone=document.getElementById('ss-phone').value;
+  const email=document.getElementById('ss-email').value;
+  const zip=document.getElementById('ss-zip').value;
+  const result=ssPendingResult.replace('ss-result-','').replace('-',' ').toUpperCase();
+  const fd=new FormData();
+  fd.append('_subject','New Social Security Quiz Lead: '+name);
+  fd.append('Name',name);fd.append('Phone',phone);fd.append('Email',email);fd.append('Zip',zip);
+  fd.append('Quiz Result','SS Claim Strategy: '+result);
+  fd.append('Source','Social Security Quiz - crowhurstinsurance.com/social-security');
+  document.querySelectorAll('.quiz-card[data-ssq]').forEach(c=>{const sel=c.querySelector('.qopt.selected');if(sel)fd.append('Q'+c.dataset.ssq,sel.querySelector('.qopt-label').textContent);});
+  try{
+    const res=await fetch('https://formspree.io/f/xjgzyeal',{method:'POST',body:fd,headers:{'Accept':'application/json'}});
+    if(res.ok){
+      document.getElementById('ssLeadForm').style.display='none';
+      document.getElementById('ss-lead-success').style.display='block';
+    }else{
+      document.getElementById('ssLeadForm').style.display='none';
+      document.getElementById('ss-lead-error').style.display='block';
+    }
+  }catch(err){
+    document.getElementById('ssLeadForm').style.display='none';
+    document.getElementById('ss-lead-error').style.display='block';
+  }
+}
+
+function ssRetrySubmit(){
+  const btn=document.getElementById('ssSubmitBtn');
+  btn.disabled=false;btn.textContent='Get My Recommendation \u2192';
+  document.getElementById('ss-lead-error').style.display='none';
+  document.getElementById('ssLeadForm').style.display='block';
+}
+
 function ssShowResult(){document.getElementById('ss-lead').classList.remove('active');document.getElementById('ssFill').style.width='100%';document.getElementById('ssLabel').textContent='Complete';document.getElementById(ssPendingResult).classList.add('active');document.getElementById(ssPendingResult).scrollIntoView({behavior:'smooth'});}
-function ssRetake(){ssScores={early:0,wait:0,spouse:0};ssQ=1;ssPendingResult='';document.querySelectorAll('.quiz-card').forEach(c=>{c.classList.remove('active');c.querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));});document.querySelectorAll('.quiz-result').forEach(c=>c.classList.remove('active'));document.getElementById('ss-lead').classList.remove('active');document.getElementById('ssLeadForm').style.display='block';document.getElementById('ss-lead-success').style.display='none';document.querySelectorAll('.btn-qnext').forEach(b=>b.disabled=true);document.querySelector('.quiz-card[data-ssq="1"]').classList.add('active');ssUpdateProgress();document.getElementById('ss-quiz').scrollIntoView({behavior:'smooth'});}
+
+function ssRetake(){ssScores={early:0,wait:0,spouse:0};ssQ=1;ssPendingResult='';document.querySelectorAll('.quiz-card').forEach(c=>{c.classList.remove('active');c.querySelectorAll('.qopt').forEach(o=>o.classList.remove('selected'));});document.querySelectorAll('.quiz-result').forEach(c=>c.classList.remove('active'));document.getElementById('ss-lead').classList.remove('active');document.getElementById('ssLeadForm').style.display='block';document.getElementById('ss-lead-success').style.display='none';document.getElementById('ss-lead-error').style.display='none';document.querySelectorAll('.btn-qnext').forEach(b=>b.disabled=true);document.querySelector('.quiz-card[data-ssq="1"]').classList.add('active');ssUpdateProgress();document.getElementById('ss-quiz').scrollIntoView({behavior:'smooth'});}
+
+// --- wire up all SS quiz interactions (no inline onclick attributes) ---
+document.querySelectorAll('.qopt').forEach(opt => { opt.addEventListener('click', () => ssSelect(opt)); });
+for (let i = 1; i <= 7; i++) {
+  const el = document.getElementById('ssnext-' + i);
+  if (el) el.addEventListener('click', ssNext);
+}
+document.getElementById('ssnext-8').addEventListener('click', ssShowLead);
+document.querySelectorAll('.quiz-card .btn-qback').forEach(btn => btn.addEventListener('click', ssPrev));
+document.getElementById('ssLeadForm').addEventListener('submit', ssSubmitLead);
+document.getElementById('ssViewResultsBtn').addEventListener('click', ssShowResult);
+document.getElementById('ssTryAgainBtn').addEventListener('click', ssRetrySubmit);
+document.getElementById('ssViewResultsAnywayBtn').addEventListener('click', ssShowResult);
+document.getElementById('ssRetakeBtn1').addEventListener('click', ssRetake);
+document.getElementById('ssRetakeBtn2').addEventListener('click', ssRetake);
+document.getElementById('ssRetakeBtn3').addEventListener('click', ssRetake);
+
 ssUpdateProgress();
-const IRMAA_2026={
+
+// --- IRMAA calculator: 2027 projected brackets ---
+// Dollar figures are CMS's own actuarial projection (2026 Medicare Trustees Report).
+// Income thresholds are an inflation-indexed estimate. Neither is official yet;
+// CMS confirms the real 2027 numbers each November.
+const IRMAA_2027={
   single:[
-    {max:109000,partB:202.90,partD:0,label:'Standard'},
-    {max:137000,partB:284.10,partD:14.50,label:'Tier 1'},
-    {max:171000,partB:405.80,partD:37.50,label:'Tier 2'},
-    {max:205000,partB:527.50,partD:60.40,label:'Tier 3'},
-    {max:500000,partB:649.20,partD:83.30,label:'Tier 4'},
-    {max:Infinity,partB:689.90,partD:91.00,label:'Tier 5'}
+    {max:112000,partB:209.50,partD:0,label:'Standard'},
+    {max:141000,partB:293.90,partD:15.00,label:'Tier 1'},
+    {max:177000,partB:420.10,partD:38.80,label:'Tier 2'},
+    {max:212000,partB:546.20,partD:62.50,label:'Tier 3'},
+    {max:500000,partB:672.40,partD:86.20,label:'Tier 4'},
+    {max:Infinity,partB:714.10,partD:94.20,label:'Tier 5'}
   ],
   joint:[
-    {max:218000,partB:202.90,partD:0,label:'Standard'},
-    {max:274000,partB:284.10,partD:14.50,label:'Tier 1'},
-    {max:342000,partB:405.80,partD:37.50,label:'Tier 2'},
-    {max:410000,partB:527.50,partD:60.40,label:'Tier 3'},
-    {max:750000,partB:649.20,partD:83.30,label:'Tier 4'},
-    {max:Infinity,partB:689.90,partD:91.00,label:'Tier 5'}
+    {max:224000,partB:209.50,partD:0,label:'Standard'},
+    {max:282000,partB:293.90,partD:15.00,label:'Tier 1'},
+    {max:354000,partB:420.10,partD:38.80,label:'Tier 2'},
+    {max:424000,partB:546.20,partD:62.50,label:'Tier 3'},
+    {max:750000,partB:672.40,partD:86.20,label:'Tier 4'},
+    {max:Infinity,partB:714.10,partD:94.20,label:'Tier 5'}
   ],
   separate:[
-    {max:109000,partB:202.90,partD:0,label:'Standard'},
-    {max:Infinity,partB:689.90,partD:91.00,label:'Tier 5'}
+    {max:112000,partB:209.50,partD:0,label:'Standard'},
+    {max:Infinity,partB:714.10,partD:94.20,label:'Tier 5'}
   ]
 };
+
 function calcIrmaa(){
   const filing=document.getElementById('irmaaFiling').value;
   const magi=parseFloat(document.getElementById('irmaaMagi').value);
-  if(!magi||magi<0){alert('Please enter your 2024 MAGI.');return;}
-  const brackets=IRMAA_2026[filing];
+  if(!magi||magi<0){alert('Please enter your 2025 MAGI.');return;}
+  const brackets=IRMAA_2027[filing];
   let tier=brackets[brackets.length-1];let tierIndex=brackets.length-1;
   for(let i=0;i<brackets.length;i++){if(magi<=brackets[i].max){tier=brackets[i];tierIndex=i;break;}}
-  const partBSurcharge=tier.partB-202.90;
+  const partBSurcharge=tier.partB-209.50;
   const annualExtra=(partBSurcharge+tier.partD)*12;
   const resultEl=document.getElementById('irmaaResult');
   if(tierIndex===0){
-    resultEl.innerHTML='<div class="irmaa-no-surcharge"><div class="big">No IRMAA Surcharge</div><p>Based on your 2024 income, you are below the IRMAA threshold. Your 2026 standard Part B premium is <strong>$202.90 per month</strong>. No surcharge applies.</p><p style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted);">Keep in mind that any significant income event in 2025, a Roth conversion, home sale, or large capital gain, will affect your 2027 Medicare premium.</p></div><div class="irmaa-call-box" style="margin-top:1.5rem;"><h4>Want to keep it that way?</h4><p>Thomas can help you understand what income events to watch for before they affect your Medicare premium.</p><div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a></div></div>';
+    resultEl.innerHTML='<div class="irmaa-no-surcharge"><div class="big">No IRMAA Surcharge</div><p>Based on your 2025 income, you are below the projected IRMAA threshold. Your estimated 2027 standard Part B premium is <strong>$209.50 per month</strong>. No surcharge applies.</p><p style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted);">Keep in mind that any significant income event in 2026, a Roth conversion, home sale, or large capital gain, will affect your 2028 Medicare premium.</p></div><div class="irmaa-call-box" style="margin-top:1.5rem;"><h4>Want to keep it that way?</h4><p>Thomas can help you understand what income events to watch for before they affect your Medicare premium.</p><div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a></div></div>';
   }else{
     const amountToNextTier=tierIndex<brackets.length-1?brackets[tierIndex].max-magi:null;
-    let tableRows=brackets.map((b,i)=>{const isCurrent=i===tierIndex;const rangeLabel=b.max===Infinity?'Over '+(filing==='joint'?'$750,000':filing==='separate'?'$109,000':'$500,000'):'Up to $'+b.max.toLocaleString();return '<tr class="'+(isCurrent?'current-tier':'')+'"><td>'+b.label+(isCurrent?' \u2190 You':'')+'</td><td>'+rangeLabel+'</td><td>$'+b.partB.toFixed(2)+'/mo</td><td>'+(b.partD>0?'+$'+b.partD.toFixed(2)+'/mo':'--')+'</td></tr>';}).join('');
+    let tableRows=brackets.map((b,i)=>{const isCurrent=i===tierIndex;const rangeLabel=b.max===Infinity?'Over '+(filing==='joint'?'$750,000':filing==='separate'?'$112,000':'$500,000'):'Up to $'+b.max.toLocaleString();return '<tr class="'+(isCurrent?'current-tier':'')+'"><td>'+b.label+(isCurrent?' \u2190 You':'')+'</td><td>'+rangeLabel+'</td><td>$'+b.partB.toFixed(2)+'/mo</td><td>'+(b.partD>0?'+$'+b.partD.toFixed(2)+'/mo':'--')+'</td></tr>';}).join('');
     let warningText='';
-    if(amountToNextTier&&amountToNextTier<15000&&tierIndex<brackets.length-1){const nextTier=brackets[tierIndex+1];const diff=(nextTier.partB-tier.partB).toFixed(2);warningText='<div class="irmaa-warning"><strong>Heads up:</strong> You are only $'+amountToNextTier.toLocaleString()+' away from the next tier. Any income event, a Roth conversion, capital gain, or RMD, that pushes your 2024 MAGI over $'+brackets[tierIndex].max.toLocaleString()+' would move you to '+nextTier.label+' and increase your monthly premium by $'+diff+'/month.</div>';}
-    resultEl.innerHTML='<div class="irmaa-tiers"><div class="irmaa-tier-card highlight"><div class="irmaa-tier-label">Your Part B Premium</div><div class="irmaa-tier-val">$'+tier.partB.toFixed(2)+'</div><div class="irmaa-tier-sub">per month ('+tier.label+')</div></div><div class="irmaa-tier-card highlight"><div class="irmaa-tier-label">Part D Surcharge</div><div class="irmaa-tier-val">'+(tier.partD>0?'+$'+tier.partD.toFixed(2):'$0')+'</div><div class="irmaa-tier-sub">per month, on top of plan premium</div></div><div class="irmaa-tier-card highlight"><div class="irmaa-tier-label">Extra Annual Cost</div><div class="irmaa-tier-val">$'+Math.round(annualExtra).toLocaleString()+'</div><div class="irmaa-tier-sub">vs. standard premium (Part B + D surcharge)</div></div></div>'+warningText+'<p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem;">2026 IRMAA brackets based on 2024 MAGI. Source: CMS 2026 Medicare Parts A &amp; B Premiums and Deductibles.</p><table class="irmaa-table"><thead><tr><th>Tier</th><th>2024 MAGI</th><th>Part B Total</th><th>Part D Add-on</th></tr></thead><tbody>'+tableRows+'</tbody></table><div class="irmaa-call-box"><h4>IRMAA Affects More Than Just Your Premium</h4><p>A Roth conversion, home sale, or RMD in 2025 will affect your 2027 Medicare premium. Thomas can help you plan around it before it is too late.</p><div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a><a href="/#contact" class="btn-outline-cream">Free Review</a></div></div>';
+    if(amountToNextTier&&amountToNextTier<15000&&tierIndex<brackets.length-1){const nextTier=brackets[tierIndex+1];const diff=(nextTier.partB-tier.partB).toFixed(2);warningText='<div class="irmaa-warning"><strong>Heads up:</strong> You are only $'+amountToNextTier.toLocaleString()+' away from the next tier. Any income event, a Roth conversion, capital gain, or RMD, that pushes your 2025 MAGI over $'+brackets[tierIndex].max.toLocaleString()+' would move you to '+nextTier.label+' and increase your monthly premium by an estimated $'+diff+'/month.</div>';}
+    resultEl.innerHTML='<div class="irmaa-tiers"><div class="irmaa-tier-card highlight"><div class="irmaa-tier-label">Your Part B Premium</div><div class="irmaa-tier-val">$'+tier.partB.toFixed(2)+'</div><div class="irmaa-tier-sub">per month, estimated ('+tier.label+')</div></div><div class="irmaa-tier-card highlight"><div class="irmaa-tier-label">Part D Surcharge</div><div class="irmaa-tier-val">'+(tier.partD>0?'+$'+tier.partD.toFixed(2):'$0')+'</div><div class="irmaa-tier-sub">per month, on top of plan premium</div></div><div class="irmaa-tier-card highlight"><div class="irmaa-tier-label">Extra Annual Cost</div><div class="irmaa-tier-val">$'+Math.round(annualExtra).toLocaleString()+'</div><div class="irmaa-tier-sub">vs. standard premium (Part B + D surcharge)</div></div></div>'+warningText+'<p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem;">Projected 2027 IRMAA brackets based on 2025 MAGI. Dollar amounts from the 2026 Medicare Trustees Report; income thresholds are an inflation-indexed estimate. CMS confirms the official 2027 numbers each November, so treat this as a planning estimate, not a final figure.</p><table class="irmaa-table"><thead><tr><th>Tier</th><th>2025 MAGI</th><th>Part B Total</th><th>Part D Add-on</th></tr></thead><tbody>'+tableRows+'</tbody></table><div class="irmaa-call-box"><h4>IRMAA Affects More Than Just Your Premium</h4><p>A Roth conversion, home sale, or RMD in 2026 will affect your 2028 Medicare premium. Thomas can help you plan around it before it is too late.</p><div class="cta-btns"><a href="tel:+13177289417" class="btn-cream">Call (317) 728-9417</a><a href="/#contact" class="btn-outline-cream">Free Review</a></div></div>';
   }
   resultEl.classList.add('show');
   resultEl.scrollIntoView({behavior:'smooth'});
 }
+document.getElementById('irmaaCalcBtn').addEventListener('click', calcIrmaa);
+
 const TC_WORKER_URL='https://anthropic-proxy.thomas626crowhurst.workers.dev';
 const TC_MODEL='claude-sonnet-4-6';
 const TC_MODEL_FALLBACK='claude-haiku-4-5-20251001';
@@ -653,6 +729,12 @@ function tcQuick(t){document.getElementById('tc-input').value=t;tcSend();}
 function tcKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();tcSend();}}
 async function tcSend(){if(tcBusy)return;const inp=document.getElementById('tc-input');const txt=inp.value.trim();if(!txt)return;inp.value='';tcHideQR();tcAddMsg(txt,'user');tcHistory.push({role:'user',content:txt});tcBusy=true;document.getElementById('tc-send').disabled=true;tcShowTyping();async function tryModel(model){const r=await fetch(TC_WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model,max_tokens:350,system:TC_SYSTEM,messages:tcHistory})});const d=await r.json();if(d?.error?.type==='invalid_request_error'&&d?.error?.message?.includes('model'))throw new Error('model_deprecated');return d?.content?.[0]?.text;}
 try{let reply;try{reply=await tryModel(TC_MODEL);}catch(e){if(e.message==='model_deprecated'){reply=await tryModel(TC_MODEL_FALLBACK);}else{throw e;}}tcHideTyping();tcAddMsg(reply||'Give Thomas a call at (317) 728-9417 and he will get you sorted out.','bot');tcHistory.push({role:'assistant',content:reply});}catch(err){tcHideTyping();tcAddMsg('Having trouble connecting. Call Thomas at (317) 728-9417.','bot');}tcBusy=false;document.getElementById('tc-send').disabled=false;document.getElementById('tc-input').focus();}
+
+document.getElementById('tc-chat-btn').addEventListener('click', tcToggle);
+document.getElementById('tcCloseBtn').addEventListener('click', tcToggle);
+document.querySelectorAll('.tc-qr').forEach(btn => btn.addEventListener('click', () => tcQuick(btn.dataset.q)));
+document.getElementById('tc-input').addEventListener('keydown', tcKey);
+document.getElementById('tc-send').addEventListener('click', tcSend);
 </script>
 </body>
 </html>
